@@ -104,12 +104,12 @@ export function transformToProcessedStarters(repos: Repo[]): ProcessedStarter[] 
     return {
       id: repo.id,
       name: repo.name,
-      title: config?.title || formatRepoName(repo.name),
-      description: config?.description || repo.description || 'No description available',
-      language: config?.language || repo.language || 'Unknown',
-      framework: config?.framework,
-      category: config?.category,
-      vertical: config?.vertical,
+      title: config?.meta?.title || formatRepoName(repo.name),
+      description: config?.meta?.description || repo.description || 'No description available',
+      language: config?.meta?.language || repo.language || 'Unknown',
+      framework: config?.meta?.framework,
+      category: config?.meta?.useCase,  // Map useCase to category
+      vertical: undefined,  // Not in TOML structure yet - future feature
       tags: config?.tags || repo.topics || [],
       links: {
         github: repo.html_url,

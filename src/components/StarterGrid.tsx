@@ -16,8 +16,7 @@ import {
   StarIcon,
   CodeBracketIcon,
   BookOpenIcon,
-  PlayIcon,
-  ClockIcon
+  PlayIcon
 } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 import type { ProcessedStarter } from '@/types';
@@ -123,14 +122,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
     setFilteredStarters(filtered);
   }, [filters, starters]);
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
-    });
-  };
-
+  // Remove unused formatDate helper
 
 
   if (loading) {
@@ -179,15 +171,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
 
   return (
     <div className="starter-grid-section">
-      {!loading && starters.length > 0 && (
-        <div className="mb-6">
-          <p className="text-sm text-default-500">
-            {filteredStarters.length} starter{filteredStarters.length !== 1 ? 's' : ''} found
-          </p>
-        </div>
-      )}
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+      <div className="mx-6 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
         {filteredStarters.map((starter, index) => (
           <motion.div
             key={starter.id}
@@ -195,117 +179,112 @@ export function StarterGrid({ filters }: StarterGridProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
           >
-            <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-              <CardHeader className="pb-2">
-                <div className="flex justify-between items-start w-full">
-                  <div className="flex items-center gap-3">
-                    <Avatar
-                      size="sm"
-                      name={starter.language}
-                      className="bg-primary text-white"
-                    />
-                    <div>
-                      <h3 className="font-semibold text-lg">{starter.title}</h3>
-                      <p className="text-small text-default-500">{starter.language}</p>
+            <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg">
+              <Card className="h-full hover:shadow-lg transition-shadow duration-300 bg-black rounded-lg">
+                <CardHeader className="pb-2">
+                  <div className="flex justify-between items-start w-full">
+                    <div className="flex items-center gap-3">
+                      <Avatar
+                        size="sm"
+                        name={starter.language}
+                        className="bg-primary text-white"
+                      />
+                      <div>
+                        <h3 className="font-semibold text-lg">{starter.title}</h3>
+                        <p className="text-small text-default-500">{starter.language}</p>
+                      </div>
+                    </div>
+
+                  </div>
+                </CardHeader>
+
+                <CardBody className="pt-0">
+                  <p className="text-default-600 text-sm mb-4 line-clamp-3">
+                    {starter.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1 mb-4">
+                    {starter.tags.slice(0, 3).map((tag) => (
+                      <Chip key={tag} size="sm" variant="flat" color="secondary">
+                        {tag}
+                      </Chip>
+                    ))}
+                    {starter.tags.length > 3 && (
+                      <Chip size="sm" variant="flat" color="default">
+                        +{starter.tags.length - 3}
+                      </Chip>
+                    )}
+                  </div>
+
+                  {/* Framework & Category */}
+                  {(starter.framework || starter.category) && (
+                    <div className="flex gap-2 mb-4">
+                      {starter.framework && (
+                        <Chip size="sm" variant="bordered" color="primary">
+                          {starter.framework}
+                        </Chip>
+                      )}
+                      {starter.category && (
+                        <Chip size="sm" variant="bordered" color="warning">
+                          {starter.category}
+                        </Chip>
+                      )}
+                    </div>
+                  )}
+
+                  <Divider className="my-3" />
+                </CardBody>
+
+                <CardFooter className="pt-0 pb-4 px-6">
+                  <div className="flex justify-between items-center w-full">
+                    <div className="flex items-center gap-1 text-small text-default-500">
+                      <StarIcon className="w-4 h-4" />
+                      <span>{starter.stats.stars}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button className="flex items-center gap-1 whitespace-nowrap"
+                        as={Link}
+                        href={starter.links.github}
+                        target="_blank"
+                        variant="solid"
+                        color="primary"
+                        size="sm"
+                        startContent={<CodeBracketIcon className="w-4 h-4" />}
+                      >
+                        Code
+                      </Button>
+
+                      {starter.links.docs && (
+                        <Button
+                          as={Link}
+                          href={starter.links.docs}
+                          target="_blank"
+                          variant="bordered"
+                          size="sm"
+                          startContent={<BookOpenIcon className="w-4 h-4" />}
+                        >
+                          Docs
+                        </Button>
+                      )}
+
+                      {starter.links.demo && (
+                        <Button
+                          as={Link}
+                          href={starter.links.demo}
+                          target="_blank"
+                          variant="bordered"
+                          size="sm"
+                          startContent={<PlayIcon className="w-4 h-4" />}
+                        >
+                          Demo
+                        </Button>
+                      )}
                     </div>
                   </div>
-
-                </div>
-              </CardHeader>
-
-              <CardBody className="pt-0">
-                <p className="text-default-600 text-sm mb-4 line-clamp-3">
-                  {starter.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1 mb-4">
-                  {starter.tags.slice(0, 3).map((tag) => (
-                    <Chip key={tag} size="sm" variant="flat" color="secondary">
-                      {tag}
-                    </Chip>
-                  ))}
-                  {starter.tags.length > 3 && (
-                    <Chip size="sm" variant="flat" color="default">
-                      +{starter.tags.length - 3}
-                    </Chip>
-                  )}
-                </div>
-
-                {/* Framework & Category */}
-                {(starter.framework || starter.category) && (
-                  <div className="flex gap-2 mb-4">
-                    {starter.framework && (
-                      <Chip size="sm" variant="bordered" color="primary">
-                        {starter.framework}
-                      </Chip>
-                    )}
-                    {starter.category && (
-                      <Chip size="sm" variant="bordered" color="warning">
-                        {starter.category}
-                      </Chip>
-                    )}
-                  </div>
-                )}
-
-                <Divider className="my-3" />
-
-                {/* Stats */}
-                <div className="flex justify-between items-center text-small text-default-500">
-                  <div className="flex items-center gap-1">
-                    <StarIcon className="w-4 h-4" />
-                    <span>{starter.stats.stars}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <ClockIcon className="w-4 h-4" />
-                    <span>{formatDate(starter.stats.lastUpdated)}</span>
-                  </div>
-                </div>
-              </CardBody>
-
-              <CardFooter className="pt-0">
-                <div className="flex gap-2 w-full">
-                  <Button
-                    as={Link}
-                    href={starter.links.github}
-                    target="_blank"
-                    variant="solid"
-                    color="primary"
-                    size="sm"
-                    startContent={<CodeBracketIcon className="w-4 h-4" />}
-                    className="flex-1"
-                  >
-                    Code
-                  </Button>
-
-                  {starter.links.docs && (
-                    <Button
-                      as={Link}
-                      href={starter.links.docs}
-                      target="_blank"
-                      variant="bordered"
-                      size="sm"
-                      startContent={<BookOpenIcon className="w-4 h-4" />}
-                    >
-                      Docs
-                    </Button>
-                  )}
-
-                  {starter.links.demo && (
-                    <Button
-                      as={Link}
-                      href={starter.links.demo}
-                      target="_blank"
-                      variant="bordered"
-                      size="sm"
-                      startContent={<PlayIcon className="w-4 h-4" />}
-                    >
-                      Demo
-                    </Button>
-                  )}
-                </div>
-              </CardFooter>
-            </Card>
+                </CardFooter>
+              </Card>
+            </div>
           </motion.div>
         ))}
       </div>

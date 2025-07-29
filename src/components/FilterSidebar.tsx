@@ -42,12 +42,12 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
   const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>([]);
   const [selectedVerticals, setSelectedVerticals] = useState<string[]>([]);
 
-  // Mock filter options - in real app, these would come from API
+  // Filter options based on actual TOML values from starter repositories
   const filterOptions: FilterOptions = {
-    languages: ['JavaScript', 'Python', 'TypeScript', 'Go', 'Java', 'C#', 'PHP', 'Ruby'],
-    categories: ['Voice Agent', 'Real-time', 'Batch Processing', 'Analytics', 'Streaming'],
-    frameworks: ['Next.js', 'React', 'Express', 'FastAPI', 'Django', 'Vue.js', 'Svelte'],
-    verticals: ['Drive-Thru', 'Call Center', 'Meeting Notes', 'Podcasts', 'Education'],
+    languages: ['C#', 'C++', 'Go', 'Java', 'JavaScript', 'PHP', 'Python', 'Ruby', 'Rust', 'TypeScript'],
+    categories: ['Voice Agent', 'Live', 'STT', 'TTS'],
+    frameworks: ['.NET', 'Django', 'Flask', 'Go', 'Next', 'Node', 'Sinatra'],
+    verticals: [], // Not yet implemented in TOML structure
     tags: ['real-time', 'websocket', 'streaming', 'api', 'webhook', 'ai', 'nlp']
   };
 
@@ -72,11 +72,11 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
   ]);
 
   const hasActiveFilters =
-    searchTerm ||
-    selectedLanguages.length ||
-    selectedCategories.length ||
-    selectedFrameworks.length ||
-    selectedVerticals.length;
+    !!searchTerm ||
+    selectedLanguages.length > 0 ||
+    selectedCategories.length > 0 ||
+    selectedFrameworks.length > 0 ||
+    selectedVerticals.length > 0;
 
   return (
     <div className="p-6 h-full">
@@ -93,11 +93,12 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
             placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            startContent={<MagnifyingGlassIcon className="w-4 h-4 text-default-400" />}
+            startContent={<MagnifyingGlassIcon className="w-4 h-4 text-default-400 translate-y-[8px]" />}
             variant="flat"
             size="sm"
             classNames={{
-              inputWrapper: "bg-transparent border-none shadow-none"
+              inputWrapper: "bg-transparent border-none shadow-none",
+              input: "text-left pl-6 translate-y-[-10px]"
             }}
           />
         </div>
@@ -168,7 +169,16 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
       )}
 
       {/* Filter Accordion */}
-      <Accordion variant="light" selectionMode="multiple" defaultExpandedKeys={["language"]}>
+      <Accordion
+        variant="light"
+        selectionMode="multiple"
+        defaultExpandedKeys={[
+          ...(selectedLanguages.length > 0 ? ["language"] : []),
+          ...(selectedCategories.length > 0 ? ["category"] : []),
+          ...(selectedFrameworks.length > 0 ? ["framework"] : []),
+          ...(selectedVerticals.length > 0 ? ["vertical"] : [])
+        ]}
+      >
         {/* Language Filter */}
         <AccordionItem
           key="language"
@@ -188,9 +198,21 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
             value={selectedLanguages}
             onValueChange={setSelectedLanguages}
             size="sm"
+            classNames={{
+              wrapper: "gap-0"
+            }}
           >
             {filterOptions.languages.map((lang) => (
-              <Checkbox key={lang} value={lang} className="w-full">
+              <Checkbox
+                key={lang}
+                value={lang}
+                className="w-full py-1"
+                classNames={{
+                  base: "flex flex-row-reverse justify-between items-center w-full max-w-full",
+                  wrapper: "order-2",
+                  label: "order-1 flex-1 text-sm"
+                }}
+              >
                 {lang}
               </Checkbox>
             ))}
@@ -216,9 +238,21 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
             value={selectedCategories}
             onValueChange={setSelectedCategories}
             size="sm"
+            classNames={{
+              wrapper: "gap-0"
+            }}
           >
             {filterOptions.categories.map((category) => (
-              <Checkbox key={category} value={category} className="w-full">
+              <Checkbox
+                key={category}
+                value={category}
+                className="w-full py-1"
+                classNames={{
+                  base: "flex flex-row-reverse justify-between items-center w-full max-w-full",
+                  wrapper: "order-2",
+                  label: "order-1 flex-1 text-sm"
+                }}
+              >
                 {category}
               </Checkbox>
             ))}
@@ -244,9 +278,21 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
             value={selectedFrameworks}
             onValueChange={setSelectedFrameworks}
             size="sm"
+            classNames={{
+              wrapper: "gap-0"
+            }}
           >
             {filterOptions.frameworks.map((framework) => (
-              <Checkbox key={framework} value={framework} className="w-full">
+              <Checkbox
+                key={framework}
+                value={framework}
+                className="w-full py-1"
+                classNames={{
+                  base: "flex flex-row-reverse justify-between items-center w-full max-w-full",
+                  wrapper: "order-2",
+                  label: "order-1 flex-1 text-sm"
+                }}
+              >
                 {framework}
               </Checkbox>
             ))}
@@ -256,10 +302,10 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
         {/* Vertical Filter */}
         <AccordionItem
           key="vertical"
-          aria-label="Industry"
+          aria-label="Vertical"
           title={
             <div className="flex items-center justify-between w-full">
-              <span>Industry</span>
+              <span>Vertical</span>
               {selectedVerticals.length > 0 && (
                 <Chip size="sm" variant="flat" color="default" className="ml-2">
                   {selectedVerticals.length}
@@ -272,9 +318,21 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
             value={selectedVerticals}
             onValueChange={setSelectedVerticals}
             size="sm"
+            classNames={{
+              wrapper: "gap-0"
+            }}
           >
             {filterOptions.verticals.map((vertical) => (
-              <Checkbox key={vertical} value={vertical} className="w-full">
+              <Checkbox
+                key={vertical}
+                value={vertical}
+                className="w-full py-1"
+                classNames={{
+                  base: "flex flex-row-reverse justify-between items-center w-full max-w-full",
+                  wrapper: "order-2",
+                  label: "order-1 flex-1 text-sm"
+                }}
+              >
                 {vertical}
               </Checkbox>
             ))}

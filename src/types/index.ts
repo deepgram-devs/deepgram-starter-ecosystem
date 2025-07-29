@@ -23,6 +23,25 @@ export interface Repo {
 
 // TOML Configuration structure
 export interface TomlConfig {
+  meta?: {
+    title?: string;
+    description?: string;
+    author?: string;
+    useCase?: string;
+    language?: string;
+    framework?: string;
+  };
+  build?: {
+    command?: string;
+  };
+  config?: {
+    sample?: string;
+    output?: string;
+  };
+  "post-build"?: {
+    message?: string;
+  };
+  // Legacy fields for backward compatibility
   title?: string;
   description?: string;
   category?: string;
