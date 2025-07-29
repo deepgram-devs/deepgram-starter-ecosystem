@@ -84,8 +84,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
       filtered = filtered.filter(starter =>
         starter.title.toLowerCase().includes(searchTerm) ||
         starter.description.toLowerCase().includes(searchTerm) ||
-        starter.name.toLowerCase().includes(searchTerm) ||
-        starter.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+        starter.name.toLowerCase().includes(searchTerm)
       );
     }
 
@@ -180,53 +179,36 @@ export function StarterGrid({ filters }: StarterGridProps) {
             transition={{ duration: 0.4, delay: index * 0.1 }}
           >
             <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg">
-              <Card className="h-full hover:shadow-lg transition-shadow duration-300 bg-black rounded-lg">
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-start w-full">
-                    <div className="flex items-center gap-3">
-                      <Avatar
-                        size="sm"
-                        name={starter.language}
-                        className="bg-primary text-white"
-                      />
-                      <div>
-                        <h3 className="font-semibold text-lg">{starter.title}</h3>
-                        <p className="text-small text-default-500">{starter.language}</p>
-                      </div>
-                    </div>
+              <Card className="h-full min-h-[400px] hover:shadow-lg transition-shadow duration-300 bg-black rounded-lg">
+                {/* Logo Placeholder */}
+                <div className="w-full h-20 bg-gray-300 rounded-t-lg flex items-center justify-center">
+                  {/* Starter languageLogo will go here */}
+                </div>
 
-                  </div>
+                <CardHeader className="pb-2 px-6 pt-4">
+                  <h3 className="font-semibold text-lg text-left">{starter.title}</h3>
                 </CardHeader>
 
-                <CardBody className="pt-0">
-                  <p className="text-default-600 text-sm mb-4 line-clamp-3">
+                <CardBody className="pt-0 px-6">
+                  <p className="text-default-600 text-sm mb-4 line-clamp-3 min-h-[60px]">
                     {starter.description}
                   </p>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {starter.tags.slice(0, 3).map((tag) => (
-                      <Chip key={tag} size="sm" variant="flat" color="secondary">
-                        {tag}
-                      </Chip>
-                    ))}
-                    {starter.tags.length > 3 && (
-                      <Chip size="sm" variant="flat" color="default">
-                        +{starter.tags.length - 3}
-                      </Chip>
-                    )}
-                  </div>
-
                   {/* Framework & Category */}
-                  {(starter.framework || starter.category) && (
-                    <div className="flex gap-2 mb-4">
+                  {(starter.language || starter.framework || starter.category) && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {starter.language && (
+                        <Chip size="sm" variant="solid" color="default" className="font-semibold bg-gray-600 text-white px-3">
+                          {starter.language}
+                        </Chip>
+                      )}
                       {starter.framework && (
-                        <Chip size="sm" variant="bordered" color="primary">
+                        <Chip size="sm" variant="solid" color="default" className="font-semibold bg-gray-600 text-white px-3">
                           {starter.framework}
                         </Chip>
                       )}
                       {starter.category && (
-                        <Chip size="sm" variant="bordered" color="warning">
+                        <Chip size="sm" variant="solid" color="default" className="font-semibold bg-gray-600 text-white px-3">
                           {starter.category}
                         </Chip>
                       )}
@@ -304,7 +286,6 @@ function generateMockStarters(): ProcessedStarter[] {
       framework: 'Next.js',
       category: 'Voice Agent',
       vertical: 'Call Center',
-      tags: ['real-time', 'websocket', 'ai', 'voice'],
       links: {
         github: 'https://github.com/deepgram-starters/voice-agent-typescript',
         docs: 'https://docs.deepgram.com',
@@ -325,8 +306,6 @@ function generateMockStarters(): ProcessedStarter[] {
       framework: 'FastAPI',
       category: 'Real-time',
       vertical: 'Drive-Thru',
-
-      tags: ['python', 'fastapi', 'real-time', 'ordering'],
       links: {
         github: 'https://github.com/deepgram-starters/drive-thru-python',
         docs: 'https://docs.deepgram.com',
@@ -346,7 +325,6 @@ function generateMockStarters(): ProcessedStarter[] {
       framework: 'React',
       category: 'Batch Processing',
       vertical: 'Meeting Notes',
-      tags: ['javascript', 'react', 'transcription', 'ai'],
       links: {
         github: 'https://github.com/deepgram-starters/meeting-notes-js',
         demo: 'https://demo.deepgram.com/meetings',

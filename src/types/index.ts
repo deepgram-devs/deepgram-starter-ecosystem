@@ -108,7 +108,6 @@ export interface ProcessedStarter {
   framework?: string;
   category?: string;
   vertical?: string;
-  tags: string[];
   links: {
     github: string;
     docs?: string;

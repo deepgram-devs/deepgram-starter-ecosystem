@@ -4,6 +4,7 @@ import { useState, useCallback, Suspense } from 'react';
 import { StarterGrid } from '@/components/StarterGrid';
 import { FilterSidebar } from '@/components/FilterSidebar';
 import Loading from '@/components/Loading';
+import { HeroSection } from '@/components/HeroSection';
 
 interface FilterState {
   search: string;
@@ -23,17 +24,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Simple Header */}
-      <header className="border-b border-divider">
-        <div className="container mx-auto px-6 py-8 text-center">
-          <h1 className="text-4xl font-bold text-foreground mb-2">
-            Find your Starter
-          </h1>
-          <p className="text-lg text-default-500">
-            Jumpstart your app development process with pre-built solutions from Deepgram.
-          </p>
-        </div>
-      </header>
+      <HeroSection />
 
       {/* Main Layout: Sidebar + Content */}
       <div className="flex">
