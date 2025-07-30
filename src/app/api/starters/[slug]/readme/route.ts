@@ -3,10 +3,10 @@ import { getRepoReadme } from '@/lib/github';
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
 
     if (!slug) {
       return NextResponse.json(
@@ -29,14 +29,14 @@ export async function GET(
 
     console.log(`Successfully fetched README for ${slug}`);
 
-    // Return the README data with appropriate caching headers
+    // Return the README data with 24-hour caching
     return NextResponse.json(readmeData, {
       headers: {
-        'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=1200', // Cache for 10 minutes
+        'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=172800', // Cache for 24 hours, stale for 48 hours
       },
     });
   } catch (error) {
-    console.error(`Error in /api/starters/${params.slug}/readme:`, error);
+    console.error(`Error in /api/starters/[slug]/readme:`, error);
 
     return NextResponse.json(
       {
@@ -48,6 +48,6 @@ export async function GET(
   }
 }
 
-// Export runtime configuration
+// Export runtime configuration with ISR
 export const runtime = 'nodejs';
-export const dynamic = 'force-dynamic'; // Ensure fresh data on each request
+export const revalidate = 86400; // Revalidate every 24 hours (86400 seconds)
