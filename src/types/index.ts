@@ -108,6 +108,7 @@ export interface ProcessedStarter {
   framework?: string;
   category?: string;
   vertical?: string;
+  tags?: string[];
   links: {
     github: string;
     docs?: string;
@@ -123,4 +124,5 @@ export interface ProcessedStarter {
     platforms?: string[];
     requirements?: string[];
   };
+  config?: TomlConfig; // Include full TOML config for detailed views
 }

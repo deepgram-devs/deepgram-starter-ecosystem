@@ -82,7 +82,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
     <div className="p-6 h-full">
       {/* Title */}
       <div className="mb-6">
-        <h2 className="text-lg font-semibold text-foreground">Filter Starters</h2>
+        <h2 className="text-md font-semibold text-foreground">Filter Quickstarts</h2>
       </div>
 
       {/* Search */}
