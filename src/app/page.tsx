@@ -24,21 +24,25 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Hero Section - Full Width */}
       <HeroSection />
 
-      {/* Main Layout: Sidebar + Content */}
-      <div className="flex">
-        {/* Left Sidebar */}
-        <aside className="w-80 border-r border-divider bg-content1 min-h-screen sticky top-0">
-          <FilterSidebar onFiltersChange={handleFiltersChange} />
-        </aside>
+      {/* Constrained Layout Container */}
+      <div className="mx-auto max-w-[1448px]">
+        {/* Main Layout: Sidebar + Content */}
+        <div className="flex">
+          {/* Left Sidebar */}
+          <aside className="w-96 border-r border-divider bg-content1 min-h-screen sticky top-0">
+            <FilterSidebar onFiltersChange={handleFiltersChange} />
+          </aside>
 
-        {/* Main Content */}
-        <main className="flex-1 p-6">
-          <Suspense fallback={<Loading />}>
-            <StarterGrid filters={filters} />
-          </Suspense>
-        </main>
+          {/* Main Content */}
+          <main className="flex-1 p-6">
+            <Suspense fallback={<Loading />}>
+              <StarterGrid filters={filters} />
+            </Suspense>
+          </main>
+        </div>
       </div>
     </div>
   );

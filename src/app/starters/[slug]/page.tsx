@@ -161,7 +161,7 @@ export default function StarterDetailPage() {
                 <CardHeader className="bg-black">
                   <h2 className="text-xl font-bold text-white">{starter.title}</h2>
                 </CardHeader>
-                <CardBody className="pt-0 bg-black">
+                <CardBody className="pt-0 bg-black p-6">
                   <p className="text-gray-400 text-sm mb-4">
                     {starter.description}
                   </p>
@@ -251,7 +251,7 @@ export default function StarterDetailPage() {
                 <CardHeader className="bg-black">
                   <h3 className="text-lg font-semibold text-white">Configuration</h3>
                 </CardHeader>
-                <CardBody className="pt-0 bg-black">
+                <CardBody className="pt-0 bg-black p-6">
                   <div className="space-y-4 text-sm">
                     {/* Build Command */}
                     {starter.config?.build?.command && (
