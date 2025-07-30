@@ -75,7 +75,9 @@ export async function getRepoData(): Promise<Repo[]> {
               return repo;
             }
 
-            const content = config?.content ? atob(config?.content) : '';
+            const content = config?.content
+              ? new TextDecoder('utf-8').decode(Uint8Array.from(atob(config?.content), c => c.charCodeAt(0)))
+              : '';
             const parsed: TomlConfig = parse(content) as TomlConfig;
             console.log(`✓ Loaded config for ${repo.name}`);
             return { ...repo, repo_config: parsed };
@@ -104,12 +106,12 @@ export function transformToProcessedStarters(repos: Repo[]): ProcessedStarter[] 
     return {
       id: repo.id,
       name: repo.name,
-      title: config?.title || formatRepoName(repo.name),
-      description: config?.description || repo.description || 'No description available',
-      language: config?.language || repo.language || 'Unknown',
-      framework: config?.framework,
-      category: config?.category,
-      vertical: config?.vertical,
+      title: config?.meta?.title || formatRepoName(repo.name),
+      description: config?.meta?.description || repo.description || 'No description available',
+      language: config?.meta?.language || repo.language || 'Unknown',
+      framework: config?.meta?.framework,
+      category: config?.meta?.useCase,  // Map useCase to category
+      vertical: undefined,  // Not in TOML structure yet - future feature
       tags: config?.tags || repo.topics || [],
       links: {
         github: repo.html_url,
@@ -123,6 +125,7 @@ export function transformToProcessedStarters(repos: Repo[]): ProcessedStarter[] 
         lastUpdated: repo.updated_at,
       },
       deployment: config?.deployment,
+      config: config, // Include full config for detailed views
     };
   });
 }
@@ -148,7 +151,9 @@ export function getFilterOptions(starters: ProcessedStarter[]) {
     if (starter.category) categories.add(starter.category);
     if (starter.framework) frameworks.add(starter.framework);
     if (starter.vertical) verticals.add(starter.vertical);
-    starter.tags.forEach((tag) => tags.add(tag));
+    if (starter.tags) {
+      starter.tags.forEach((tag: string) => tags.add(tag));
+    }
   });
 
   return {
@@ -158,6 +163,29 @@ export function getFilterOptions(starters: ProcessedStarter[]) {
     verticals: Array.from(verticals).sort(),
     tags: Array.from(tags).sort(),
   };
+}
+
+// Fetch README content from a repository
+export async function getRepoReadme(repoName: string): Promise<GitHubFileContent | null> {
+  try {
+    const response = await fetch(
+      `${GITHUB_API_BASE}/repos/${ORG_NAME}/${repoName}/contents/README.md`,
+      {
+        cache: 'no-store',
+        headers: getApiHeaders(),
+      }
+    );
+
+    if (!response.ok) {
+      console.log(`No README.md found for ${repoName}: ${response.status}`);
+      return null;
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching README for ${repoName}:`, error);
+    return null;
+  }
 }
 
 // Filter starters based on search criteria
@@ -180,7 +208,7 @@ export function filterStarters(
         starter.title.toLowerCase().includes(searchTerm) ||
         starter.description.toLowerCase().includes(searchTerm) ||
         starter.name.toLowerCase().includes(searchTerm) ||
-        starter.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+        (starter.tags && starter.tags.some((tag: string) => tag.toLowerCase().includes(searchTerm)));
 
       if (!matchesSearch) return false;
     }
@@ -206,9 +234,9 @@ export function filterStarters(
     }
 
     // Tags filter
-    if (filters.tags?.length) {
+    if (filters.tags?.length && starter.tags?.length) {
       const hasMatchingTag = filters.tags.some(filterTag =>
-        starter.tags.some(starterTag => starterTag.toLowerCase() === filterTag.toLowerCase())
+        starter.tags!.some((starterTag: string) => starterTag.toLowerCase() === filterTag.toLowerCase())
       );
       if (!hasMatchingTag) return false;
     }

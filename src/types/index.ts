@@ -23,6 +23,25 @@ export interface Repo {
 
 // TOML Configuration structure
 export interface TomlConfig {
+  meta?: {
+    title?: string;
+    description?: string;
+    author?: string;
+    useCase?: string;
+    language?: string;
+    framework?: string;
+  };
+  build?: {
+    command?: string;
+  };
+  config?: {
+    sample?: string;
+    output?: string;
+  };
+  "post-build"?: {
+    message?: string;
+  };
+  // Legacy fields for backward compatibility
   title?: string;
   description?: string;
   category?: string;
@@ -89,7 +108,7 @@ export interface ProcessedStarter {
   framework?: string;
   category?: string;
   vertical?: string;
-  tags: string[];
+  tags?: string[];
   links: {
     github: string;
     docs?: string;
@@ -105,4 +124,5 @@ export interface ProcessedStarter {
     platforms?: string[];
     requirements?: string[];
   };
+  config?: TomlConfig; // Include full TOML config for detailed views
 }
