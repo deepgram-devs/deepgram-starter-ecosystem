@@ -22,10 +22,10 @@ export async function GET() {
 
     console.log(`Successfully processed ${starters.length} starters`);
 
-    // Return the data with appropriate caching headers
+    // Return the data with 24-hour caching
     return NextResponse.json(starters, {
       headers: {
-        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600', // Cache for 5 minutes
+        'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=172800', // Cache for 24 hours, stale for 48 hours
       },
     });
   } catch (error) {
@@ -41,6 +41,6 @@ export async function GET() {
   }
 }
 
-// Export runtime configuration
+// Export runtime configuration with ISR
 export const runtime = 'nodejs';
-export const dynamic = 'force-dynamic'; // Ensure fresh data on each request
+export const revalidate = 86400; // Revalidate every 24 hours (86400 seconds)

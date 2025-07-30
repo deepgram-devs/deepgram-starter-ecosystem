@@ -25,7 +25,7 @@ export async function getRepoConfig(repoName: string): Promise<GitHubFileContent
     const response = await fetch(
       `${GITHUB_API_BASE}/repos/${ORG_NAME}/${repoName}/contents/deepgram.toml`,
       {
-        cache: 'no-store',
+        next: { revalidate: 86400 }, // Cache for 24 hours
         headers: getApiHeaders(),
       }
     );
@@ -48,7 +48,7 @@ export async function getRepoData(): Promise<Repo[]> {
     const response = await fetch(
       `${GITHUB_API_BASE}/orgs/${ORG_NAME}/repos`,
       {
-        cache: 'no-store',
+        next: { revalidate: 86400 }, // Cache for 24 hours
         headers: getApiHeaders(),
       }
     );
@@ -171,7 +171,7 @@ export async function getRepoReadme(repoName: string): Promise<GitHubFileContent
     const response = await fetch(
       `${GITHUB_API_BASE}/repos/${ORG_NAME}/${repoName}/contents/README.md`,
       {
-        cache: 'no-store',
+        next: { revalidate: 86400 }, // Cache for 24 hours
         headers: getApiHeaders(),
       }
     );
