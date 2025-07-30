@@ -255,7 +255,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
   return (
     <div className="starter-grid-section">
       {error && starters.length > 0 && <ErrorBanner />}
-      <div className="mx-6 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {filteredStarters.map((starter, index) => (
           <motion.div
             key={starter.id}
@@ -324,7 +324,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
                         target="_blank"
                         variant="bordered"
                         size="sm"
-                        startContent={<BookOpenIcon className="w-4 h-4" />} s
+                        startContent={<BookOpenIcon className="w-4 h-4" />}
                       >
                         Docs
                       </Button>
