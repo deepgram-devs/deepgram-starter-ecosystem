@@ -158,7 +158,7 @@ export default function StarterDetailPage() {
             {/* Starter Info Card */}
             <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg mb-6">
               <Card className="bg-black border-none">
-                <CardHeader className="bg-black">
+                <CardHeader className="bg-black flex justify-center items-center">
                   <h2 className="text-xl font-bold text-white">{starter.title}</h2>
                 </CardHeader>
                 <CardBody className="pt-0 bg-black p-6">
@@ -248,7 +248,7 @@ export default function StarterDetailPage() {
             {/* TOML Configuration Display */}
             <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg">
               <Card className="bg-black border-none">
-                <CardHeader className="bg-black">
+                <CardHeader className="bg-black flex justify-center items-center">
                   <h3 className="text-lg font-semibold text-white">Configuration</h3>
                 </CardHeader>
                 <CardBody className="pt-0 bg-black p-6">
@@ -370,9 +370,9 @@ export default function StarterDetailPage() {
           <div className="max-w-5xl mx-auto">
             <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg">
               <Card className="min-h-[600px] bg-black border-none">
-                <CardHeader className="bg-black border-b border-gray-700">
+                <CardHeader className="bg-black border-b border-gray-700 pb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                    <div className="w-8 h-8 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg flex items-center justify-center ml-3 mt-2">
                       <BookOpenIcon className="w-5 h-5 text-white" />
                     </div>
                     <h1 className="text-2xl font-bold text-white">README</h1>
@@ -498,7 +498,7 @@ export default function StarterDetailPage() {
                                   if (isBadge && alt) {
                                     const fallback = document.createElement('span');
                                     fallback.textContent = alt;
-                                    fallback.className = 'inline-block px-2 py-1 bg-blue-600 text-white text-xs rounded mr-2 font-medium';
+                                    fallback.className = 'inline-block px-2 py-1 bg-blue-600 mb-4 text-white text-xs rounded mr-2 font-medium';
                                     fallback.title = `Badge: ${alt} (Image failed to load from ${src})`;
                                     e.currentTarget.parentNode?.replaceChild(fallback, e.currentTarget);
                                   } else {
