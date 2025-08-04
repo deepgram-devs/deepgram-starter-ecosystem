@@ -9,7 +9,7 @@ const ORG_NAME = 'deepgram-starters';
 function getApiHeaders(): HeadersInit {
   const headers: HeadersInit = {
     'Accept': 'application/vnd.github.v3+json',
-    'User-Agent': 'Deepgram-Quickstarts-Hub/1.0',
+    'User-Agent': 'Deepgram-Starter-Ecosystem/1.0',
   };
 
   if (process.env.GH_PAT) {
