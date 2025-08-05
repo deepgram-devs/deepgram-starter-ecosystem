@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:cache": "concurrently 'npm run dev' 'sleep 60 && node ./test-caching.js' --kill-others",
+    "test:cache": "concurrently --success first 'npm run dev' 'sleep 60 && node ./test-caching.js' --kill-others",
     "test": "npm-run-all test:*"
   },
   "dependencies": {
