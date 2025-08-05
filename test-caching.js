@@ -67,6 +67,7 @@ async function testCaching() {
 
   console.log('\n✨ Testing complete! Your 24-hour caching is working perfectly.');
   console.log('💡 GitHub API calls are minimized, and responses are lightning fast!');
+  process.exit(0);
 }
 
 // Run the test
