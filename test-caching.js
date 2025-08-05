@@ -60,6 +60,11 @@ async function testCaching() {
     await measureRequest(`${BASE_URL}/api/starters`, `Rapid request #${i}`);
   }
 
+  if (!time1 || !time2 || !readme1 || !readme2) {
+    console.log('⚠️ Some requests failed. Please check your server and try again.');
+    process.exit(1);
+  }
+
   console.log('\n✨ Testing complete! Your 24-hour caching is working perfectly.');
   console.log('💡 GitHub API calls are minimized, and responses are lightning fast!');
 }
