@@ -10,13 +10,19 @@ import {
   Chip,
   Divider,
   Link,
-  Spinner
+  Spinner,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem
 } from '@nextui-org/react';
 import {
   CodeBracketIcon,
   BookOpenIcon,
   PlayIcon,
-  ArrowLeftIcon
+  ArrowLeftIcon,
+  ChevronDownIcon,
+  RocketLaunchIcon
 } from '@heroicons/react/24/outline';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -359,6 +365,67 @@ export default function StarterDetailPage() {
                         </div>
                       )}
                   </div>
+                </CardBody>
+              </Card>
+            </div>
+
+            {/* Deploy Section */}
+            {/* TODO: This is a placeholder for future integration work we need to consider
+                 in order to support deploying to these platforms */}
+            <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg mt-6">
+              <Card className="bg-black border-none">
+                <CardHeader className="bg-black flex justify-center items-center">
+                  <h3 className="text-lg font-semibold text-white">Deploy</h3>
+                </CardHeader>
+                <CardBody className="pt-0 bg-black p-6">
+                  <Dropdown>
+                    <DropdownTrigger>
+                      <Button
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
+                        startContent={<RocketLaunchIcon className="w-4 h-4 flex-shrink-0" />}
+                        endContent={<ChevronDownIcon className="w-4 h-4 flex-shrink-0" />}
+                      >
+                        <span className="whitespace-nowrap">Choose Platform</span>
+                      </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu
+                      aria-label="Deploy platforms"
+                      className="bg-black border border-gray-700"
+                      onAction={(key) => {
+                        // TODO: Handle deployment platform selection
+                        console.log('Selected platform:', key);
+                      }}
+                    >
+                      <DropdownItem
+                        key="digitalocean"
+                        startContent={<div className="w-3 h-3 bg-blue-500 rounded-sm flex-shrink-0"></div>}
+                        className="text-white hover:bg-blue-500/10"
+                      >
+                        Digital Ocean
+                      </DropdownItem>
+                      <DropdownItem
+                        key="fly"
+                        startContent={<div className="w-3 h-3 bg-purple-500 rounded-sm flex-shrink-0"></div>}
+                        className="text-white hover:bg-purple-500/10"
+                      >
+                        Fly.io
+                      </DropdownItem>
+                      <DropdownItem
+                        key="vercel"
+                        startContent={<div className="w-3 h-3 bg-black border border-white rounded-sm flex-shrink-0"></div>}
+                        className="text-white hover:bg-gray-500/10"
+                      >
+                        Vercel
+                      </DropdownItem>
+                      <DropdownItem
+                        key="aws"
+                        startContent={<div className="w-3 h-3 bg-orange-500 rounded-sm flex-shrink-0"></div>}
+                        className="text-white hover:bg-orange-500/10"
+                      >
+                        AWS
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
                 </CardBody>
               </Card>
             </div>
