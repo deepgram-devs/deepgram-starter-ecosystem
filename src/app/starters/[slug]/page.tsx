@@ -399,9 +399,9 @@ export default function StarterDetailPage() {
                         rehypePlugins={[rehypeHighlight]}
                         components={{
                           // Custom component overrides for better styling
-                          code({ node, inline, className, children, ...props }: any) {
+                          code({ className, children, ...props }) {
                             const match = /language-(\w+)/.exec(className || '');
-                            return !inline && match ? (
+                            return !("inline" in props && props.inline) && match ? (
                               <code className={className} {...props}>
                                 {children}
                               </code>
@@ -411,7 +411,7 @@ export default function StarterDetailPage() {
                               </code>
                             );
                           },
-                          a({ children, href, ...props }: any) {
+                          a({ children, href, ...props }) {
                             return (
                               <a
                                 href={href}
@@ -424,58 +424,58 @@ export default function StarterDetailPage() {
                               </a>
                             );
                           },
-                          h1({ children, ...props }: any) {
+                          h1({ children, ...props }) {
                             return (
                               <h1 className="text-3xl font-bold text-white mb-8 mt-0" {...props}>
                                 {children}
                               </h1>
                             );
                           },
-                          h2({ children, ...props }: any) {
+                          h2({ children, ...props }) {
                             return (
                               <h2 className="text-2xl font-bold text-white mb-6 mt-10 pb-3 border-b border-gray-700" {...props}>
                                 {children}
                               </h2>
                             );
                           },
-                          h3({ children, ...props }: any) {
+                          h3({ children, ...props }) {
                             return (
                               <h3 className="text-xl font-semibold text-white mb-4 mt-8" {...props}>
                                 {children}
                               </h3>
                             );
                           },
-                          pre({ children, ...props }: any) {
+                          pre({ children, ...props }) {
                             return (
                               <pre className="bg-gray-900 rounded p-2 overflow-x-auto text-sm my-6" {...props}>
                                 {children}
                               </pre>
                             );
                           },
-                          ul({ children, ...props }: any) {
+                          ul({ children, ...props }) {
                             return (
                               <ul className="list-disc list-inside space-y-3 text-gray-300 mb-6" {...props}>
                                 {children}
                               </ul>
                             );
                           },
-                          ol({ children, ...props }: any) {
+                          ol({ children, ...props }) {
                             return (
                               <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6" {...props}>
                                 {children}
                               </ol>
                             );
                           },
-                          li({ children, ...props }: any) {
+                          li({ children, ...props }) {
                             return (
                               <li className="leading-loose" {...props}>
                                 {children}
                               </li>
                             );
                           },
-                          img({ src, alt, ...props }: any) {
+                          img({ src, alt, ...props }) {
                             // Check if this is a badge (common badge services)
-                            const isBadge = src && (
+                            const isBadge = src && typeof src === "string" && (
                               src.includes('badge') ||
                               src.includes('shield') ||
                               src.includes('dcbadge') ||
@@ -484,9 +484,10 @@ export default function StarterDetailPage() {
                             );
 
                             return (
+                              // eslint-disable-next-line @next/next/no-img-element -- These images are arbitrary, so defining widths and allowed hosts is impossible.
                               <img
-                                src={src}
-                                alt={alt}
+                                src={typeof src === 'string' ? src : ''}
+                                alt={alt || 'Image'}
                                 className={isBadge
                                   ? "inline-block align-middle mr-2 max-h-6"
                                   : "rounded-lg shadow-lg mb-6 max-w-full h-auto block"
@@ -524,7 +525,7 @@ export default function StarterDetailPage() {
                       <div className="text-center py-12">
                         <BookOpenIcon className="w-16 h-16 text-gray-500 mx-auto mb-4" />
                         <h3 className="text-lg font-semibold text-gray-400 mb-2">No README Available</h3>
-                        <p className="text-gray-500">This starter doesn't have a README file yet.</p>
+                        <p className="text-gray-500">This starter doesn&apos;t have a README file yet.</p>
                         <Button
                           as={Link}
                           href={starter.links.github}
