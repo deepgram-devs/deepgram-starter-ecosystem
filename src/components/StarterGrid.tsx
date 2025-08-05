@@ -8,7 +8,6 @@ import {
   CardFooter,
   Button,
   Chip,
-  Avatar,
   Divider,
   Link
 } from '@nextui-org/react';
