@@ -112,7 +112,7 @@ export function transformToProcessedStarters(repos: Repo[]): ProcessedStarter[] 
       language: config?.meta?.language || repo.language || 'Unknown',
       framework: config?.meta?.framework,
       category: config?.meta?.useCase,  // Map useCase to category
-      vertical: undefined,  // Not in TOML structure yet - future feature
+      vertical: config?.vertical,  // Map from TOML config
       tags: config?.tags || repo.topics || [],
       links: {
         github: repo.html_url,
