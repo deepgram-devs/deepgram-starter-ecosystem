@@ -383,7 +383,7 @@ function generateMockStarters(): ProcessedStarter[] {
       language: 'Python',
       framework: 'FastAPI',
       category: 'Real-time',
-      vertical: 'Drive-Thru',
+      vertical: 'Food / Hospitality / Gyms',
       links: {
         github: 'https://github.com/deepgram-starters/drive-thru-python',
         docs: 'https://docs.deepgram.com',

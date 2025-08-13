@@ -14,12 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Deepgram Quickstarts Ecosystem",
+  title: "Deepgram Starter Ecosystem",
   description: "Discover and deploy Deepgram starter applications. A unified ecosystem of modular, back-end-first starter apps with optional front-end components for rapidly building demos.",
-  keywords: ["Deepgram", "AI", "Voice", "Speech", "API", "Starters", "Templates", "Quickstarts"],
+  keywords: ["Deepgram", "AI", "Voice", "Speech", "API", "Starters", "Templates"],
   authors: [{ name: "Deepgram DX Team" }],
   openGraph: {
-    title: "Deepgram Quickstarts Ecosystem",
+    title: "Deepgram Starter Ecosystem",
     description: "Discover and deploy Deepgram starter applications",
     type: "website",
   },

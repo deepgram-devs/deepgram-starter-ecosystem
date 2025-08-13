@@ -9,7 +9,7 @@ const ORG_NAME = 'deepgram-starters';
 function getApiHeaders(): HeadersInit {
   const headers: HeadersInit = {
     'Accept': 'application/vnd.github.v3+json',
-    'User-Agent': 'Deepgram-Quickstarts-Hub/1.0',
+    'User-Agent': 'Deepgram-Starter-Ecosystem/1.0',
   };
 
   if (process.env.GH_PAT) {
@@ -67,6 +67,7 @@ export async function getRepoData(): Promise<Repo[]> {
     const results = await Promise.all(
       repositories
         .filter((repo: Repo) => repo.name !== 'project-template')
+        .filter((repo: Repo) => !repo.private) // Defensive: ensure no private repos in public list
         .map(async (repo: Repo) => {
           try {
             const config = await getRepoConfig(repo.name);
@@ -111,7 +112,7 @@ export function transformToProcessedStarters(repos: Repo[]): ProcessedStarter[] 
       language: config?.meta?.language || repo.language || 'Unknown',
       framework: config?.meta?.framework,
       category: config?.meta?.useCase,  // Map useCase to category
-      vertical: undefined,  // Not in TOML structure yet - future feature
+      vertical: config?.vertical,  // Map from TOML config
       tags: config?.tags || repo.topics || [],
       links: {
         github: repo.html_url,

@@ -47,7 +47,16 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
     languages: ['C#', 'C++', 'Go', 'Java', 'JavaScript', 'PHP', 'Python', 'Ruby', 'Rust', 'TypeScript'],
     categories: ['Voice Agent', 'Live', 'STT', 'TTS'],
     frameworks: ['.NET', 'Django', 'Flask', 'Go', 'Next', 'Node', 'Sinatra'],
-    verticals: [], // Not yet implemented in TOML structure
+    verticals: [
+      'Call Center & CX',
+      'Healthcare',
+      'Insurance & FinServ',
+      'Food / Hospitality / Gyms',
+      'Recruiting / HR',
+      'Education',
+      'Legal / Gov / Emergency',
+      'Sales Enablement'
+    ],
     tags: ['real-time', 'websocket', 'streaming', 'api', 'webhook', 'ai', 'nlp']
   };
 
@@ -82,7 +91,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
     <div className="p-6 h-full">
       {/* Title */}
       <div className="mb-6">
-        <h2 className="text-md font-semibold text-foreground">Filter Quickstarts</h2>
+        <h2 className="text-md font-semibold text-foreground">Filter Starters</h2>
       </div>
 
       {/* Search */}
