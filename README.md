@@ -1,10 +1,10 @@
-# Deepgram Quickstarts Hub 🚀
+# Deepgram Starter Ecosystem 🚀
 
-A modern, dynamic showcase for Deepgram's starter applications ecosystem. This Next.js application automatically discovers and displays starter projects from the `deepgram-starters` GitHub organization, providing developers with an intuitive way to find and deploy quickstart applications.
+A modern, dynamic showcase for Deepgram's starter applications ecosystem. This Next.js application automatically discovers and displays starter projects from the `deepgram-starters` GitHub organization, providing developers with an intuitive way to find and deploy starter applications.
 
 ## 🎯 Overview
 
-The Deepgram Quickstarts Hub serves as the central discovery platform for our starter applications. It dynamically fetches repository data, README content, and configuration metadata to present a comprehensive, searchable catalog of quickstart projects.
+The Deepgram Starter Ecosystem serves as the central discovery platform for our starter applications. It dynamically fetches repository data, README content, and configuration metadata to present a comprehensive, searchable catalog of starter projects.
 
 ### Key Features
 
@@ -43,7 +43,7 @@ The Deepgram Quickstarts Hub serves as the central discovery platform for our st
 1. **Clone the repository**:
    ```bash
    git clone <repository-url>
-   cd deepgram-quickstarts
+   cd deepgram-starter-ecosystem
    ```
 
 2. **Install dependencies**:

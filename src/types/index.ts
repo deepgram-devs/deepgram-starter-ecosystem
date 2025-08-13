@@ -4,6 +4,7 @@ export interface Repo {
   name: string;
   full_name: string;
   description: string | null;
+  private: boolean;
   html_url: string;
   clone_url: string;
   language: string | null;

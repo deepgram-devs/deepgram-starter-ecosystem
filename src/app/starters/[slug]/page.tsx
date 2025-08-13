@@ -128,7 +128,7 @@ export default function StarterDetailPage() {
                     startContent={<ArrowLeftIcon className="w-4 h-4" />}
                     className="min-w-32"
                   >
-                    Back to Quickstarts
+                    Back to Starters
                   </Button>
                   <Button
                     variant="bordered"
@@ -158,7 +158,7 @@ export default function StarterDetailPage() {
               className="mb-6 hover:bg-gray-800 transition-colors text-white text-sm px-3 py-2 rounded-lg flex items-center gap-2 w-fit"
             >
               <ArrowLeftIcon className="w-4 h-4 flex-shrink-0" />
-              <span className="whitespace-nowrap">Back to Quickstarts</span>
+              <span className="whitespace-nowrap">Back to Starters</span>
             </Link>
 
             {/* Starter Info Card */}

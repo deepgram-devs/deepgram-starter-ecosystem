@@ -67,6 +67,7 @@ export async function getRepoData(): Promise<Repo[]> {
     const results = await Promise.all(
       repositories
         .filter((repo: Repo) => repo.name !== 'project-template')
+        .filter((repo: Repo) => !repo.private) // Defensive: ensure no private repos in public list
         .map(async (repo: Repo) => {
           try {
             const config = await getRepoConfig(repo.name);

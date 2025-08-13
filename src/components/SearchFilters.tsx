@@ -55,7 +55,16 @@ export function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
     languages: ['JavaScript', 'Python', 'TypeScript', 'Go', 'Java', 'C#', 'PHP', 'Ruby'],
     categories: ['Voice Agent', 'Real-time', 'Batch Processing', 'Analytics', 'Streaming'],
     frameworks: ['Next.js', 'React', 'Express', 'FastAPI', 'Django', 'Vue.js', 'Svelte'],
-    verticals: ['Drive-Thru', 'Call Center', 'Meeting Notes', 'Podcasts', 'Education'],
+    verticals: [
+      'Call Center & CX',
+      'Healthcare',
+      'Insurance & FinServ',
+      'Food / Hospitality / Gyms',
+      'Recruiting / HR',
+      'Education',
+      'Legal / Gov / Emergency',
+      'Sales Enablement'
+    ],
     difficulties: ['beginner', 'intermediate', 'advanced'],
     tags: ['real-time', 'websocket', 'streaming', 'api', 'webhook', 'ai', 'nlp']
   };
