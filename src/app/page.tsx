@@ -38,6 +38,13 @@ export default function HomePage() {
 
           {/* Main Content */}
           <main className="flex-1 p-6">
+            {/* Description Header */}
+            <div className="mb-8">
+              <p className="text-lg md:text-l text-gray-400 max-w-3xl">
+                Jumpstart your app development process with pre-built solutions from Deepgram.
+              </p>
+            </div>
+
             <Suspense fallback={<Loading />}>
               <StarterGrid filters={filters} />
             </Suspense>

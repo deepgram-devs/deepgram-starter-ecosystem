@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import { HeroSection } from '@/components/HeroSection';
 import {
   Card,
   CardBody,
@@ -103,7 +104,7 @@ export default function StarterDetailPage() {
 
   if (error || !starter) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center p-6">
+      <div className="min-h-screen bg-background flex items-center justify-center p-6">
         <Card className="max-w-md w-full">
           <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg">
             <Card className="bg-black border-none">
@@ -147,15 +148,18 @@ export default function StarterDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-background">
+      {/* Hero Section - Full Width */}
+      <HeroSection />
+
       <div className="flex">
         {/* Left Sidebar */}
-        <aside className="w-80 min-h-screen bg-black border-r border-gray-700 p-6 overflow-hidden">
+        <aside className="w-80 min-h-screen bg-content1 border-r border-divider p-6 overflow-hidden">
           <div className="sticky top-6">
             {/* Back Button */}
             <Link
               href="/"
-              className="mb-6 hover:bg-gray-800 transition-colors text-white text-sm px-3 py-2 rounded-lg flex items-center gap-2 w-fit"
+              className="mb-6 hover:bg-default-100 transition-colors text-foreground text-sm px-3 py-2 rounded-lg flex items-center gap-2 w-fit"
             >
               <ArrowLeftIcon className="w-4 h-4 flex-shrink-0" />
               <span className="whitespace-nowrap">Back to Starters</span>

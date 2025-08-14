@@ -9,3 +9,7 @@ export { NextJsIcon } from './NextJsIcon';
 export { RubyIcon } from './RubyIcon';
 export { PhpIcon } from './PhpIcon';
 export { DotNetIcon } from './DotNetIcon';
+
+// Navigation icons export
+export { DocumentationIcon } from './DocumentationIcon';
+export { ChangelogIcon } from './ChangelogIcon';
