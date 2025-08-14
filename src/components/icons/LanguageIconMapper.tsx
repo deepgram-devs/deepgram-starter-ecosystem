@@ -104,7 +104,7 @@ export const LanguageIcon: React.FC<LanguageIconProps> = ({ language, className 
  * Gets the background color class for a language icon
  * Using a consistent purple color for all languages
  */
-export const getLanguageIconBg = (language: string): string => {
+export const getLanguageIconBg = (): string => {
   // Return consistent purple color for all languages
   return 'bg-purple-600';
 };

@@ -12,7 +12,7 @@ export function HeroSection() {
       <div className="bg-black text-white pt-2 pb-1 sm:pb-4">
         <header className="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8 flex justify-between">
           <div>
-            <a className="flex" href="/">
+            <Link className="flex" href="/">
               <Image
                 className="h-auto w-[7rem] sm:max-w-none"
                 src={logo}
@@ -30,7 +30,7 @@ export function HeroSection() {
                 {/* Right square stud */}
                 <div className="lego-stud-base lego-stud-right"></div>
               </div>
-            </a>
+            </Link>
           </div>
           <nav className="hidden md:flex items-center gap-4 text-base font-semibold">
             <Link

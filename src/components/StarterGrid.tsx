@@ -271,7 +271,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
                 onPress={() => window.location.href = `/starters/${starter.name}`}
               >
                 {/* Language Icon */}
-                <div className={`w-full h-16 ${getLanguageIconBg(starter.language)} rounded-t-lg flex items-center justify-center shadow-sm`}>
+                <div className={`w-full h-16 ${getLanguageIconBg()} rounded-t-lg flex items-center justify-center shadow-sm`}>
                   <LanguageIcon
                     language={starter.language}
                     className={`${getLanguageIconSize(starter.language)} text-white/70 drop-shadow-sm`}

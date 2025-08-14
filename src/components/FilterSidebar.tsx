@@ -91,23 +91,27 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
     <div className="p-6 h-full">
       {/* Title */}
       <div className="mb-6">
-        <h2 className="text-md font-semibold text-foreground">Filter Starters</h2>
+        <h2 className="text-lg font-semibold text-foreground">Filter Starters</h2>
       </div>
 
       {/* Search */}
       <div className="mb-6">
-        <div className="border border-default-300 bg-default-100 rounded-lg p-1">
+        <div className="border border-default-300 bg-default-100 rounded-lg p-2">
           <Input
             type="text"
             placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            startContent={<MagnifyingGlassIcon className="w-4 h-4 text-default-400 translate-y-[8px]" />}
+            startContent={
+              <div className="flex items-center justify-center">
+                <MagnifyingGlassIcon className="w-4 h-4 text-default-400" />
+              </div>
+            }
             variant="flat"
             size="sm"
             classNames={{
-              inputWrapper: "bg-transparent border-none shadow-none",
-              input: "text-left pl-6 translate-y-[-10px]"
+              inputWrapper: "bg-transparent border-none shadow-none flex items-center",
+              input: "text-left"
             }}
           />
         </div>
