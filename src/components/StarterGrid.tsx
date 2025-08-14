@@ -18,6 +18,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 import type { ProcessedStarter } from '@/types';
+import { LanguageIcon, getLanguageIconBg, getLanguageIconSize } from '@/components/icons/LanguageIconMapper';
 
 interface FilterState {
   search?: string;
@@ -269,9 +270,12 @@ export function StarterGrid({ filters }: StarterGridProps) {
                 isPressable
                 onPress={() => window.location.href = `/starters/${starter.name}`}
               >
-                {/* Logo Placeholder */}
-                <div className="w-full h-16 bg-gray-300 rounded-t-lg flex items-center justify-center">
-                  {/* Starter languageLogo will go here */}
+                {/* Language Icon */}
+                <div className={`w-full h-16 ${getLanguageIconBg()} rounded-t-lg flex items-center justify-center shadow-sm`}>
+                  <LanguageIcon
+                    language={starter.language}
+                    className={`${getLanguageIconSize(starter.language)} text-white/70 drop-shadow-sm`}
+                  />
                 </div>
 
                 <CardHeader className="pb-1 px-4 pt-3">
