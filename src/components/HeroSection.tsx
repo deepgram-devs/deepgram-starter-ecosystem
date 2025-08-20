@@ -20,7 +20,7 @@ export function HeroSection() {
                 priority
               />
               <div className="inline-block mb-[0.3rem] ml-2 mt-2 relative">
-                <h1 className="text-[1.4rem] text-white px-3 py-3 font-[var(--font-favorit)] relative lego-block" style={{ background: 'linear-gradient(to bottom, var(--purple-light), var(--purple))', border: '1px solid var(--purple)' }}>
+                <h1 className="text-[1.4rem] text-white px-3 py-3 font-[var(--font-favorit)] relative lego-block" style={{ background: 'linear-gradient(to bottom, var(--magenta-start) 1%, var(--magenta-mid) 55%, var(--magenta-end) 88%)', border: '1px solid var(--magenta-end)' }}>
                   Starters
                 </h1>
                 {/* Left square stud */}

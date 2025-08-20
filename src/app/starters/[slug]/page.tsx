@@ -106,7 +106,7 @@ export default function StarterDetailPage() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-6">
         <Card className="max-w-md w-full">
-          <div className="p-1 bg-gradient-to-r border-magenta-purple rounded-lg">
+          <div className="p-1 rounded-lg" style={{ backgroundColor: 'var(--border-color)' }}>
             <Card className="bg-black border-none">
               <CardBody className="text-center p-8">
                 <div className="mb-6">
@@ -167,7 +167,7 @@ export default function StarterDetailPage() {
               </Link>
 
               {/* Starter Info Card */}
-              <div className="p-1 bg-gradient-to-r border-magenta-purple rounded-lg mb-4">
+              <div className="p-1 rounded-lg mb-4" style={{ backgroundColor: 'var(--border-color)' }}>
                 <Card className="bg-black border-none">
                   <CardHeader className="bg-black flex justify-center items-center">
                     <h2 className="text-xl font-bold text-white">{starter.title}</h2>
@@ -257,7 +257,7 @@ export default function StarterDetailPage() {
               </div>
 
               {/* TOML Configuration Display */}
-              <div className="p-1 bg-gradient-to-r border-magenta-purple rounded-lg">
+              <div className="p-1 rounded-lg" style={{ backgroundColor: 'var(--border-color)' }}>
                 <Card className="bg-black border-none">
                   <CardHeader className="bg-black flex justify-center items-center">
                     <h3 className="text-lg font-semibold text-white">Configuration</h3>
@@ -377,7 +377,7 @@ export default function StarterDetailPage() {
               {/* Deploy Section */}
               {/* TODO: This is a placeholder for future integration work we need to consider
                  in order to support deploying to these platforms */}
-              <div className="p-1 bg-gradient-to-r border-magenta-purple rounded-lg mt-6">
+              <div className="p-1 rounded-lg mt-6" style={{ backgroundColor: 'var(--border-color)' }}>
                 <Card className="bg-black border-none">
                   <CardHeader className="bg-black flex justify-center items-center">
                     <h3 className="text-lg font-semibold text-white">Deploy</h3>
@@ -440,11 +440,11 @@ export default function StarterDetailPage() {
           {/* Main Content */}
           <main className="flex-1 p-6">
             <div className="max-w-5xl mx-auto">
-              <div className="p-1 bg-gradient-to-r border-magenta-purple rounded-lg">
+              <div className="p-1 rounded-lg" style={{ backgroundColor: 'var(--border-color)' }}>
                 <Card className="min-h-[600px] bg-black border-none">
                   <CardHeader className="bg-black border-b border-gray-700 pb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-gradient-to-r border-magenta-purple rounded-lg flex items-center justify-center ml-3 mt-2">
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center ml-3 mt-2" style={{ backgroundColor: 'var(--border-color)' }}>
                         <BookOpenIcon className="w-5 h-5 text-white" />
                       </div>
                       <h1 className="text-2xl font-bold text-white">README</h1>

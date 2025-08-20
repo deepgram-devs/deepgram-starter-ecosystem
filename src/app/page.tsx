@@ -3,11 +3,11 @@
 import { useState, useCallback, Suspense } from 'react';
 import { StarterGrid } from '@/components/StarterGrid';
 import { FilterSidebar } from '@/components/FilterSidebar';
+import { SearchBar } from '@/components/SearchBar';
 import Loading from '@/components/Loading';
 import { HeroSection } from '@/components/HeroSection';
 
 interface FilterState {
-  search: string;
   language: string[];
   category: string[];
   framework: string[];
@@ -17,10 +17,21 @@ interface FilterState {
 
 export default function HomePage() {
   const [filters, setFilters] = useState<Partial<FilterState>>({});
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleFiltersChange = useCallback((newFilters: FilterState) => {
     setFilters(newFilters);
   }, []);
+
+  const handleSearchChange = useCallback((search: string) => {
+    setSearchTerm(search);
+  }, []);
+
+  // Combine search and filters for StarterGrid
+  const combinedFilters = {
+    ...filters,
+    search: searchTerm
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -32,7 +43,7 @@ export default function HomePage() {
         {/* Main Layout: Sidebar + Content */}
         <div className="flex">
           {/* Left Sidebar */}
-          <aside className="w-96 border-r border-divider bg-content1 min-h-screen sticky top-0">
+          <aside className="w-80 bg-content1 min-h-screen sticky top-0" style={{ borderRight: '1px solid #2C2C33' }}>
             <FilterSidebar onFiltersChange={handleFiltersChange} />
           </aside>
 
@@ -45,8 +56,11 @@ export default function HomePage() {
               </p>
             </div>
 
+            {/* Search Bar */}
+            <SearchBar onSearchChange={handleSearchChange} />
+
             <Suspense fallback={<Loading />}>
-              <StarterGrid filters={filters} />
+              <StarterGrid filters={combinedFilters} />
             </Suspense>
           </main>
         </div>
