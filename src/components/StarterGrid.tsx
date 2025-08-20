@@ -12,10 +12,12 @@ import {
   Link
 } from '@nextui-org/react';
 import {
-  StarIcon,
   BookOpenIcon,
   PlayIcon
 } from '@heroicons/react/24/outline';
+import {
+  StarIcon
+} from '@heroicons/react/24/solid';
 import { motion } from 'framer-motion';
 import type { ProcessedStarter } from '@/types';
 import { LanguageIcon, getLanguageIconBg, getLanguageIconSize } from '@/components/icons/LanguageIconMapper';
@@ -215,9 +217,8 @@ export function StarterGrid({ filters }: StarterGridProps) {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button
-              color="primary"
+              className="btn-brand min-w-32"
               onPress={() => window.location.reload()}
-              className="min-w-32"
             >
               Try Again
             </Button>
@@ -244,7 +245,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
       <Card className="p-8 text-center">
         <CardBody>
           <h3 className="text-xl font-semibold mb-2">No Starters Found</h3>
-          <p className="text-default-500">
+          <p style={{ color: 'var(--foreground)' }}>
             Try adjusting your filters or search terms to find more starter apps.
           </p>
         </CardBody>
@@ -263,7 +264,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
           >
-            <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg">
+            <div className="p-1 border-magenta-purple rounded-lg">
               <Card
                 // min height 340 for even sizing in cards
                 className="h-full min-h-[340px] hover:shadow-lg transition-shadow duration-300 bg-black rounded-lg cursor-pointer"
@@ -283,13 +284,13 @@ export function StarterGrid({ filters }: StarterGridProps) {
                 </CardHeader>
 
                 <CardBody className="pt-0 px-4 pb-2">
-                  <p className="text-default-600 text-sm mb-3 line-clamp-3 min-h-[48px]">
+                  <p className="text-sm mb-3 line-clamp-3 min-h-[48px]" style={{ color: 'var(--foreground)' }}>
                     {starter.description}
                   </p>
 
                   {/* Star count - between description and chips */}
-                  <div className="flex items-center gap-2 text-default-500 mb-3">
-                    <StarIcon className="w-6 h-6 text-yellow-500" />
+                  <div className="flex items-center gap-2 mb-3" style={{ color: 'var(--foreground)' }}>
+                    <StarIcon className="w-6 h-6 text-star" />
                     <span className="text-sm font-medium">{starter.stats.stars}</span>
                   </div>
 
@@ -297,17 +298,17 @@ export function StarterGrid({ filters }: StarterGridProps) {
                   {(starter.language || starter.framework || starter.category) && (
                     <div className="flex flex-wrap gap-2 mb-2">
                       {starter.language && (
-                        <Chip size="sm" variant="solid" color="default" className="font-semibold bg-gray-600 text-white px-3">
+                        <Chip size="sm" variant="solid" color="default" className="font-semibold px-3" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
                           {starter.language}
                         </Chip>
                       )}
                       {starter.framework && (
-                        <Chip size="sm" variant="solid" color="default" className="font-semibold bg-gray-600 text-white px-3">
+                        <Chip size="sm" variant="solid" color="default" className="font-semibold px-3" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
                           {starter.framework}
                         </Chip>
                       )}
                       {starter.category && (
-                        <Chip size="sm" variant="solid" color="default" className="font-semibold bg-gray-600 text-white px-3">
+                        <Chip size="sm" variant="solid" color="default" className="font-semibold px-3" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
                           {starter.category}
                         </Chip>
                       )}

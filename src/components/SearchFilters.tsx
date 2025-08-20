@@ -255,7 +255,7 @@ export function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
               <Chip
                 key={lang}
                 variant="flat"
-                color="primary"
+                style={{ backgroundColor: 'var(--link-color)', color: 'white' }}
                 onClose={() => setSelectedLanguages(prev => prev.filter(l => l !== lang))}
               >
                 {lang}

@@ -9,7 +9,7 @@ export function HeroSection() {
   return (
     <>
       {/* Thin Header */}
-      <div className="bg-black text-white pt-2 pb-1 sm:pb-4">
+      <div className="text-white pt-2 pb-1 sm:pb-4" style={{ backgroundColor: '#101014' }}>
         <header className="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8 flex justify-between">
           <div>
             <Link className="flex" href="/">
@@ -20,7 +20,7 @@ export function HeroSection() {
                 priority
               />
               <div className="inline-block mb-[0.3rem] ml-2 mt-2 relative">
-                <h1 className="text-[1.4rem] text-white bg-gradient-to-b from-purple-500 via-purple-600 to-purple-800 px-3 py-3 font-[var(--font-favorit)] relative border border-purple-600 lego-block">
+                <h1 className="text-[1.4rem] text-white px-3 py-3 font-[var(--font-favorit)] relative lego-block" style={{ background: 'linear-gradient(to bottom, var(--purple-light), var(--purple))', border: '1px solid var(--purple)' }}>
                   Starters
                 </h1>
                 {/* Left square stud */}
@@ -34,7 +34,7 @@ export function HeroSection() {
           </div>
           <nav className="hidden md:flex items-center gap-4 text-base font-semibold">
             <Link
-              className="transition-all hover:text-gray-300 leading-none"
+              className="header-link leading-none"
               href="https://developers.deepgram.com/docs/introduction"
               target="_blank"
             >
@@ -42,7 +42,7 @@ export function HeroSection() {
               <span className="inline-block p-1.5">Documentation</span>
             </Link>
             <Link
-              className="transition-all hover:text-gray-300 leading-none"
+              className="header-link leading-none"
               href="https://playground.deepgram.com"
               target="_blank"
             >

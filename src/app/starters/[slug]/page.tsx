@@ -106,7 +106,7 @@ export default function StarterDetailPage() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-6">
         <Card className="max-w-md w-full">
-          <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg">
+          <div className="p-1 bg-gradient-to-r border-magenta-purple rounded-lg">
             <Card className="bg-black border-none">
               <CardBody className="text-center p-8">
                 <div className="mb-6">
@@ -116,7 +116,7 @@ export default function StarterDetailPage() {
                     </svg>
                   </div>
                   <h2 className="text-xl font-semibold text-white mb-4">Starter Unavailable</h2>
-                  <p className="text-gray-400 leading-relaxed mb-6">
+                  <p className="text-secondary leading-relaxed mb-6">
                     {error || 'The requested starter could not be loaded. It may have been moved or is temporarily unavailable.'}
                   </p>
                 </div>
@@ -125,9 +125,8 @@ export default function StarterDetailPage() {
                   <Button
                     as={Link}
                     href="/"
-                    color="primary"
                     startContent={<ArrowLeftIcon className="w-4 h-4" />}
-                    className="min-w-32"
+                    className="min-w-32 btn-brand"
                   >
                     Back to Starters
                   </Button>
@@ -161,37 +160,37 @@ export default function StarterDetailPage() {
               {/* Back Button */}
               <Link
                 href="/"
-                className="mb-2 hover:bg-default-100 transition-colors text-foreground text-base px-3 py-2 rounded-lg flex items-center gap-2 w-fit"
+                className="mb-2 link-brand text-base px-3 py-2 rounded-lg flex items-center gap-2 w-fit"
               >
                 <ArrowLeftIcon className="w-4 h-4 flex-shrink-0" />
                 <span className="whitespace-nowrap">Back to Starters</span>
               </Link>
 
               {/* Starter Info Card */}
-              <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg mb-4">
+              <div className="p-1 bg-gradient-to-r border-magenta-purple rounded-lg mb-4">
                 <Card className="bg-black border-none">
                   <CardHeader className="bg-black flex justify-center items-center">
                     <h2 className="text-xl font-bold text-white">{starter.title}</h2>
                   </CardHeader>
                   <CardBody className="pt-0 bg-black p-6">
-                    <p className="text-gray-400 text-sm mb-4">
+                    <p className="text-secondary text-sm mb-4">
                       {starter.description}
                     </p>
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
                       {starter.language && (
-                        <Chip size="sm" variant="solid" color="default" className="font-semibold bg-gray-600 text-white px-3">
+                        <Chip size="sm" variant="solid" color="default" className="font-semibold px-3" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
                           {starter.language}
                         </Chip>
                       )}
                       {starter.framework && (
-                        <Chip size="sm" variant="solid" color="default" className="font-semibold bg-gray-600 text-white px-3">
+                        <Chip size="sm" variant="solid" color="default" className="font-semibold px-3" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
                           {starter.framework}
                         </Chip>
                       )}
                       {starter.category && (
-                        <Chip size="sm" variant="solid" color="default" className="font-semibold bg-gray-600 text-white px-3">
+                        <Chip size="sm" variant="solid" color="default" className="font-semibold px-3" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
                           {starter.category}
                         </Chip>
                       )}
@@ -200,7 +199,7 @@ export default function StarterDetailPage() {
                     <Divider className="my-4" />
 
                     {/* Stats */}
-                    <div className="text-sm text-gray-400">
+                    <div className="text-sm text-secondary">
                       <div className="flex justify-between mb-1">
                         <span>Stars:</span>
                         <span>{starter.stats.stars}</span>
@@ -223,7 +222,7 @@ export default function StarterDetailPage() {
                         href={starter.links.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
+                        className="w-full btn-brand px-4 py-2 rounded-lg flex items-center justify-center gap-2"
                       >
                         <CodeBracketIcon className="w-4 h-4 flex-shrink-0" />
                         <span className="whitespace-nowrap">View on GitHub</span>
@@ -258,7 +257,7 @@ export default function StarterDetailPage() {
               </div>
 
               {/* TOML Configuration Display */}
-              <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg">
+              <div className="p-1 bg-gradient-to-r border-magenta-purple rounded-lg">
                 <Card className="bg-black border-none">
                   <CardHeader className="bg-black flex justify-center items-center">
                     <h3 className="text-lg font-semibold text-white">Configuration</h3>
@@ -268,7 +267,7 @@ export default function StarterDetailPage() {
                       {/* Build Command */}
                       {starter.config?.build?.command && (
                         <div>
-                          <span className="font-medium text-gray-300">Build Command:</span>
+                          <span className="font-medium text-secondary">Build Command:</span>
                           <div className="mt-1">
                             <code className="bg-gray-800 text-emerald-400 px-2 py-1 rounded text-sm font-mono">
                               {starter.config.build.command}
@@ -280,15 +279,15 @@ export default function StarterDetailPage() {
                       {/* Requirements */}
                       {(starter.config?.requirements?.node || starter.config?.requirements?.python) && (
                         <div>
-                          <span className="font-medium text-gray-300">Requirements:</span>
+                          <span className="font-medium text-secondary">Requirements:</span>
                           <div className="flex flex-wrap gap-1 mt-1">
                             {starter.config.requirements.node && (
-                              <Chip size="sm" variant="solid" color="default" className="bg-gray-600 text-white">
+                              <Chip size="sm" variant="solid" color="default" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
                                 Node {starter.config.requirements.node}
                               </Chip>
                             )}
                             {starter.config.requirements.python && (
-                              <Chip size="sm" variant="solid" color="default" className="bg-gray-600 text-white">
+                              <Chip size="sm" variant="solid" color="default" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
                                 Python {starter.config.requirements.python}
                               </Chip>
                             )}
@@ -299,10 +298,10 @@ export default function StarterDetailPage() {
                       {/* Dependencies */}
                       {starter.config?.requirements?.dependencies && starter.config.requirements.dependencies.length > 0 && (
                         <div>
-                          <span className="font-medium text-gray-300">Dependencies:</span>
+                          <span className="font-medium text-secondary">Dependencies:</span>
                           <div className="flex flex-wrap gap-1 mt-1">
                             {starter.config.requirements.dependencies.map((dep, index) => (
-                              <Chip key={index} size="sm" variant="solid" color="default" className="bg-gray-600 text-white">
+                              <Chip key={index} size="sm" variant="solid" color="default" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
                                 {dep}
                               </Chip>
                             ))}
@@ -313,8 +312,8 @@ export default function StarterDetailPage() {
                       {/* Author */}
                       {starter.config?.author && (
                         <div>
-                          <span className="font-medium text-gray-300">Author:</span>
-                          <div className="mt-1 text-gray-400">
+                          <span className="font-medium text-secondary">Author:</span>
+                          <div className="mt-1 text-secondary">
                             {starter.config.author.name && (
                               <div>{starter.config.author.name}</div>
                             )}
@@ -337,8 +336,8 @@ export default function StarterDetailPage() {
                       {/* Post-build message */}
                       {starter.config?.["post-build"]?.message && (
                         <div>
-                          <span className="font-medium text-gray-300">Setup Notes:</span>
-                          <div className="mt-1 p-2 bg-gray-800 rounded text-gray-300 text-xs">
+                          <span className="font-medium text-secondary">Setup Notes:</span>
+                          <div className="mt-1 p-2 bg-gray-800 rounded text-secondary text-xs">
                             {starter.config["post-build"].message}
                           </div>
                         </div>
@@ -347,10 +346,10 @@ export default function StarterDetailPage() {
                       {/* Deployment info (if available) */}
                       {starter.deployment?.platforms && (
                         <div>
-                          <span className="font-medium text-gray-300">Platforms:</span>
+                          <span className="font-medium text-secondary">Platforms:</span>
                           <div className="flex flex-wrap gap-1 mt-1">
                             {starter.deployment.platforms.map((platform, index) => (
-                              <Chip key={index} size="sm" variant="solid" color="default" className="bg-gray-600 text-white">
+                              <Chip key={index} size="sm" variant="solid" color="default" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
                                 {platform}
                               </Chip>
                             ))}
@@ -366,7 +365,7 @@ export default function StarterDetailPage() {
                         !starter.config?.author &&
                         !starter.config?.["post-build"]?.message &&
                         !starter.deployment?.platforms && (
-                          <div className="text-gray-500 text-center py-4">
+                          <div className="text-secondary text-center py-4">
                             No configuration data available for this starter.
                           </div>
                         )}
@@ -378,7 +377,7 @@ export default function StarterDetailPage() {
               {/* Deploy Section */}
               {/* TODO: This is a placeholder for future integration work we need to consider
                  in order to support deploying to these platforms */}
-              <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg mt-6">
+              <div className="p-1 bg-gradient-to-r border-magenta-purple rounded-lg mt-6">
                 <Card className="bg-black border-none">
                   <CardHeader className="bg-black flex justify-center items-center">
                     <h3 className="text-lg font-semibold text-white">Deploy</h3>
@@ -387,7 +386,7 @@ export default function StarterDetailPage() {
                     <Dropdown>
                       <DropdownTrigger>
                         <Button
-                          className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
+                          className="w-full btn-brand px-4 py-2 rounded-lg flex items-center justify-center gap-2"
                           startContent={<RocketLaunchIcon className="w-4 h-4 flex-shrink-0" />}
                           endContent={<ChevronDownIcon className="w-4 h-4 flex-shrink-0" />}
                         >
@@ -404,15 +403,15 @@ export default function StarterDetailPage() {
                       >
                         <DropdownItem
                           key="digitalocean"
-                          startContent={<div className="w-3 h-3 bg-blue-500 rounded-sm flex-shrink-0"></div>}
-                          className="text-white hover:bg-blue-500/10"
+                          startContent={<div className="w-3 h-3 bg-magenta-purple rounded-sm flex-shrink-0"></div>}
+                          className="text-white hover:bg-magenta-purple/10"
                         >
                           Digital Ocean
                         </DropdownItem>
                         <DropdownItem
                           key="fly"
-                          startContent={<div className="w-3 h-3 bg-purple-500 rounded-sm flex-shrink-0"></div>}
-                          className="text-white hover:bg-purple-500/10"
+                          startContent={<div className="w-3 h-3 bg-magenta-purple rounded-sm flex-shrink-0"></div>}
+                          className="text-white hover:bg-magenta-purple/10"
                         >
                           Fly.io
                         </DropdownItem>
@@ -441,31 +440,34 @@ export default function StarterDetailPage() {
           {/* Main Content */}
           <main className="flex-1 p-6">
             <div className="max-w-5xl mx-auto">
-              <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg">
+              <div className="p-1 bg-gradient-to-r border-magenta-purple rounded-lg">
                 <Card className="min-h-[600px] bg-black border-none">
                   <CardHeader className="bg-black border-b border-gray-700 pb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg flex items-center justify-center ml-3 mt-2">
+                      <div className="w-8 h-8 bg-gradient-to-r border-magenta-purple rounded-lg flex items-center justify-center ml-3 mt-2">
                         <BookOpenIcon className="w-5 h-5 text-white" />
                       </div>
                       <h1 className="text-2xl font-bold text-white">README</h1>
                     </div>
                   </CardHeader>
                   <CardBody className="p-8 bg-black">
-                    <div className="prose prose-lg prose-invert max-w-none
+                    <div
+                      className="prose prose-lg prose-invert max-w-none
                              prose-headings:text-white prose-headings:font-bold prose-headings:tracking-tight
                              prose-h1:text-3xl prose-h1:mb-8 prose-h1:mt-0
                              prose-h2:text-2xl prose-h2:mb-6 prose-h2:mt-10 prose-h2:border-b prose-h2:border-gray-700 prose-h2:pb-3
                              prose-h3:text-xl prose-h3:mb-4 prose-h3:mt-8
-                             prose-p:text-gray-300 prose-p:leading-loose prose-p:mb-6
+                             prose-p:leading-loose prose-p:mb-6
                              prose-strong:text-white prose-strong:font-semibold
                              prose-code:text-emerald-400 prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono
                              prose-pre:bg-gray-900 prose-pre:rounded prose-pre:p-2 prose-pre:overflow-x-auto prose-pre:my-6
-                             prose-ul:text-gray-300 prose-ul:mb-6
-                             prose-ol:text-gray-300 prose-ol:mb-6
+                             prose-ul:mb-6
+                             prose-ol:mb-6
                              prose-li:mb-2 prose-li:leading-loose
                              prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-gray-800/50 prose-blockquote:p-4 prose-blockquote:rounded-r prose-blockquote:mb-6
-                             prose-img:rounded-lg prose-img:shadow-lg prose-img:mb-6">
+                             prose-img:rounded-lg prose-img:shadow-lg prose-img:mb-6"
+                      style={{ color: 'var(--foreground)' }}
+                    >
                       {readme ? (
                         <ReactMarkdown
                           remarkPlugins={[remarkGfm]}
@@ -527,14 +529,14 @@ export default function StarterDetailPage() {
                             },
                             ul({ children, ...props }) {
                               return (
-                                <ul className="list-disc list-inside space-y-3 text-gray-300 mb-6" {...props}>
+                                <ul className="list-disc list-inside space-y-3 mb-6" style={{ color: 'var(--foreground)' }} {...props}>
                                   {children}
                                 </ul>
                               );
                             },
                             ol({ children, ...props }) {
                               return (
-                                <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6" {...props}>
+                                <ol className="list-decimal list-inside space-y-3 mb-6" style={{ color: 'var(--foreground)' }} {...props}>
                                   {children}
                                 </ol>
                               );
@@ -596,9 +598,9 @@ export default function StarterDetailPage() {
                         </ReactMarkdown>
                       ) : (
                         <div className="text-center py-12">
-                          <BookOpenIcon className="w-16 h-16 text-gray-500 mx-auto mb-4" />
-                          <h3 className="text-lg font-semibold text-gray-400 mb-2">No README Available</h3>
-                          <p className="text-gray-500">This starter doesn&apos;t have a README file yet.</p>
+                          <BookOpenIcon className="w-16 h-16 text-secondary mx-auto mb-4" />
+                          <h3 className="text-lg font-semibold text-secondary mb-2">No README Available</h3>
+                          <p className="text-secondary">This starter doesn&apos;t have a README file yet.</p>
                           <Button
                             as={Link}
                             href={starter.links.github}

@@ -137,7 +137,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 key={lang}
                 size="sm"
                 variant="flat"
-                color="primary"
+                style={{ backgroundColor: 'var(--link-color)', color: 'white' }}
                 onClose={() => setSelectedLanguages(prev => prev.filter(l => l !== lang))}
               >
                 {lang}
@@ -223,7 +223,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 classNames={{
                   base: "flex flex-row-reverse justify-between items-center w-full max-w-full",
                   wrapper: "order-2",
-                  label: "order-1 flex-1 text-sm"
+                  label: "order-1 flex-1 text-sm text-secondary"
                 }}
               >
                 {lang}
@@ -263,7 +263,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 classNames={{
                   base: "flex flex-row-reverse justify-between items-center w-full max-w-full",
                   wrapper: "order-2",
-                  label: "order-1 flex-1 text-sm"
+                  label: "order-1 flex-1 text-sm text-secondary"
                 }}
               >
                 {category}
@@ -303,7 +303,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 classNames={{
                   base: "flex flex-row-reverse justify-between items-center w-full max-w-full",
                   wrapper: "order-2",
-                  label: "order-1 flex-1 text-sm"
+                  label: "order-1 flex-1 text-sm text-secondary"
                 }}
               >
                 {framework}
@@ -343,7 +343,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 classNames={{
                   base: "flex flex-row-reverse justify-between items-center w-full max-w-full",
                   wrapper: "order-2",
-                  label: "order-1 flex-1 text-sm"
+                  label: "order-1 flex-1 text-sm text-secondary"
                 }}
               >
                 {vertical}

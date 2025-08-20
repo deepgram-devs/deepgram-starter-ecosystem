@@ -1,8 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0B0B0C;  /* Raven - Main Background */
+  --foreground: #E1E1E5;   /* Platinum - Body text color */
+  --panel: #1A1A1F;       /* Charcoal - Dark panel color */
+
+  /* Purple Brand Colors - Exact Figma Gradient */
+  --purple-light: #C58DFF;
+  --purple: #7800ED;
+
+  /* Link and Button Colors */
+  --link-color: #1B4D94;      /* Dark blue for links and buttons */
+  --link-hover: #2563EB;      /* Slightly lighter blue for hover */
+
+  /* Header Navigation Colors */
+  --header-link: #BBBBBF;     /* Light gray for header navigation */
+  --header-link-hover: #FFFFFF; /* White on hover */
+
+  /* Secondary Text Colors */
+  --secondary-text: #949498;  /* Slate - for filter options and secondary text */
+
+  /* Star Color */
+  --star-color: #FEDF89;      /* Custom golden color for stars */
+
+  /* Language Label Color */
+  --language-label: #EDEDF2;  /* Light gray for language labels */
 }
 
 @theme inline {
@@ -14,8 +36,30 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0B0B0C;  /* Keep Raven for dark mode too */
+    --foreground: #E1E1E5;   /* Platinum - Body text color */
+    --panel: #1A1A1F;       /* Charcoal panels in dark mode */
+
+    /* Purple Brand Colors for dark mode - Exact Figma Gradient */
+    --purple-light: #C58DFF;
+    --purple: #7800ED;
+
+    /* Link and Button Colors for dark mode */
+    --link-color: #1B4D94;
+    --link-hover: #2563EB;
+
+    /* Header Navigation Colors for dark mode */
+    --header-link: #BBBBBF;
+    --header-link-hover: #FFFFFF;
+
+    /* Secondary Text Colors for dark mode */
+    --secondary-text: #949498;
+
+    /* Star Color for dark mode */
+    --star-color: #FEDF89;
+
+    /* Language Label Color for dark mode */
+    --language-label: #EDEDF2;
   }
 }
 
@@ -41,8 +85,8 @@ body {
   top: -6px;
   width: 14px;
   height: 6px;
-  background: linear-gradient(to bottom, #c084fc, #7c3aed);
-  border: 1px solid #7c3aed;
+  background: linear-gradient(to bottom, var(--purple-light), var(--purple));
+  border: 1px solid var(--purple);
   border-radius: 2px;
 }
 
@@ -62,6 +106,62 @@ body {
 /* Make studs appear connected to main block */
 .lego-block {
   overflow: visible;
+}
+
+/* Purple gradient background class - Exact Figma stops */
+.bg-magenta-purple {
+  background: linear-gradient(135deg, var(--purple-light) 21%, var(--purple) 83%);
+}
+
+/* Purple gradient border class - Exact Figma stops */
+.border-magenta-purple {
+  background: linear-gradient(90deg, var(--purple-light) 21%, var(--purple) 83%);
+}
+
+/* Link and Button styling */
+.btn-brand {
+  background-color: var(--link-color);
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn-brand:hover {
+  background-color: var(--link-hover);
+}
+
+.link-brand {
+  color: var(--link-color);
+  transition: color 0.3s ease;
+}
+
+.link-brand:hover {
+  color: var(--link-hover);
+}
+
+/* Header Navigation Link styling */
+.header-link {
+  color: var(--header-link);
+  transition: color 0.3s ease;
+}
+
+.header-link:hover {
+  color: var(--header-link-hover);
+}
+
+/* Secondary Text styling */
+.text-secondary {
+  color: var(--secondary-text);
+}
+
+/* Star styling */
+.text-star {
+  color: var(--star-color);
+}
+
+/* Language Label styling */
+.language-label {
+  background-color: var(--language-label);
+  color: var(--background); /* Dark text on light background */
 }
 
 
