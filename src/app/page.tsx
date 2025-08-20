@@ -40,7 +40,7 @@ export default function HomePage() {
           <main className="flex-1 p-6">
             {/* Description Header */}
             <div className="mb-8">
-              <p className="text-lg md:text-l text-gray-400 max-w-3xl">
+              <p className="text-lg md:text-l max-w-3xl" style={{ color: 'var(--foreground)' }}>
                 Jumpstart your app development process with pre-built solutions from Deepgram.
               </p>
             </div>

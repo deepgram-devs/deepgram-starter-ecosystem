@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-6">
       <Card className="max-w-md w-full">
-        <div className="p-1 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-lg">
+        <div className="p-1 border-magenta-purple rounded-lg">
           <Card className="bg-black border-none">
             <CardBody className="text-center p-8">
               <div className="mb-6">
@@ -26,9 +26,8 @@ export default function NotFound() {
                 <Button
                   as={Link}
                   href="/"
-                  color="primary"
                   startContent={<HomeIcon className="w-4 h-4" />}
-                  className="min-w-32"
+                  className="min-w-32 btn-brand"
                 >
                   Home
                 </Button>
