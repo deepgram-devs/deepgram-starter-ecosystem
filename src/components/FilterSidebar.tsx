@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import {
-  Input,
   Accordion,
   AccordionItem,
   Checkbox,
@@ -10,9 +9,6 @@ import {
   Chip,
   Divider
 } from '@nextui-org/react';
-import {
-  MagnifyingGlassIcon
-} from '@heroicons/react/24/outline';
 
 interface FilterOptions {
   languages: string[];
@@ -23,7 +19,6 @@ interface FilterOptions {
 }
 
 interface FilterState {
-  search: string;
   language: string[];
   category: string[];
   framework: string[];
@@ -36,7 +31,6 @@ interface FilterSidebarProps {
 }
 
 export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>([]);
@@ -63,7 +57,6 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
   // Update parent component when filters change
   useEffect(() => {
     const filters = {
-      search: searchTerm,
       language: selectedLanguages,
       category: selectedCategories,
       framework: selectedFrameworks,
@@ -72,7 +65,6 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
     };
     onFiltersChange?.(filters);
   }, [
-    searchTerm,
     selectedLanguages,
     selectedCategories,
     selectedFrameworks,
@@ -81,7 +73,6 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
   ]);
 
   const hasActiveFilters =
-    !!searchTerm ||
     selectedLanguages.length > 0 ||
     selectedCategories.length > 0 ||
     selectedFrameworks.length > 0 ||
@@ -94,44 +85,13 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
         <h2 className="text-lg font-semibold text-foreground">Filter Starters</h2>
       </div>
 
-      {/* Search */}
-      <div className="mb-6">
-        <div className="border border-default-300 bg-default-100 rounded-lg p-2">
-          <Input
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            startContent={
-              <div className="flex items-center justify-center">
-                <MagnifyingGlassIcon className="w-4 h-4 text-default-400" />
-              </div>
-            }
-            variant="flat"
-            size="sm"
-            classNames={{
-              inputWrapper: "bg-transparent border-none shadow-none flex items-center",
-              input: "text-left"
-            }}
-          />
-        </div>
-      </div>
+
 
       {/* Active Filters */}
       {hasActiveFilters && (
         <div className="mb-6">
           <p className="text-sm font-medium text-foreground mb-2">Active Filters:</p>
           <div className="flex flex-wrap gap-1">
-            {searchTerm && (
-              <Chip
-                size="sm"
-                variant="flat"
-                onClose={() => setSearchTerm('')}
-                startContent={<MagnifyingGlassIcon className="w-3 h-3" />}
-              >
-                &quot;{searchTerm}&quot;
-              </Chip>
-            )}
             {selectedLanguages.map((lang) => (
               <Chip
                 key={lang}
@@ -148,7 +108,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 key={category}
                 size="sm"
                 variant="flat"
-                color="secondary"
+                style={{ backgroundColor: 'var(--link-color)', color: 'white' }}
                 onClose={() => setSelectedCategories(prev => prev.filter(c => c !== category))}
               >
                 {category}
@@ -159,7 +119,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 key={framework}
                 size="sm"
                 variant="flat"
-                color="success"
+                style={{ backgroundColor: 'var(--link-color)', color: 'white' }}
                 onClose={() => setSelectedFrameworks(prev => prev.filter(f => f !== framework))}
               >
                 {framework}
@@ -170,7 +130,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 key={vertical}
                 size="sm"
                 variant="flat"
-                color="warning"
+                style={{ backgroundColor: 'var(--link-color)', color: 'white' }}
                 onClose={() => setSelectedVerticals(prev => prev.filter(v => v !== vertical))}
               >
                 {vertical}
@@ -223,7 +183,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 classNames={{
                   base: "flex flex-row-reverse justify-between items-center w-full max-w-full",
                   wrapper: "order-2",
-                  label: "order-1 flex-1 text-sm text-secondary"
+                  label: `order-1 flex-1 text-sm ${selectedLanguages.includes(lang) ? 'text-selected-filter' : 'text-secondary'}`
                 }}
               >
                 {lang}
@@ -263,7 +223,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 classNames={{
                   base: "flex flex-row-reverse justify-between items-center w-full max-w-full",
                   wrapper: "order-2",
-                  label: "order-1 flex-1 text-sm text-secondary"
+                  label: `order-1 flex-1 text-sm ${selectedCategories.includes(category) ? 'text-selected-filter' : 'text-secondary'}`
                 }}
               >
                 {category}
@@ -303,7 +263,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 classNames={{
                   base: "flex flex-row-reverse justify-between items-center w-full max-w-full",
                   wrapper: "order-2",
-                  label: "order-1 flex-1 text-sm text-secondary"
+                  label: `order-1 flex-1 text-sm ${selectedFrameworks.includes(framework) ? 'text-selected-filter' : 'text-secondary'}`
                 }}
               >
                 {framework}
@@ -343,7 +303,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 classNames={{
                   base: "flex flex-row-reverse justify-between items-center w-full max-w-full",
                   wrapper: "order-2",
-                  label: "order-1 flex-1 text-sm text-secondary"
+                  label: `order-1 flex-1 text-sm ${selectedVerticals.includes(vertical) ? 'text-selected-filter' : 'text-secondary'}`
                 }}
               >
                 {vertical}

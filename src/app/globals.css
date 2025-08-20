@@ -5,9 +5,10 @@
   --foreground: #E1E1E5;   /* Platinum - Body text color */
   --panel: #1A1A1F;       /* Charcoal - Dark panel color */
 
-  /* Purple Brand Colors - Exact Figma Gradient */
-  --purple-light: #C58DFF;
-  --purple: #7800ED;
+    /* Magenta Brand Colors - 3-Color Gradient */
+  --magenta-start: #EE028B;   /* 1% stop */
+  --magenta-mid: #C61AD3;     /* 55% stop */
+  --magenta-end: #AE29FF;     /* 88% stop */
 
   /* Link and Button Colors */
   --link-color: #1B4D94;      /* Dark blue for links and buttons */
@@ -25,6 +26,9 @@
 
   /* Language Label Color */
   --language-label: #EDEDF2;  /* Light gray for language labels */
+
+  /* Border Color */
+  --border-color: #2C2C33;    /* Raisin Black - for borders and separators */
 }
 
 @theme inline {
@@ -40,9 +44,10 @@
     --foreground: #E1E1E5;   /* Platinum - Body text color */
     --panel: #1A1A1F;       /* Charcoal panels in dark mode */
 
-    /* Purple Brand Colors for dark mode - Exact Figma Gradient */
-    --purple-light: #C58DFF;
-    --purple: #7800ED;
+    /* Magenta Brand Colors for dark mode - 3-Color Gradient */
+    --magenta-start: #EE028B;
+    --magenta-mid: #C61AD3;
+    --magenta-end: #AE29FF;
 
     /* Link and Button Colors for dark mode */
     --link-color: #1B4D94;
@@ -60,6 +65,9 @@
 
     /* Language Label Color for dark mode */
     --language-label: #EDEDF2;
+
+    /* Border Color for dark mode */
+    --border-color: #2C2C33;
   }
 }
 
@@ -85,8 +93,8 @@ body {
   top: -6px;
   width: 14px;
   height: 6px;
-  background: linear-gradient(to bottom, var(--purple-light), var(--purple));
-  border: 1px solid var(--purple);
+  background: linear-gradient(to bottom, var(--magenta-start) 1%, var(--magenta-mid) 55%, var(--magenta-end) 88%);
+  border: 1px solid var(--magenta-end);
   border-radius: 2px;
 }
 
@@ -108,14 +116,14 @@ body {
   overflow: visible;
 }
 
-/* Purple gradient background class - Exact Figma stops */
+/* Magenta gradient background class - 3-Color Gradient */
 .bg-magenta-purple {
-  background: linear-gradient(135deg, var(--purple-light) 21%, var(--purple) 83%);
+  background: linear-gradient(135deg, var(--magenta-start) 1%, var(--magenta-mid) 55%, var(--magenta-end) 88%);
 }
 
-/* Purple gradient border class - Exact Figma stops */
+/* Magenta gradient border class - 3-Color Gradient */
 .border-magenta-purple {
-  background: linear-gradient(90deg, var(--purple-light) 21%, var(--purple) 83%);
+  background: linear-gradient(90deg, var(--magenta-start) 1%, var(--magenta-mid) 55%, var(--magenta-end) 88%);
 }
 
 /* Link and Button styling */
@@ -162,6 +170,11 @@ body {
 .language-label {
   background-color: var(--language-label);
   color: var(--background); /* Dark text on light background */
+}
+
+/* Selected Filter Text styling */
+.text-selected-filter {
+  color: var(--header-link); /* Using #BBBBBF for selected filters */
 }
 
 
