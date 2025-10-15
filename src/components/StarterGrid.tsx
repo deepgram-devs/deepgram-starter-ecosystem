@@ -264,12 +264,19 @@ export function StarterGrid({ filters }: StarterGridProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
           >
-            <div className="p-1 border-magenta-purple rounded-lg">
+            <div
+              className="p-1 border-magenta-purple-subtle rounded-lg starter-card-hover cursor-pointer"
+              onClick={(e) => {
+                // Only navigate if the click is on the card background, not on interactive elements
+                if ((e.target as HTMLElement).closest('button, a')) {
+                  return;
+                }
+                window.location.href = `/starters/${starter.name}`;
+              }}
+            >
               <Card
                 // min height 340 for even sizing in cards
-                className="h-full min-h-[340px] hover:shadow-lg transition-shadow duration-300 bg-black rounded-lg cursor-pointer"
-                isPressable
-                onPress={() => window.location.href = `/starters/${starter.name}`}
+                className="h-full min-h-[340px] transition-shadow duration-300 bg-black rounded-lg"
               >
                 {/* Language Icon */}
                 <div className={`w-full h-16 ${getLanguageIconBg()} rounded-t-lg flex items-center justify-center shadow-sm`}>
@@ -319,32 +326,45 @@ export function StarterGrid({ filters }: StarterGridProps) {
                 </CardBody>
 
                 <CardFooter className="pt-0 pb-3 px-4">
-                  {/* Buttons - centered in footer */}
-                  <div className="flex gap-2 justify-end w-full">
-                    {starter.links.docs && (
-                      <Button
-                        as={Link}
-                        href={starter.links.docs}
-                        target="_blank"
-                        variant="bordered"
-                        size="sm"
-                        startContent={<BookOpenIcon className="w-4 h-4" />}
-                      >
-                        Docs
-                      </Button>
-                    )}
+                  <div className="flex flex-col gap-2 w-full items-start">
+                    {/* Primary CTA - View Starter */}
+                    <Button
+                      className="btn-magenta-gradient font-semibold"
+                      onPress={() => window.location.href = `/starters/${starter.name}`}
+                      size="sm"
+                    >
+                      View Starter
+                    </Button>
 
-                    {starter.links.demo && (
-                      <Button
-                        as={Link}
-                        href={starter.links.demo}
-                        target="_blank"
-                        variant="bordered"
-                        size="sm"
-                        startContent={<PlayIcon className="w-4 h-4" />}
-                      >
-                        Demo
-                      </Button>
+                    {/* Secondary actions - Docs and Demo */}
+                    {(starter.links.docs || starter.links.demo) && (
+                      <div className="flex gap-2 w-full">
+                        {starter.links.docs && (
+                          <Button
+                            as={Link}
+                            href={starter.links.docs}
+                            target="_blank"
+                            variant="bordered"
+                            size="sm"
+                            startContent={<BookOpenIcon className="w-4 h-4" />}
+                          >
+                            Docs
+                          </Button>
+                        )}
+
+                        {starter.links.demo && (
+                          <Button
+                            as={Link}
+                            href={starter.links.demo}
+                            target="_blank"
+                            variant="bordered"
+                            size="sm"
+                            startContent={<PlayIcon className="w-4 h-4" />}
+                          >
+                            Demo
+                          </Button>
+                        )}
+                      </div>
                     )}
                   </div>
                 </CardFooter>
