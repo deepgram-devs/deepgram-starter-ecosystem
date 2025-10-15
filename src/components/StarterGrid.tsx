@@ -265,7 +265,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
             transition={{ duration: 0.4, delay: index * 0.1 }}
           >
             <div
-              className="p-1 border-magenta-purple-subtle rounded-lg starter-card-hover cursor-pointer"
+              className="starter-card-hover cursor-pointer"
               onClick={(e) => {
                 // Only navigate if the click is on the card background, not on interactive elements
                 if ((e.target as HTMLElement).closest('button, a')) {
@@ -275,8 +275,9 @@ export function StarterGrid({ filters }: StarterGridProps) {
               }}
             >
               <Card
-                // min height 340 for even sizing in cards
-                className="h-full min-h-[340px] transition-shadow duration-300 bg-black rounded-lg"
+                // min height for even sizing in cards
+                className="h-full min-h-[320px] transition-all duration-300 rounded-lg"
+                style={{ backgroundColor: 'var(--panel)' }}
               >
                 {/* Language Icon */}
                 <div className={`w-full h-16 ${getLanguageIconBg()} rounded-t-lg flex items-center justify-center shadow-sm`}>
