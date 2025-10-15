@@ -168,12 +168,12 @@ body {
 
 /* Card hover effect */
 .starter-card-hover {
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .starter-card-hover:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
 }
 
 /* Link and Button styling */
