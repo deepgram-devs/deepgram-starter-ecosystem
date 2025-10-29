@@ -1,7 +1,7 @@
 'use client';
 
 import { Card, CardBody, Button, Link } from '@nextui-org/react';
-import { ArrowLeftIcon, HomeIcon } from '@heroicons/react/24/outline';
+import { HomeIcon } from '@heroicons/react/24/outline';
 
 export default function NotFound() {
   return (
@@ -22,22 +22,14 @@ export default function NotFound() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex justify-center">
                 <Button
                   as={Link}
                   href="/"
                   startContent={<HomeIcon className="w-4 h-4" />}
-                  className="min-w-32 btn-brand"
+                  className="min-w-32 btn-magenta-gradient"
                 >
                   Home
-                </Button>
-                <Button
-                  variant="bordered"
-                  onPress={() => history.back()}
-                  startContent={<ArrowLeftIcon className="w-4 h-4" />}
-                  className="min-w-32 text-white border-gray-600 hover:border-gray-500"
-                >
-                  Go Back
                 </Button>
               </div>
             </CardBody>

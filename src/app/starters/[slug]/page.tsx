@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, notFound } from 'next/navigation';
 import { HeroSection } from '@/components/HeroSection';
 import {
   Card,
@@ -103,47 +103,7 @@ export default function StarterDetailPage() {
   }
 
   if (error || !starter) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-6">
-        <Card className="max-w-md w-full">
-          <div className="p-1 rounded-lg" style={{ backgroundColor: 'var(--border-color)' }}>
-            <Card className="bg-black border-none">
-              <CardBody className="text-center p-8">
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                    </svg>
-                  </div>
-                  <h2 className="text-xl font-semibold text-white mb-4">Starter Unavailable</h2>
-                  <p className="text-secondary leading-relaxed mb-6">
-                    {error || 'The requested starter could not be loaded. It may have been moved or is temporarily unavailable.'}
-                  </p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Button
-                    as={Link}
-                    href="/"
-                    startContent={<ArrowLeftIcon className="w-4 h-4" />}
-                    className="min-w-32 btn-brand"
-                  >
-                    Back to Starters
-                  </Button>
-                  <Button
-                    variant="bordered"
-                    onPress={() => window.location.reload()}
-                    className="min-w-32 text-white border-gray-600 hover:border-gray-500"
-                  >
-                    Try Again
-                  </Button>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-        </Card>
-      </div>
-    );
+    notFound();
   }
 
   return (
@@ -218,15 +178,16 @@ export default function StarterDetailPage() {
 
                     {/* Action Buttons */}
                     <div className="space-y-2">
-                      <Link
+                      <Button
+                        as={Link}
                         href={starter.links.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full btn-brand px-4 py-2 rounded-lg flex items-center justify-center gap-2"
+                        className="w-full btn-magenta-gradient px-4 py-2 flex items-center justify-center gap-2"
+                        startContent={<CodeBracketIcon className="w-4 h-4 flex-shrink-0" />}
                       >
-                        <CodeBracketIcon className="w-4 h-4 flex-shrink-0" />
                         <span className="whitespace-nowrap">View on GitHub</span>
-                      </Link>
+                      </Button>
 
                       {starter.links.docs && (
                         <Link
@@ -386,7 +347,7 @@ export default function StarterDetailPage() {
                     <Dropdown>
                       <DropdownTrigger>
                         <Button
-                          className="w-full btn-brand px-4 py-2 rounded-lg flex items-center justify-center gap-2"
+                          className="w-full btn-magenta-gradient px-4 py-2 flex items-center justify-center gap-2"
                           startContent={<RocketLaunchIcon className="w-4 h-4 flex-shrink-0" />}
                           endContent={<ChevronDownIcon className="w-4 h-4 flex-shrink-0" />}
                         >
