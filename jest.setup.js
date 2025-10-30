@@ -1,4 +1,5 @@
-// Load environment variables from .env.test
+// Load environment variables from .env.test (local dev)
+// In CI, variables are set directly via env: block in workflow
 require('dotenv').config({ path: '.env.test' });
 
 // Set longer timeout for integration tests
