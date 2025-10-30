@@ -12,6 +12,9 @@
 
 # testing
 /coverage
+/coverage.json
+*.lcov
+.nyc_output
 
 # next.js
 /.next/
@@ -31,7 +34,11 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+.env
+.env*.local
+.env.test
+.env.production
+!.env*.example
 
 # vercel
 .vercel

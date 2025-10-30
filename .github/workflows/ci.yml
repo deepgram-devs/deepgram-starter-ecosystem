@@ -20,9 +20,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: "npm"
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Lint Source Files
         run: npm run lint
@@ -30,5 +31,23 @@ jobs:
       - name: Verify Build
         run: npm run build
 
-      - name: Run Tests
-        run: npm run test
+      - name: Start Next.js dev server
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: npm run dev &
+
+      - name: Wait for server to be ready
+        run: |
+          timeout 60 bash -c 'until curl -f http://localhost:3000 > /dev/null 2>&1; do sleep 2; done'
+          echo "Server is ready!"
+
+      - name: Run tests
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          NEXT_PUBLIC_APP_URL: http://localhost:3000
+          GITHUB_ORG: deepgram-starters
+        run: npm test
+
+      - name: Stop dev server
+        if: always()
+        run: lsof -ti:3000 | xargs kill -9 2>/dev/null || true
