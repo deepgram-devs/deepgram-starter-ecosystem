@@ -36,22 +36,6 @@ function getBaseUrl() {
 }
 
 /**
- * Check if an object has all required fields
- * @param {object} obj - Object to check
- * @param {string[]} requiredFields - Array of required field names
- * @returns {boolean} - True if all fields exist
- */
-function hasRequiredFields(obj, requiredFields) {
-  return requiredFields.every(field => {
-    const hasField = field.split('.').reduce((o, key) => o && o[key], obj) !== undefined;
-    if (!hasField) {
-      console.warn(`Missing required field: ${field}`);
-    }
-    return hasField;
-  });
-}
-
-/**
  * Measure the execution time of an async function
  * @param {Function} fn - Async function to measure
  * @returns {Promise<{result: any, time: number}>} - Result and time in milliseconds
@@ -101,7 +85,6 @@ async function retryWithBackoff(fn, maxRetries = 3, initialDelay = 1000) {
 module.exports = {
   waitForServer,
   getBaseUrl,
-  hasRequiredFields,
   measureTime,
   timeout,
   retryWithBackoff,
