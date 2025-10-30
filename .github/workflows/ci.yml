@@ -34,9 +34,7 @@ jobs:
       - name: Start Next.js dev server
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          npm run dev &
-          echo $! > .dev-server.pid
+        run: npm run dev &
 
       - name: Wait for server to be ready
         run: |
@@ -52,7 +50,4 @@ jobs:
 
       - name: Stop dev server
         if: always()
-        run: |
-          if [ -f .dev-server.pid ]; then
-            kill $(cat .dev-server.pid) || true
-          fi
+        run: lsof -ti:3000 | xargs kill -9 2>/dev/null || true
