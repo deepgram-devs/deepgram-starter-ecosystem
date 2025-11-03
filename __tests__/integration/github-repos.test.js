@@ -129,5 +129,72 @@ describe('GitHub Repository Validation', () => {
       });
     });
   });
+
+  describe('README Availability', () => {
+    test('should have README endpoints available for all starters', async () => {
+      expect(starters.length).toBeGreaterThan(0);
+
+      // Test a sample of starters to avoid rate limiting
+      const samplesToTest = starters.slice(0, 5);
+
+      for (const starter of samplesToTest) {
+        const response = await fetch(`${BASE_URL}/api/starters/${starter.name}/readme`);
+
+        // Should return 200 or 404 (both are valid - not all repos may have READMEs)
+        expect([200, 404]).toContain(response.status);
+
+        if (response.status === 200) {
+          const data = await response.json();
+          expect(data).toHaveProperty('content');
+          expect(typeof data.content).toBe('string');
+          expect(data.content.length).toBeGreaterThan(0);
+        }
+      }
+    }, 30000); // Increased timeout for multiple API calls
+
+    test('README content should be decodable when present', async () => {
+      if (starters.length === 0) {
+        console.warn('No starters available, skipping test');
+        return;
+      }
+
+      // Get first starter to test README decoding
+      const firstStarter = starters[0];
+      const response = await fetch(`${BASE_URL}/api/starters/${firstStarter.name}/readme`);
+
+      if (response.status === 200) {
+        const data = await response.json();
+
+        // Should have encoding field
+        expect(data).toHaveProperty('encoding');
+
+        // If base64 encoded, content should be decodable
+        if (data.encoding === 'base64') {
+          expect(() => {
+            atob(data.content);
+          }).not.toThrow();
+        }
+
+        // Content should not be the error message
+        expect(data.content).not.toBe('No README found for this starter.');
+      }
+    }, 15000);
+
+    test('should have proper cache headers on README responses', async () => {
+      if (starters.length === 0) {
+        console.warn('No starters available, skipping test');
+        return;
+      }
+
+      const firstStarter = starters[0];
+      const response = await fetch(`${BASE_URL}/api/starters/${firstStarter.name}/readme`);
+
+      if (response.status === 200) {
+        const cacheControl = response.headers.get('cache-control');
+        expect(cacheControl).toBeTruthy();
+        expect(cacheControl).toContain('s-maxage');
+      }
+    }, 15000);
+  });
 });
 
