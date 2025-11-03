@@ -6,17 +6,6 @@ A modern, dynamic showcase for Deepgram's starter applications ecosystem. This N
 
 The Deepgram Starter Ecosystem serves as the central discovery platform for our starter applications. It dynamically fetches repository data, README content, and configuration metadata to present a comprehensive, searchable catalog of starter projects.
 
-### Key Features
-
-- **🔄 Dynamic Content**: Automatically syncs with GitHub repositories
-- **⚡ Intelligent Caching**: 24-hour cache with ~99% GitHub API reduction
-- **📋 Rich Metadata**: Displays project details from `deepgram.toml` configuration files
-- **🔍 Advanced Filtering**: Search by language, framework, use case, and more
-- **📖 Integrated Documentation**: Renders README files with proper markdown support
-- **🚀 Lightning Fast**: Sub-second response times after initial cache
-- **🎨 Modern UI**: Built with NextUI components and Tailwind CSS
-- **📱 Responsive Design**: Optimized for desktop, tablet, and mobile
-
 ## 🛠 Tech Stack
 
 | Category        | Technology                  |
@@ -70,9 +59,9 @@ The Deepgram Starter Ecosystem serves as the central discovery platform for our 
 
 5. **Open your browser**: [http://localhost:3000](http://localhost:3000)
 
-6. **Test caching performance** (optional):
+6. **Testing**
    ```bash
-   npm run test:cache
+   npm run test
    ```
 
 ## 📁 Project Architecture
@@ -269,7 +258,7 @@ StarterDetailPage
 ### Styling Guidelines
 
 - **Dark Theme**: Black backgrounds with gradient accents
-- **Gradient Borders**: `from-indigo-400 via-purple-500 to-pink-500`
+- **Gradient Borders**: 
 - **Typography**: Clean, readable hierarchy
 - **Interactive Elements**: Hover states and smooth transitions
 - **Responsive**: Mobile-first approach
@@ -318,56 +307,6 @@ Cache-Control: public, s-maxage=86400, stale-while-revalidate=172800
 - **Cached visits**: ~0.3s (served from cache)
 - **72-92% faster**: Significant performance improvement after caching
 
-## 🧪 Development Guidelines
-
-### Code Standards
-
-- **TypeScript**: Strict mode enabled
-- **ESLint**: Configured for Next.js and React
-- **Prettier**: Consistent code formatting
-- **Components**: Functional components with hooks
-- **Error Handling**: Comprehensive try/catch blocks
-
-### Testing
-
-```bash
-# Run type checking
-npm run type-check
-
-# Run linting
-npm run lint
-
-# Run build verification
-npm run build
-
-# Test caching performance
-npm run test:cache
-```
-
-#### **Cache Performance Testing**
-
-The project includes a comprehensive caching test suite:
-
-```bash
-npm run test:cache
-```
-
-**What it tests:**
-- ✅ **Response times**: Measures cold vs. warm cache performance
-- ✅ **Cache headers**: Verifies 24-hour cache configuration
-- ✅ **API endpoints**: Tests both `/api/starters` and README endpoints
-- ✅ **Performance improvements**: Calculates cache speed benefits
-- ✅ **Consistency**: Validates rapid requests are consistently fast
-
-
-### Adding New Features
-
-1. **Create feature branch**: `git checkout -b feature/your-feature-name`
-2. **Follow TypeScript patterns**: Use existing types and interfaces
-3. **Update components**: Keep UI components reusable
-4. **Test locally**: Verify functionality and responsive design
-5. **Update documentation**: Add to README if needed
-
 ## 🐛 Troubleshooting
 
 ### Common Issues
@@ -396,9 +335,6 @@ npm run build:css
 
 **Cache Issues**:
 ```bash
-# Test cache performance
-npm run test:cache
-
 # Clear Next.js cache
 rm -rf .next/cache
 
@@ -407,19 +343,6 @@ curl -I http://localhost:3000/api/starters
 
 # Check for stale data
 # Look for "Cache: public, s-maxage=86400" in response headers
-```
-
-**Slow Performance**:
-```bash
-# Verify caching is working
-npm run test:cache
-
-# Check GitHub API rate limits
-curl -H "Authorization: Bearer $GH_PAT" \
-  -I https://api.github.com/rate_limit
-
-# Monitor response times
-# First request should be ~1200ms, cached requests ~300ms
 ```
 
 ### Debug Mode
@@ -456,33 +379,6 @@ npm run start
 # Or export static files
 npm run export
 ```
-
-## 🤝 Contributing
-
-### Development Workflow
-
-1. **Fork** the repository
-2. **Create branch**: `git checkout -b feature/amazing-feature`
-3. **Make changes**: Follow code standards
-4. **Test thoroughly**: Verify functionality
-5. **Commit changes**: `git commit -m 'Add amazing feature'`
-6. **Push branch**: `git push origin feature/amazing-feature`
-7. **Open Pull Request**: Describe your changes
-
-### Code Review Process
-
-1. **Automated checks**: Linting, type checking, builds
-2. **Manual review**: Code quality, functionality, design
-3. **Testing**: Verify changes work as expected
-4. **Approval**: At least one maintainer approval required
-
-### Optimization Strategies
-
-- **Image optimization**: Next.js automatic optimization
-- **Code splitting**: Automatic route-based splitting
-- **Caching**: Aggressive caching of GitHub API responses
-- **Error boundaries**: Graceful error handling
-
 ## 🔒 Security
 
 ### Best Practices
