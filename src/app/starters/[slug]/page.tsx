@@ -336,8 +336,7 @@ export default function StarterDetailPage() {
               </div>
 
               {/* Deploy Section */}
-              {/* TODO: This is a placeholder for future integration work we need to consider
-                 in order to support deploying to these platforms */}
+              {/* TODO: Deploy feature not yet implemented.  This is a placeholder for future integration work we need to do to support deploying to these platforms.
               <div className="p-1 rounded-lg mt-6" style={{ backgroundColor: 'var(--border-color)' }}>
                 <Card className="bg-black border-none">
                   <CardHeader className="bg-black flex justify-center items-center">
@@ -395,6 +394,7 @@ export default function StarterDetailPage() {
                   </CardBody>
                 </Card>
               </div>
+              */}
             </div>
           </aside>
 
