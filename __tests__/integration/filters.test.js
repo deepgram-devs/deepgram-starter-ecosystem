@@ -94,17 +94,6 @@ describe('Filter Logic with Missing Fields', () => {
 
   describe('Optional Field Filtering Edge Cases', () => {
     test('should not exclude all results when optional field is null for all starters', () => {
-      // This is the bug we found: if vertical is selected but all starters have vertical: null,
-      // it would filter out everything
-
-      // Simulating the WRONG way (the bug):
-      // const selectedVerticals = ['Healthcare'];
-      // const wrongFiltered = mockStarters.filter(starter =>
-      //   selectedVerticals.includes(starter.vertical)  // This would exclude everything!
-      // );
-      // expect(wrongFiltered).toHaveLength(0);  // Bug: filters out everything
-
-      // Simulating the RIGHT way:
       const selectedVerticals = ['Healthcare'];
       const correctFiltered = mockStarters.filter(starter =>
         starter.vertical && selectedVerticals.includes(starter.vertical)

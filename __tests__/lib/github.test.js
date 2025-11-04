@@ -53,7 +53,7 @@ const mockRepoWithConfig = {
   },
 };
 
-describe('Data Transformation - transformToProcessedStarters', () => {
+describe('Data Transformation', () => {
   // We'll need to import or fetch the actual function
   // For now, testing through the API endpoint
   const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';

@@ -109,12 +109,24 @@ export function StarterGrid({ filters }: StarterGridProps) {
 
     // Search filter
     if (filters.search) {
-      const searchTerm = filters.search.toLowerCase();
-      filtered = filtered.filter(starter =>
-        starter.title.toLowerCase().includes(searchTerm) ||
-        starter.description.toLowerCase().includes(searchTerm) ||
-        starter.name.toLowerCase().includes(searchTerm)
-      );
+      const searchTerm = filters.search.toLowerCase().trim();
+
+      filtered = filtered.filter(starter => {
+        const title = starter.title.toLowerCase();
+        const description = starter.description.toLowerCase();
+        const name = starter.name.toLowerCase();
+        const language = starter.language.toLowerCase();
+        const framework = starter.framework?.toLowerCase() || '';
+        const category = starter.category?.toLowerCase() || '';
+
+        // Search across all relevant fields
+        return title.includes(searchTerm) ||
+          description.includes(searchTerm) ||
+          name.includes(searchTerm) ||
+          language.includes(searchTerm) ||
+          framework.includes(searchTerm) ||
+          category.includes(searchTerm);
+      });
     }
 
     // Language filter
