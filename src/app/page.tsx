@@ -11,7 +11,7 @@ interface FilterState {
   language: string[];
   category: string[];
   framework: string[];
-  vertical: string[];
+  // vertical: string[]; // TODO: Re-enable when vertical data is available in deepgram.toml
   tags: string[];
 }
 

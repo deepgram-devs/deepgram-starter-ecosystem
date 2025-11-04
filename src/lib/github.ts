@@ -112,7 +112,8 @@ export function transformToProcessedStarters(repos: Repo[]): ProcessedStarter[] 
       language: config?.meta?.language || repo.language || 'Unknown',
       framework: config?.meta?.framework,
       category: config?.meta?.useCase,  // Map useCase to category
-      vertical: config?.vertical,  // Map from TOML config
+      // TODO: Re-enable when vertical data is available in deepgram.toml
+      // vertical: config?.meta?.vertical,
       tags: config?.tags || repo.topics || [],
       links: {
         github: repo.html_url,
@@ -151,7 +152,8 @@ export function getFilterOptions(starters: ProcessedStarter[]) {
     if (starter.language) languages.add(starter.language);
     if (starter.category) categories.add(starter.category);
     if (starter.framework) frameworks.add(starter.framework);
-    if (starter.vertical) verticals.add(starter.vertical);
+    // TODO: Re-enable when vertical data is available in deepgram.toml
+    // if (starter.vertical) verticals.add(starter.vertical);
     if (starter.tags) {
       starter.tags.forEach((tag: string) => tags.add(tag));
     }
@@ -229,10 +231,11 @@ export function filterStarters(
       return false;
     }
 
+    // TODO: Re-enable when vertical data is available in deepgram.toml
     // Vertical filter
-    if (filters.vertical?.length && starter.vertical && !filters.vertical.includes(starter.vertical)) {
-      return false;
-    }
+    // if (filters.vertical?.length && starter.vertical && !filters.vertical.includes(starter.vertical)) {
+    //   return false;
+    // }
 
     // Tags filter
     if (filters.tags?.length && starter.tags?.length) {

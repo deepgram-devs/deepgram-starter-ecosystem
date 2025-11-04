@@ -37,15 +37,16 @@ const mockRepoWithConfig = {
       language: 'TypeScript',
       framework: 'Next.js',
       useCase: 'Speech-to-Text',
+      // TODO: Vertical feature not yet implemented in deepgram.toml
+      // vertical: 'AI/ML',
     },
-    vertical: 'AI/ML',
     tags: ['ai', 'speech', 'nextjs'],
     links: {
       docs: 'https://docs.example.com',
       demo: 'https://demo.example.com',
       video: 'https://youtube.com/watch?v=example',
     },
-    // COMMENTED OUT: Deploy feature not yet implemented
+    // TODO: Deploy feature not yet implemented
     // deployment: {
     //   supported: ['digital ocean', 'fly.io, 'vercel', 'netlify, '],
     // },
