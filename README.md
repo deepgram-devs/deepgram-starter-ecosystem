@@ -115,6 +115,12 @@ graph TD
     F --> G
 ```
 
+### Cached Data
+
+- Individual Repository data - All repo metadata from deepgram-starters org
+- TOML Configs - `deepgram.toml` files from each repo
+- README Files - `README.md` content from each starter repo
+
 ### Cache Layers
 
 1. **Next.js Data Cache**: Server-side caching with `next: { revalidate: 86400 }`
