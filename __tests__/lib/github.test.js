@@ -45,9 +45,10 @@ const mockRepoWithConfig = {
       demo: 'https://demo.example.com',
       video: 'https://youtube.com/watch?v=example',
     },
-    deployment: {
-      supported: ['vercel', 'netlify'],
-    },
+    // COMMENTED OUT: Deploy feature not yet implemented
+    // deployment: {
+    //   supported: ['digital ocean', 'fly.io, 'vercel', 'netlify, '],
+    // },
   },
 };
 

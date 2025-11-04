@@ -258,7 +258,7 @@ StarterDetailPage
 ### Styling Guidelines
 
 - **Dark Theme**: Black backgrounds with gradient accents
-- **Gradient Borders**: 
+- **Gradient Borders**:
 - **Typography**: Clean, readable hierarchy
 - **Interactive Elements**: Hover states and smooth transitions
 - **Responsive**: Mobile-first approach
@@ -367,18 +367,20 @@ NEXT_PUBLIC_APP_URL=https://yourapp.com    # Production URL
 2. **Set environment variables**: Add `GH_PAT` in Vercel dashboard
 3. **Deploy**: Automatic deployments on push to main
 
-### Manual Deployment
+### Deployment
 
 ```bash
 # Build for production
 npm run build
 
-# Start production server
+# Start production server and validate build
 npm run start
 
-# Or export static files
-npm run export
+# The site is currently deployed to the Deepgram Fly.io Account
+fly deploy
 ```
+
+
 ## 🔒 Security
 
 ### Best Practices
@@ -389,6 +391,8 @@ npm run export
 - **CSP**: Content Security Policy headers
 
 ### GitHub Token Scopes
+
+> Token is already set as a secret in Fly.io
 
 Required scopes for `GH_PAT`:
 - `public_repo`: Read public repository data
