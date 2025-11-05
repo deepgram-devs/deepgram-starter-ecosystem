@@ -6,16 +6,29 @@ import {
   ModalHeader,
   ModalBody,
   Link,
+  Divider,
 } from '@nextui-org/react';
 import { DocumentationIcon, ChangelogIcon } from '@/components/icons';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/solid';
+import { FilterSidebar } from './FilterSidebar';
+
+interface FilterState {
+  language: string[];
+  category: string[];
+  framework: string[];
+  tags: string[];
+}
 
 interface MobileNavProps {
   isOpen: boolean;
   onClose: () => void;
+  onFiltersChange?: (filters: FilterState) => void;
+  autoExpandFilters?: boolean;
 }
 
-export function MobileNav({ isOpen, onClose }: MobileNavProps) {
+export function MobileNav({ isOpen, onClose, onFiltersChange, autoExpandFilters }: MobileNavProps) {
+  const expandedKeys = autoExpandFilters ? ["language", "category", "framework"] : undefined;
   return (
     <Modal
       isOpen={isOpen}
@@ -65,6 +78,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
               </button>
             </ModalHeader>
             <ModalBody>
+              {/* Navigation Links */}
               <nav className="flex flex-col gap-4">
                 <Link
                   href="https://developers.deepgram.com/docs/introduction"
@@ -75,7 +89,6 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   <DocumentationIcon className="text-2xl" />
                   <div>
                     <div className="font-semibold text-lg">Documentation</div>
-                    <div className="text-sm text-secondary">Learn about Deepgram APIs</div>
                   </div>
                 </Link>
 
@@ -88,10 +101,25 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   <ChangelogIcon className="text-2xl" />
                   <div>
                     <div className="font-semibold text-lg">Explore the API</div>
-                    <div className="text-sm text-secondary">Try the API Playground</div>
                   </div>
                 </Link>
               </nav>
+
+              <Divider className="my-1" />
+
+              {/* Filters Section */}
+              <div className="flex items-center gap-3 p-4 text-foreground">
+                <AdjustmentsHorizontalIcon className="w-6 h-6 text-2xl" />
+                <div>
+                  <div className="font-semibold text-lg">Filter Starters</div>
+                </div>
+              </div>
+
+              <FilterSidebar
+                onFiltersChange={onFiltersChange}
+                expandedKeys={expandedKeys}
+                hideTitle={true}
+              />
             </ModalBody>
           </>
         )}

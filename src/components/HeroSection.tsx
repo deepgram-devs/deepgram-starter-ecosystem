@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useCallback, useImperativeHandle, forwardRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useDisclosure } from "@nextui-org/react";
@@ -8,8 +9,45 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 import { MobileNav } from "@/components/MobileNav";
 import logo from "../../public/deepgram.svg";
 
-export function HeroSection() {
+interface FilterState {
+  language: string[];
+  category: string[];
+  framework: string[];
+  tags: string[];
+}
+
+interface HeroSectionProps {
+  onFiltersChange?: (filters: FilterState) => void;
+  activeFilterCount?: number;
+}
+
+export interface HeroSectionRef {
+  openWithFilters: () => void;
+}
+
+export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({ onFiltersChange, activeFilterCount = 0 }, ref) => {
   const { isOpen, onOpen, onClose } = useDisclosure({ defaultOpen: false });
+  const [shouldExpandFilters, setShouldExpandFilters] = useState(false);
+
+  const handleHamburgerClick = useCallback(() => {
+    setShouldExpandFilters(false);
+    onOpen();
+  }, [onOpen]);
+
+  const handleFilterButtonClick = useCallback(() => {
+    setShouldExpandFilters(true);
+    onOpen();
+  }, [onOpen]);
+
+  const handleClose = useCallback(() => {
+    setShouldExpandFilters(false);
+    onClose();
+  }, [onClose]);
+
+  // Expose the filter button handler to parent via ref
+  useImperativeHandle(ref, () => ({
+    openWithFilters: handleFilterButtonClick
+  }), [handleFilterButtonClick]);
 
   return (
     <>
@@ -60,7 +98,7 @@ export function HeroSection() {
 
           {/* Mobile Hamburger Menu */}
           <button
-            onClick={onOpen}
+            onClick={handleHamburgerClick}
             className="lg:hidden p-2 rounded-lg hover:bg-gray-800 transition-colors"
             aria-label="Open menu"
           >
@@ -72,8 +110,12 @@ export function HeroSection() {
       {/* Mobile Navigation Drawer */}
       <MobileNav
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={handleClose}
+        onFiltersChange={onFiltersChange}
+        autoExpandFilters={shouldExpandFilters}
       />
     </>
   );
-}
+});
+
+HeroSection.displayName = 'HeroSection';

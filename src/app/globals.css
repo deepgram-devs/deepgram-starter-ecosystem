@@ -295,27 +295,26 @@ pre {
 
 /* Mobile Modal Styles */
 @media (max-width: 1024px) {
-  /* Higher specificity to override NextUI inline styles without !important */
-  section[role="dialog"].mobile-nav-modal,
-  section[role="dialog"].mobile-filter-modal {
+  /* Force modals to use fixed positioning and cover viewport */
+  [role="dialog"] {
     position: fixed;
-    inset: 0;
+    inset: 0
   }
 
   /* Mobile navigation modal */
-  section.mobile-nav-modal {
+  .mobile-nav-modal {
     background: rgba(11, 11, 12, 0.95);
     backdrop-filter: blur(10px);
   }
 
   /* Mobile filter drawer */
-  section.mobile-filter-modal {
+  .mobile-filter-modal {
     background: rgba(11, 11, 12, 0.95);
     backdrop-filter: blur(10px);
   }
 
   /* Semi-transparent backdrop */
-  div[data-slot="backdrop"].mobile-modal-backdrop {
+  .mobile-modal-backdrop {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(8px);
   }

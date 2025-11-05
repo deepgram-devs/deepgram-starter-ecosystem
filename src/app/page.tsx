@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useCallback, Suspense, useMemo } from 'react';
+import { useState, useCallback, Suspense, useMemo, useRef } from 'react';
 import { StarterGrid } from '@/components/StarterGrid';
 import { FilterSidebar } from '@/components/FilterSidebar';
 import { MobileFilterDrawer } from '@/components/MobileFilterDrawer';
 import { SearchBar } from '@/components/SearchBar';
 import Loading from '@/components/Loading';
-import { HeroSection } from '@/components/HeroSection';
+import { HeroSection, HeroSectionRef } from '@/components/HeroSection';
 
 interface FilterState {
   language: string[];
@@ -19,6 +19,7 @@ interface FilterState {
 export default function HomePage() {
   const [filters, setFilters] = useState<Partial<FilterState>>({});
   const [searchTerm, setSearchTerm] = useState('');
+  const heroSectionRef = useRef<HeroSectionRef>(null);
 
   const handleFiltersChange = useCallback((newFilters: FilterState) => {
     setFilters(newFilters);
@@ -26,6 +27,10 @@ export default function HomePage() {
 
   const handleSearchChange = useCallback((search: string) => {
     setSearchTerm(search);
+  }, []);
+
+  const handleFilterButtonClick = useCallback(() => {
+    heroSectionRef.current?.openWithFilters();
   }, []);
 
   // Calculate active filter count for mobile badge
@@ -45,7 +50,11 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section - Full Width */}
-      <HeroSection />
+      <HeroSection
+        ref={heroSectionRef}
+        onFiltersChange={handleFiltersChange}
+        activeFilterCount={activeFilterCount}
+      />
 
       {/* Constrained Layout Container */}
       <div className="mx-auto max-w-[1448px] px-4 sm:px-6 lg:px-0">
@@ -77,7 +86,7 @@ export default function HomePage() {
 
       {/* Mobile Filter Drawer - Only visible on mobile */}
       <MobileFilterDrawer
-        onFiltersChange={handleFiltersChange}
+        onOpen={handleFilterButtonClick}
         activeFilterCount={activeFilterCount}
       />
     </div>
