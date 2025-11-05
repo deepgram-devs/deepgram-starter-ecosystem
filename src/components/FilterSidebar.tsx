@@ -14,7 +14,7 @@ interface FilterOptions {
   languages: string[];
   categories: string[];
   frameworks: string[];
-  verticals: string[];
+  // verticals: string[]; // TODO: Re-enable when vertical data is available in deepgram.toml
   tags: string[];
 }
 
@@ -22,7 +22,7 @@ interface FilterState {
   language: string[];
   category: string[];
   framework: string[];
-  vertical: string[];
+  // vertical: string[]; // TODO: Re-enable when vertical data is available in deepgram.toml
   tags: string[];
 }
 
@@ -34,23 +34,24 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>([]);
-  const [selectedVerticals, setSelectedVerticals] = useState<string[]>([]);
+  // const [selectedVerticals, setSelectedVerticals] = useState<string[]>([]); // TODO: Re-enable when vertical data is available
 
   // Filter options based on actual TOML values from starter repositories
   const filterOptions: FilterOptions = {
     languages: ['C#', 'C++', 'Go', 'Java', 'JavaScript', 'PHP', 'Python', 'Ruby', 'Rust', 'TypeScript'],
     categories: ['Voice Agent', 'Live', 'STT', 'TTS'],
     frameworks: ['.NET', 'Django', 'Flask', 'Go', 'Next', 'Node', 'Sinatra'],
-    verticals: [
-      'Call Center & CX',
-      'Healthcare',
-      'Insurance & FinServ',
-      'Food / Hospitality / Gyms',
-      'Recruiting / HR',
-      'Education',
-      'Legal / Gov / Emergency',
-      'Sales Enablement'
-    ],
+    // TODO: Re-enable when vertical data is available in deepgram.toml
+    // verticals: [
+    //   'Call Center & CX',
+    //   'Healthcare',
+    //   'Insurance & FinServ',
+    //   'Food / Hospitality / Gyms',
+    //   'Recruiting / HR',
+    //   'Education',
+    //   'Legal / Gov / Emergency',
+    //   'Sales Enablement'
+    // ],
     tags: ['real-time', 'websocket', 'streaming', 'api', 'webhook', 'ai', 'nlp']
   };
 
@@ -60,7 +61,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
       language: selectedLanguages,
       category: selectedCategories,
       framework: selectedFrameworks,
-      vertical: selectedVerticals,
+      // vertical: selectedVerticals, // TODO: Re-enable when vertical data is available
       tags: [],
     };
     onFiltersChange?.(filters);
@@ -68,15 +69,15 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
     selectedLanguages,
     selectedCategories,
     selectedFrameworks,
-    selectedVerticals,
+    // selectedVerticals, // TODO: Re-enable when vertical data is available
     onFiltersChange
   ]);
 
   const hasActiveFilters =
     selectedLanguages.length > 0 ||
     selectedCategories.length > 0 ||
-    selectedFrameworks.length > 0 ||
-    selectedVerticals.length > 0;
+    selectedFrameworks.length > 0;
+  // || selectedVerticals.length > 0; // TODO: Re-enable when vertical data is available
 
   return (
     <div className="p-6 h-full">
@@ -125,7 +126,8 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
                 {framework}
               </Chip>
             ))}
-            {selectedVerticals.map((vertical) => (
+            {/* TODO: Re-enable when vertical data is available in deepgram.toml */}
+            {/* {selectedVerticals.map((vertical) => (
               <Chip
                 key={vertical}
                 size="sm"
@@ -135,7 +137,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
               >
                 {vertical}
               </Chip>
-            ))}
+            ))} */}
           </div>
           <Divider className="mt-4" />
         </div>
@@ -148,8 +150,8 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
         defaultExpandedKeys={[
           ...(selectedLanguages.length > 0 ? ["language"] : []),
           ...(selectedCategories.length > 0 ? ["category"] : []),
-          ...(selectedFrameworks.length > 0 ? ["framework"] : []),
-          ...(selectedVerticals.length > 0 ? ["vertical"] : [])
+          ...(selectedFrameworks.length > 0 ? ["framework"] : [])
+          // ...(selectedVerticals.length > 0 ? ["vertical"] : []) // TODO: Re-enable when vertical data is available
         ]}
       >
         {/* Language Filter */}
@@ -272,8 +274,9 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
           </CheckboxGroup>
         </AccordionItem>
 
+        {/* TODO: Re-enable when vertical data is available in deepgram.toml */}
         {/* Vertical Filter */}
-        <AccordionItem
+        {/* <AccordionItem
           key="vertical"
           aria-label="Vertical"
           title={
@@ -310,7 +313,7 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
               </Checkbox>
             ))}
           </CheckboxGroup>
-        </AccordionItem>
+        </AccordionItem> */}
 
       </Accordion>
     </div>

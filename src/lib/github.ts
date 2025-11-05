@@ -112,7 +112,8 @@ export function transformToProcessedStarters(repos: Repo[]): ProcessedStarter[] 
       language: config?.meta?.language || repo.language || 'Unknown',
       framework: config?.meta?.framework,
       category: config?.meta?.useCase,  // Map useCase to category
-      vertical: config?.vertical,  // Map from TOML config
+      // TODO: Re-enable when vertical data is available in deepgram.toml
+      // vertical: config?.meta?.vertical,
       tags: config?.tags || repo.topics || [],
       links: {
         github: repo.html_url,
@@ -144,14 +145,16 @@ export function getFilterOptions(starters: ProcessedStarter[]) {
   const languages = new Set<string>();
   const categories = new Set<string>();
   const frameworks = new Set<string>();
-  const verticals = new Set<string>();
+  // TODO: Re-enable when vertical data is available in deepgram.toml
+  // const verticals = new Set<string>();
   const tags = new Set<string>();
 
   starters.forEach((starter) => {
     if (starter.language) languages.add(starter.language);
     if (starter.category) categories.add(starter.category);
     if (starter.framework) frameworks.add(starter.framework);
-    if (starter.vertical) verticals.add(starter.vertical);
+    // TODO: Re-enable when vertical data is available in deepgram.toml
+    // if (starter.vertical) verticals.add(starter.vertical);
     if (starter.tags) {
       starter.tags.forEach((tag: string) => tags.add(tag));
     }
@@ -161,7 +164,8 @@ export function getFilterOptions(starters: ProcessedStarter[]) {
     languages: Array.from(languages).sort(),
     categories: Array.from(categories).sort(),
     frameworks: Array.from(frameworks).sort(),
-    verticals: Array.from(verticals).sort(),
+    // TODO: Re-enable when vertical data is available in deepgram.toml
+    // verticals: Array.from(verticals).sort(),
     tags: Array.from(tags).sort(),
   };
 }
@@ -197,7 +201,8 @@ export function filterStarters(
     language?: string[];
     category?: string[];
     framework?: string[];
-    vertical?: string[];
+    // TODO: Re-enable when vertical data is available in deepgram.toml
+    // vertical?: string[];
     tags?: string[];
   }
 ): ProcessedStarter[] {
@@ -229,10 +234,11 @@ export function filterStarters(
       return false;
     }
 
+    // TODO: Re-enable when vertical data is available in deepgram.toml
     // Vertical filter
-    if (filters.vertical?.length && starter.vertical && !filters.vertical.includes(starter.vertical)) {
-      return false;
-    }
+    // if (filters.vertical?.length && starter.vertical && !filters.vertical.includes(starter.vertical)) {
+    //   return false;
+    // }
 
     // Tags filter
     if (filters.tags?.length && starter.tags?.length) {

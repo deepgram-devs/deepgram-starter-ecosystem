@@ -27,7 +27,7 @@ interface FilterState {
   language?: string[];
   category?: string[];
   framework?: string[];
-  vertical?: string[];
+  // vertical?: string[]; // TODO: Re-enable when vertical data is available in deepgram.toml
   tags?: string[];
 }
 
@@ -109,12 +109,24 @@ export function StarterGrid({ filters }: StarterGridProps) {
 
     // Search filter
     if (filters.search) {
-      const searchTerm = filters.search.toLowerCase();
-      filtered = filtered.filter(starter =>
-        starter.title.toLowerCase().includes(searchTerm) ||
-        starter.description.toLowerCase().includes(searchTerm) ||
-        starter.name.toLowerCase().includes(searchTerm)
-      );
+      const searchTerm = filters.search.toLowerCase().trim();
+
+      filtered = filtered.filter(starter => {
+        const title = starter.title.toLowerCase();
+        const description = starter.description.toLowerCase();
+        const name = starter.name.toLowerCase();
+        const language = starter.language.toLowerCase();
+        const framework = starter.framework?.toLowerCase() || '';
+        const category = starter.category?.toLowerCase() || '';
+
+        // Search across all relevant fields
+        return title.includes(searchTerm) ||
+          description.includes(searchTerm) ||
+          name.includes(searchTerm) ||
+          language.includes(searchTerm) ||
+          framework.includes(searchTerm) ||
+          category.includes(searchTerm);
+      });
     }
 
     // Language filter
@@ -138,14 +150,13 @@ export function StarterGrid({ filters }: StarterGridProps) {
       );
     }
 
+    // TODO: Re-enable when vertical data is available in deepgram.toml
     // Vertical filter
-    if (filters.vertical?.length) {
-      filtered = filtered.filter(starter =>
-        starter.vertical && filters.vertical?.includes(starter.vertical)
-      );
-    }
-
-
+    // if (filters.vertical?.length) {
+    //   filtered = filtered.filter(starter =>
+    //     starter.vertical && filters.vertical?.includes(starter.vertical)
+    //   );
+    // }
 
     setFilteredStarters(filtered);
   }, [filters, starters]);
@@ -389,7 +400,8 @@ function generateMockStarters(): ProcessedStarter[] {
       language: 'TypeScript',
       framework: 'Next.js',
       category: 'Voice Agent',
-      vertical: 'Call Center',
+      // TODO: Re-enable when vertical data is available in deepgram.toml
+      // vertical: 'Call Center',
       links: {
         github: 'https://github.com/deepgram-starters/voice-agent-typescript',
         docs: 'https://docs.deepgram.com',
@@ -409,7 +421,8 @@ function generateMockStarters(): ProcessedStarter[] {
       language: 'Python',
       framework: 'FastAPI',
       category: 'Real-time',
-      vertical: 'Food / Hospitality / Gyms',
+      // TODO: Re-enable when vertical data is available in deepgram.toml
+      // vertical: 'Food / Hospitality / Gyms',
       links: {
         github: 'https://github.com/deepgram-starters/drive-thru-python',
         docs: 'https://docs.deepgram.com',
@@ -428,7 +441,8 @@ function generateMockStarters(): ProcessedStarter[] {
       language: 'JavaScript',
       framework: 'React',
       category: 'Batch Processing',
-      vertical: 'Meeting Notes',
+      // TODO: Re-enable when vertical data is available in deepgram.toml
+      // vertical: 'Meeting Notes',
       links: {
         github: 'https://github.com/deepgram-starters/meeting-notes-js',
         demo: 'https://demo.deepgram.com/meetings',

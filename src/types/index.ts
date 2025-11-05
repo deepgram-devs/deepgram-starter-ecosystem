@@ -31,6 +31,8 @@ export interface TomlConfig {
     useCase?: string;
     language?: string;
     framework?: string;
+    // TODO: Re-enable when vertical data is available in deepgram.toml
+    // vertical?: string;
   };
   build?: {
     command?: string;
@@ -49,7 +51,8 @@ export interface TomlConfig {
   language?: string;
   framework?: string;
   use_case?: string;
-  vertical?: string;
+  // TODO: Re-enable when vertical data is available in deepgram.toml
+  // vertical?: string;
   tags?: string[];
   deployment?: {
     platforms?: string[];
@@ -85,7 +88,8 @@ export interface FilterOptions {
   language?: string;
   category?: string;
   framework?: string;
-  vertical?: string;
+  // TODO: Re-enable when vertical data is available in deepgram.toml
+  // vertical?: string;
   tags?: string[];
 }
 
@@ -95,7 +99,8 @@ export interface StarterFilters {
   language: string[];
   category: string[];
   framework: string[];
-  vertical: string[];
+  // TODO: Re-enable when vertical data is available in deepgram.toml
+  // vertical: string[];
   tags: string[];
 }
 
@@ -108,7 +113,8 @@ export interface ProcessedStarter {
   language: string;
   framework?: string;
   category?: string;
-  vertical?: string;
+  // TODO: Re-enable when vertical data is available in deepgram.toml
+  // vertical?: string;
   tags?: string[];
   links: {
     github: string;

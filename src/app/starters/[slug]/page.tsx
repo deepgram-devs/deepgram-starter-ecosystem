@@ -12,18 +12,18 @@ import {
   Divider,
   Link,
   Spinner,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem
+  // Dropdown,
+  // DropdownTrigger,
+  // DropdownMenu,
+  // DropdownItem
 } from '@nextui-org/react';
 import {
   CodeBracketIcon,
   BookOpenIcon,
   PlayIcon,
   ArrowLeftIcon,
-  ChevronDownIcon,
-  RocketLaunchIcon
+  // ChevronDownIcon,
+  // RocketLaunchIcon
 } from '@heroicons/react/24/outline';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
