@@ -16,6 +16,14 @@ export const metadata: Metadata = {
   description: "Discover and deploy Deepgram starter applications. A unified ecosystem of modular, back-end-first starter apps with optional front-end components for rapidly building demos.",
   keywords: ["Deepgram", "AI", "Voice", "Speech", "API", "Starters", "Templates"],
   authors: [{ name: "Deepgram DX Team" }],
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0B0B0C" },
+  ],
   openGraph: {
     title: "Deepgram Starter Ecosystem",
     description: "Discover and deploy Deepgram starter applications",

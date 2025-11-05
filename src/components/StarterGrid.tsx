@@ -196,7 +196,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="text-xs text-yellow-300 hover:text-yellow-100 underline"
+            className="text-xs text-yellow-300 hover:text-yellow-100 underline min-h-[44px] py-2"
           >
             Try refreshing to load live data
           </button>
@@ -228,7 +228,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button
-              className="btn-brand min-w-32"
+              className="btn-brand min-w-32 min-h-[44px]"
               onPress={() => window.location.reload()}
             >
               Try Again
@@ -241,7 +241,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
                 setStarters(mockStarters);
                 setFilteredStarters(mockStarters);
               }}
-              className="min-w-32"
+              className="min-w-32 min-h-[44px]"
             >
               View Examples
             </Button>
@@ -341,9 +341,9 @@ export function StarterGrid({ filters }: StarterGridProps) {
                   <div className="flex flex-col gap-2 w-full items-start">
                     {/* Primary CTA - View Starter */}
                     <Button
-                      className="btn-magenta-gradient font-semibold"
+                      className="btn-magenta-gradient font-semibold min-h-[44px]"
                       onPress={() => window.location.href = `/starters/${starter.name}`}
-                      size="sm"
+                      size="md"
                     >
                       View Starter
                     </Button>
@@ -357,7 +357,8 @@ export function StarterGrid({ filters }: StarterGridProps) {
                             href={starter.links.docs}
                             target="_blank"
                             variant="bordered"
-                            size="sm"
+                            size="md"
+                            className="min-h-[44px]"
                             startContent={<BookOpenIcon className="w-4 h-4" />}
                           >
                             Docs
@@ -370,7 +371,8 @@ export function StarterGrid({ filters }: StarterGridProps) {
                             href={starter.links.demo}
                             target="_blank"
                             variant="bordered"
-                            size="sm"
+                            size="md"
+                            className="min-h-[44px]"
                             startContent={<PlayIcon className="w-4 h-4" />}
                           >
                             Demo

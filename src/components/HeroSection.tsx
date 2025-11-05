@@ -2,15 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useDisclosure } from "@nextui-org/react";
 import { DocumentationIcon, ChangelogIcon } from "@/components/icons";
+import { Bars3Icon } from "@heroicons/react/24/outline";
+import { MobileNav } from "@/components/MobileNav";
 import logo from "../../public/deepgram.svg";
 
 export function HeroSection() {
+  const { isOpen, onOpen, onClose } = useDisclosure({ defaultOpen: false });
+
   return (
     <>
       {/* Thin Header */}
       <div className="text-white pt-2 pb-1 sm:pb-4" style={{ backgroundColor: '#101014' }}>
-        <header className="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8 flex justify-between">
+        <header className="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8 flex justify-between items-center">
           <div>
             <Link className="flex" href="/">
               <Image
@@ -32,7 +37,9 @@ export function HeroSection() {
               </div>
             </Link>
           </div>
-          <nav className="hidden md:flex items-center gap-4 text-base font-semibold">
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-4 text-base font-semibold">
             <Link
               className="header-link leading-none"
               href="https://developers.deepgram.com/docs/introduction"
@@ -50,9 +57,23 @@ export function HeroSection() {
               <span className="inline-block p-1.5">Explore the API</span>
             </Link>
           </nav>
+
+          {/* Mobile Hamburger Menu */}
+          <button
+            onClick={onOpen}
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-800 transition-colors"
+            aria-label="Open menu"
+          >
+            <Bars3Icon className="w-7 h-7 text-white" />
+          </button>
         </header>
       </div>
 
+      {/* Mobile Navigation Drawer */}
+      <MobileNav
+        isOpen={isOpen}
+        onClose={onClose}
+      />
     </>
   );
 }
