@@ -145,7 +145,8 @@ export function getFilterOptions(starters: ProcessedStarter[]) {
   const languages = new Set<string>();
   const categories = new Set<string>();
   const frameworks = new Set<string>();
-  const verticals = new Set<string>();
+  // TODO: Re-enable when vertical data is available in deepgram.toml
+  // const verticals = new Set<string>();
   const tags = new Set<string>();
 
   starters.forEach((starter) => {
@@ -163,7 +164,8 @@ export function getFilterOptions(starters: ProcessedStarter[]) {
     languages: Array.from(languages).sort(),
     categories: Array.from(categories).sort(),
     frameworks: Array.from(frameworks).sort(),
-    verticals: Array.from(verticals).sort(),
+    // TODO: Re-enable when vertical data is available in deepgram.toml
+    // verticals: Array.from(verticals).sort(),
     tags: Array.from(tags).sort(),
   };
 }
@@ -199,7 +201,8 @@ export function filterStarters(
     language?: string[];
     category?: string[];
     framework?: string[];
-    vertical?: string[];
+    // TODO: Re-enable when vertical data is available in deepgram.toml
+    // vertical?: string[];
     tags?: string[];
   }
 ): ProcessedStarter[] {
