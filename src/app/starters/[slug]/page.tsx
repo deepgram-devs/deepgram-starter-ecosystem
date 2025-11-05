@@ -29,6 +29,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import type { ProcessedStarter } from '@/types';
+import { CopyButton } from '@/components/CopyButton';
 
 // Import highlight.js CSS for code syntax highlighting
 import 'highlight.js/styles/github-dark.css';
@@ -36,6 +37,23 @@ import 'highlight.js/styles/github-dark.css';
 interface ReadmeData {
   content: string;
   encoding: string;
+}
+
+// Helper function to extract text content from React children
+function extractTextFromChildren(children: React.ReactNode): string {
+  if (typeof children === 'string') {
+    return children;
+  }
+  if (Array.isArray(children)) {
+    return children.map(extractTextFromChildren).join('');
+  }
+  if (children && typeof children === 'object' && 'props' in children) {
+    const element = children as { props?: { children?: React.ReactNode } };
+    if (element.props?.children) {
+      return extractTextFromChildren(element.props.children);
+    }
+  }
+  return '';
 }
 
 export default function StarterDetailPage() {
@@ -437,14 +455,27 @@ export default function StarterDetailPage() {
                             // Custom component overrides for better styling
                             code({ className, children, ...props }) {
                               const match = /language-(\w+)/.exec(className || '');
-                              return !("inline" in props && props.inline) && match ? (
-                                <code className={className} {...props}>
-                                  {children}
-                                </code>
-                              ) : (
-                                <code className="bg-gray-800 text-emerald-400 px-1 py-0.5 rounded text-sm font-mono" {...props}>
-                                  {children}
-                                </code>
+                              const textContent = extractTextFromChildren(children);
+
+                              // For fenced code blocks (with language class), don't add button here (it's on <pre>)
+                              if (!("inline" in props && props.inline) && match) {
+                                return (
+                                  <code className={className} {...props}>
+                                    {children}
+                                  </code>
+                                );
+                              }
+
+                              // For inline code, add copy button
+                              return (
+                                <span className="relative inline-block group">
+                                  <code className="bg-gray-800 text-emerald-400 px-1 py-0.5 rounded text-sm font-mono" {...props}>
+                                    {children}
+                                  </code>
+                                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <CopyButton text={textContent} size="small" />
+                                  </span>
+                                </span>
                               );
                             },
                             a({ children, href, ...props }) {
@@ -482,10 +513,14 @@ export default function StarterDetailPage() {
                               );
                             },
                             pre({ children, ...props }) {
+                              const textContent = extractTextFromChildren(children);
                               return (
-                                <pre className="bg-gray-900 rounded p-2 overflow-x-auto text-sm my-6 font-mono" {...props}>
-                                  {children}
-                                </pre>
+                                <div className="relative">
+                                  <CopyButton text={textContent} />
+                                  <pre className="bg-gray-900 rounded p-2 overflow-x-auto text-sm my-6 font-mono" {...props}>
+                                    {children}
+                                  </pre>
+                                </div>
                               );
                             },
                             ul({ children, ...props }) {
