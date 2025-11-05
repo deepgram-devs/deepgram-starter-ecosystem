@@ -483,7 +483,7 @@ export default function StarterDetailPage() {
                             },
                             pre({ children, ...props }) {
                               return (
-                                <pre className="bg-gray-900 rounded p-2 overflow-x-auto text-sm my-6" {...props}>
+                                <pre className="bg-gray-900 rounded p-2 overflow-x-auto text-sm my-6 font-mono" {...props}>
                                   {children}
                                 </pre>
                               );
