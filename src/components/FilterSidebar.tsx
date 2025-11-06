@@ -7,7 +7,8 @@ import {
   Checkbox,
   CheckboxGroup,
   Chip,
-  Divider
+  Divider,
+  Button
 } from '@nextui-org/react';
 import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/solid';
 
@@ -31,9 +32,10 @@ interface FilterSidebarProps {
   onFiltersChange?: (filters: FilterState) => void;
   expandedKeys?: string[];
   hideTitle?: boolean;
+  onClearAll?: () => void;
 }
 
-export function FilterSidebar({ onFiltersChange, expandedKeys, hideTitle = false }: FilterSidebarProps) {
+export function FilterSidebar({ onFiltersChange, expandedKeys, hideTitle = false, onClearAll }: FilterSidebarProps) {
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>([]);
@@ -97,7 +99,24 @@ export function FilterSidebar({ onFiltersChange, expandedKeys, hideTitle = false
       {/* Active Filters */}
       {hasActiveFilters && (
         <div className="mb-6">
-          <p className="text-sm font-medium text-foreground mb-2">Active Filters:</p>
+          <div className="flex justify-between items-center mb-2">
+            <p className="text-sm font-medium text-foreground">Active Filters:</p>
+            <Button
+              size="sm"
+              variant="light"
+              onPress={() => {
+                setSelectedLanguages([]);
+                setSelectedCategories([]);
+                setSelectedFrameworks([]);
+                // setSelectedVerticals([]); // TODO: Re-enable when vertical data is available
+                if (onClearAll) {
+                  onClearAll();
+                }
+              }}
+            >
+              Clear All
+            </Button>
+          </div>
           <div className="flex flex-wrap gap-1">
             {selectedLanguages.map((lang) => (
               <Chip

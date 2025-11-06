@@ -36,10 +36,11 @@ export function MobileNav({ isOpen, onClose, onFiltersChange, autoExpandFilters 
       placement="center"
       size="full"
       backdrop="blur"
+      scrollBehavior="inside"
       classNames={{
         base: "m-0 mobile-nav-modal",
         backdrop: "mobile-modal-backdrop",
-        body: "p-6",
+        body: "p-6 overflow-y-auto",
         header: "border-b border-gray-700",
         closeButton: "hidden",
       }}

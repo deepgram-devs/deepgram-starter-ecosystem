@@ -4,7 +4,7 @@ import {
   Button,
   Badge,
 } from '@nextui-org/react';
-import { FunnelIcon } from '@heroicons/react/24/outline';
+import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/solid';
 
 interface MobileFilterDrawerProps {
   onOpen: () => void;
@@ -12,12 +12,16 @@ interface MobileFilterDrawerProps {
 }
 
 export function MobileFilterDrawer({ onOpen, activeFilterCount = 0 }: MobileFilterDrawerProps) {
+  // Only show the filter button when there are active filters
+  if (activeFilterCount === 0) {
+    return null;
+  }
+
   return (
     <div className="fixed bottom-6 right-6 z-50 lg:hidden">
       <Badge
         content={activeFilterCount}
         color="primary"
-        isInvisible={activeFilterCount === 0}
         placement="top-right"
       >
         <Button
@@ -27,9 +31,9 @@ export function MobileFilterDrawer({ onOpen, activeFilterCount = 0 }: MobileFilt
           size="lg"
           className="w-14 h-14 btn-magenta-gradient shadow-2xl"
           onPress={onOpen}
-          aria-label="Open filters"
+          aria-label="Clear all filters"
         >
-          <FunnelIcon className="w-6 h-6" />
+          <AdjustmentsHorizontalIcon className="w-6 h-6" />
         </Button>
       </Badge>
     </div>

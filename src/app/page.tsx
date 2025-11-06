@@ -30,7 +30,8 @@ export default function HomePage() {
   }, []);
 
   const handleFilterButtonClick = useCallback(() => {
-    heroSectionRef.current?.openWithFilters();
+    // Clear all filters when the filter button is clicked
+    setFilters({});
   }, []);
 
   // Calculate active filter count for mobile badge
