@@ -405,13 +405,6 @@ This site is deployed to the Deepgram Fly.io account.
 - [Install Fly CLI](https://fly.io/docs/hands-on/install-flyctl/)
 - Authenticate: `fly auth login`
 
-**Set Secrets:**
-```bash
-fly secrets set GH_PAT=github_pat_xxxxx
-fly secrets set NEXT_PUBLIC_APP_URL=https://your-app.fly.dev
-fly secrets set GITHUB_ORG=deepgram-starters
-```
-
 **Deploy:**
 ```bash
 fly deploy
