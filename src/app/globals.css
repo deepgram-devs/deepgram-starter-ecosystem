@@ -185,11 +185,13 @@ pre {
   );
 }
 
-/* Primary CTA button with gradient border and black background */
+/* Global primary button class*/
 .btn-magenta-gradient {
   position: relative;
   background: black;
   color: white;
+  padding: 12px;
+  border-radius: 4px;
   isolation: isolate;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;

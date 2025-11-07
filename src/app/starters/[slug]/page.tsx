@@ -201,7 +201,7 @@ export default function StarterDetailPage() {
                         href={starter.links.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full btn-magenta-gradient px-4 py-2 min-h-[44px] flex items-center justify-center gap-2"
+                        className="w-full btn-magenta-gradient min-h-[44px] flex items-center justify-center gap-2"
                         startContent={<CodeBracketIcon className="w-5 h-5 flex-shrink-0" />}
                       >
                         <span className="whitespace-nowrap">View on GitHub</span>
@@ -364,7 +364,7 @@ export default function StarterDetailPage() {
                     <Dropdown>
                       <DropdownTrigger>
                         <Button
-                          className="w-full btn-magenta-gradient px-4 py-2 flex items-center justify-center gap-2"
+                          className="w-full btn-magenta-gradient flex items-center justify-center gap-2"
                           startContent={<RocketLaunchIcon className="w-4 h-4 flex-shrink-0" />}
                           endContent={<ChevronDownIcon className="w-4 h-4 flex-shrink-0" />}
                         >
