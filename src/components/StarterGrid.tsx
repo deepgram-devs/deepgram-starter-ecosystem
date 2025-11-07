@@ -299,7 +299,8 @@ export function StarterGrid({ filters }: StarterGridProps) {
                 </div>
 
                 <CardHeader className="pb-1 px-4 pt-3">
-                  <h3 className="font-semibold text-lg text-left">{starter.title}</h3>
+                  {/* min-h-[56px] accommodates up to 2 rows of title */}
+                  <h3 className="font-semibold text-lg text-left line-clamp-2 min-h-[56px]">{starter.title}</h3>
                 </CardHeader>
 
                 <CardBody className="pt-0 px-4 pb-2">
@@ -315,7 +316,8 @@ export function StarterGrid({ filters }: StarterGridProps) {
 
                   {/* Framework & Category */}
                   {(starter.language || starter.framework || starter.category) && (
-                    <div className="flex flex-wrap gap-2 mb-2">
+                    // min-h-[56px] accommodates up to 2 rows of tags
+                    <div className="flex flex-wrap gap-2 mb-2 min-h-[56px]">
                       {starter.language && (
                         <Chip size="sm" variant="solid" color="default" className="font-semibold px-3" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
                           {starter.language}

@@ -23,6 +23,9 @@ export function MobileFilterDrawer({ onOpen, activeFilterCount = 0 }: MobileFilt
         content={activeFilterCount}
         color="primary"
         placement="top-right"
+        classNames={{
+          badge: "translate-x-[6px] translate-y-[2px]"
+        }}
       >
         <Button
           isIconOnly
