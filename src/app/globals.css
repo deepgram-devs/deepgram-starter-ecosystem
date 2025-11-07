@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Dark Mode - Brand Default */
 :root {
   --background: #0B0B0C;  /* Raven - Main Background */
   --foreground: #E1E1E5;   /* Platinum - Body text color */
@@ -15,9 +16,9 @@
   --gradient-brand-135: linear-gradient(135deg, var(--magenta-start) 1%, var(--magenta-mid) 55%, var(--magenta-end) 88%);
   --gradient-brand-vertical: linear-gradient(to bottom, var(--magenta-start) 1%, var(--magenta-mid) 55%, var(--magenta-end) 88%);
 
-  /* Link and Button Colors */
-  --link-color: #1B4D94;      /* Dark blue for links and buttons */
-  --link-hover: #2563EB;      /* Slightly lighter blue for hover */
+  /* Link Colors */
+  --link-color: #79AFFA;      /* Accessible blue for dark mode links */
+  --link-hover: #A5C9FF;      /* Lighter blue for hover state */
 
   /* Header Navigation Colors */
   --header-link: #BBBBBF;     /* Light gray for header navigation */
@@ -36,6 +37,7 @@
   --border-color: #2C2C33;    /* Raisin Black - for borders and separators */
 }
 
+/* A warning can be ignored. @theme is a Tailwind CSS v4 feature that some linters/editors don't recognize yet. */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -43,36 +45,35 @@
   --font-mono: ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
+/* Light Mode Support - Placeholder for future implementation
+   To add light mode:
+   1. Uncomment this block and define light mode colors below
+   2. Consider using .dark/.light classes with ThemeProvider instead of prefers-color-scheme
+   3. Add a theme toggle component to the UI
+   4. Test all components for light mode compatibility
+
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0B0B0C;  /* Keep Raven for dark mode too */
-    --foreground: #E1E1E5;   /* Platinum - Body text color */
-    --panel: #1A1A1F;       /* Charcoal panels in dark mode */
+    --background: #FFFFFF;
+    --foreground: #1A1A1F;
+    --panel: #F5F5F5;
 
-    /* Note: Gradient colors and definitions are inherited from :root above */
-    /* Only redefine colors here if you want different values for dark mode */
+    --link-color: #0052CC;
+    --link-hover: #0065FF;
 
-    /* Link and Button Colors for dark mode */
-    --link-color: #1B4D94;
-    --link-hover: #2563EB;
+    --header-link: #4A4A4F;
+    --header-link-hover: #000000;
 
-    /* Header Navigation Colors for dark mode */
-    --header-link: #BBBBBF;
-    --header-link-hover: #FFFFFF;
+    --secondary-text: #6B6B6F;
 
-    /* Secondary Text Colors for dark mode */
-    --secondary-text: #949498;
+    --star-color: #F59E0B;
 
-    /* Star Color for dark mode */
-    --star-color: #FEDF89;
+    --language-label: #E5E5EA;
 
-    /* Language Label Color for dark mode */
-    --language-label: #EDEDF2;
-
-    /* Border Color for dark mode */
-    --border-color: #2C2C33;
+    --border-color: #D1D1D6;
   }
 }
+*/
 
 body {
   background: var(--background);
@@ -185,11 +186,13 @@ pre {
   );
 }
 
-/* Primary CTA button with gradient border and black background */
+/* Global primary button class*/
 .btn-magenta-gradient {
   position: relative;
   background: black;
   color: white;
+  padding: 12px;
+  border-radius: 4px;
   isolation: isolate;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
