@@ -47,7 +47,6 @@ The Deepgram Starter Ecosystem serves as the central discovery platform for our 
 
    Edit `.env.local` and add your GitHub token:
    ```bash
-   # Optional but recommended for higher rate limits
    GH_PAT=your_github_personal_access_token_here
    NEXT_PUBLIC_APP_URL=http://localhost:3000
    ```
@@ -59,10 +58,6 @@ The Deepgram Starter Ecosystem serves as the central discovery platform for our 
 
 5. **Open your browser**: [http://localhost:3000](http://localhost:3000)
 
-6. **Testing**
-   ```bash
-   npm run test
-   ```
 
 ## 📁 Project Architecture
 
@@ -358,34 +353,83 @@ Enable verbose logging by setting:
 NODE_ENV=development
 ```
 
+## 🛠️ Development Workflow
+
+### Running the Development Server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Code Quality Checks
+
+```bash
+npm run lint              # Check for linting errors
+npm run lint -- --fix     # Auto-fix linting issues (if Next.js supports it)
+npm run build             # Verify production build
+```
+
+### Testing
+
+```bash
+npm test                  # Run all tests
+```
+
 ## 🚀 Deployment
+
+### Pre-Deployment Checklist
+
+**Before deploying, always run:**
+```bash
+npm run lint    # Check for linting errors
+npm run build   # Verify build succeeds
+```
+
+> **Note:** Once this repository is public, branch protection will enforce these checks automatically on PRs.
 
 ### Environment Variables (Production)
 
 ```bash
-GH_PAT=github_pat_xxxxx                    # GitHub token
+GH_PAT=github_pat_xxxxx                    # GitHub token for accessing starter repos
 NEXT_PUBLIC_APP_URL=https://yourapp.com    # Production URL
+GITHUB_ORG=deepgram-starters               # GitHub organization name
 ```
 
-### Vercel Deployment
+### Fly.io Deployment
 
-1. **Connect GitHub**: Link your repository
-2. **Set environment variables**: Add `GH_PAT` in Vercel dashboard
-3. **Deploy**: Automatic deployments on push to main
+This site is deployed to the Deepgram Fly.io account.
 
-### Deployment
+**Prerequisites:**
+- [Install Fly CLI](https://fly.io/docs/hands-on/install-flyctl/)
+- Authenticate: `fly auth login`
 
+**Set Secrets:**
 ```bash
-# Build for production
-npm run build
+fly secrets set GH_PAT=github_pat_xxxxx
+fly secrets set NEXT_PUBLIC_APP_URL=https://your-app.fly.dev
+fly secrets set GITHUB_ORG=deepgram-starters
+```
 
-# Start production server and validate build
-npm run start
-
-# The site is currently deployed to the Deepgram Fly.io Account
+**Deploy:**
+```bash
 fly deploy
 ```
 
+**View logs:**
+```bash
+fly logs
+```
+
+### Local Production Build
+
+Test production build locally before deploying:
+
+```bash
+npm run build   # Build for production
+npm run start   # Start production server on http://localhost:3000
+```
 
 ## 🔒 Security
 
@@ -403,8 +447,6 @@ fly deploy
 Required scopes for `GH_PAT`:
 - `public_repo`: Read public repository data
 - No additional scopes needed
-
----
 
 ## 👥 Team
 
