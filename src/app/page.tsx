@@ -54,7 +54,6 @@ export default function HomePage() {
       <HeroSection
         ref={heroSectionRef}
         onFiltersChange={handleFiltersChange}
-        activeFilterCount={activeFilterCount}
       />
 
       {/* Constrained Layout Container */}

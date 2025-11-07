@@ -18,14 +18,13 @@ interface FilterState {
 
 interface HeroSectionProps {
   onFiltersChange?: (filters: FilterState) => void;
-  activeFilterCount?: number;
 }
 
 export interface HeroSectionRef {
   openWithFilters: () => void;
 }
 
-export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({ onFiltersChange, activeFilterCount = 0 }, ref) => {
+export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({ onFiltersChange }, ref) => {
   const { isOpen, onOpen, onClose } = useDisclosure({ defaultOpen: false });
   const [shouldExpandFilters, setShouldExpandFilters] = useState(false);
 
