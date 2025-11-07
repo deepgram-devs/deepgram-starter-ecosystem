@@ -130,27 +130,27 @@ export default function StarterDetailPage() {
       <HeroSection />
 
       {/* Constrained Layout Container */}
-      <div className="mx-auto max-w-[1448px]">
-        <div className="flex">
-          {/* Left Sidebar */}
-          <aside className="w-96 min-h-screen bg-content1 p-4 overflow-hidden">
-            <div className="sticky top-0">
+      <div className="mx-auto max-w-[1448px] px-4 sm:px-6 lg:px-0">
+        <div className="flex flex-col lg:flex-row">
+          {/* Left Sidebar - Full width on mobile, fixed width on desktop */}
+          <aside className="w-full lg:w-96 lg:min-h-screen bg-content1 p-4 overflow-hidden">
+            <div className="lg:sticky lg:top-0">
               {/* Back Button */}
               <Link
                 href="/"
-                className="mb-2 link-brand text-base px-3 py-2 rounded-lg flex items-center gap-2 w-fit"
+                className="mb-4 link-brand text-base px-3 py-2 rounded-lg flex items-center gap-2 w-fit"
               >
                 <ArrowLeftIcon className="w-4 h-4 flex-shrink-0" />
                 <span className="whitespace-nowrap">Back to Starters</span>
               </Link>
 
               {/* Starter Info Card */}
-              <div className="p-1 rounded-lg mb-4" style={{ backgroundColor: 'var(--border-color)' }}>
+              <div className="p-1 rounded-lg mb-4 lg:mb-4" style={{ backgroundColor: 'var(--border-color)' }}>
                 <Card className="bg-black border-none">
-                  <CardHeader className="bg-black flex justify-center items-center">
-                    <h2 className="text-xl font-bold text-white">{starter.title}</h2>
+                  <CardHeader className="bg-black flex justify-center items-center py-4">
+                    <h2 className="text-lg sm:text-xl font-bold text-white text-center">{starter.title}</h2>
                   </CardHeader>
-                  <CardBody className="pt-0 bg-black p-6">
+                  <CardBody className="pt-0 bg-black p-4 sm:p-6">
                     <p className="text-secondary text-sm mb-4">
                       {starter.description}
                     </p>
@@ -201,8 +201,8 @@ export default function StarterDetailPage() {
                         href={starter.links.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full btn-magenta-gradient px-4 py-2 flex items-center justify-center gap-2"
-                        startContent={<CodeBracketIcon className="w-4 h-4 flex-shrink-0" />}
+                        className="w-full btn-magenta-gradient px-4 py-2 min-h-[44px] flex items-center justify-center gap-2"
+                        startContent={<CodeBracketIcon className="w-5 h-5 flex-shrink-0" />}
                       >
                         <span className="whitespace-nowrap">View on GitHub</span>
                       </Button>
@@ -212,9 +212,9 @@ export default function StarterDetailPage() {
                           href={starter.links.docs}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full border border-gray-600 hover:border-gray-500 hover:bg-gray-800 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
+                          className="w-full min-h-[44px] border border-gray-600 hover:border-gray-500 hover:bg-gray-800 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
                         >
-                          <BookOpenIcon className="w-4 h-4 flex-shrink-0" />
+                          <BookOpenIcon className="w-5 h-5 flex-shrink-0" />
                           <span className="whitespace-nowrap">Documentation</span>
                         </Link>
                       )}
@@ -224,9 +224,9 @@ export default function StarterDetailPage() {
                           href={starter.links.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full border border-gray-600 hover:border-gray-500 hover:bg-gray-800 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
+                          className="w-full min-h-[44px] border border-gray-600 hover:border-gray-500 hover:bg-gray-800 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
                         >
-                          <PlayIcon className="w-4 h-4 flex-shrink-0" />
+                          <PlayIcon className="w-5 h-5 flex-shrink-0" />
                           <span className="whitespace-nowrap">Live Demo</span>
                         </Link>
                       )}
@@ -236,12 +236,12 @@ export default function StarterDetailPage() {
               </div>
 
               {/* TOML Configuration Display */}
-              <div className="p-1 rounded-lg" style={{ backgroundColor: 'var(--border-color)' }}>
+              <div className="p-1 rounded-lg mb-6 lg:mb-0" style={{ backgroundColor: 'var(--border-color)' }}>
                 <Card className="bg-black border-none">
-                  <CardHeader className="bg-black flex justify-center items-center">
-                    <h3 className="text-lg font-semibold text-white">Configuration</h3>
+                  <CardHeader className="bg-black flex justify-center items-center py-4">
+                    <h3 className="text-base sm:text-lg font-semibold text-white">Configuration</h3>
                   </CardHeader>
-                  <CardBody className="pt-0 bg-black p-6">
+                  <CardBody className="pt-0 bg-black p-4 sm:p-6">
                     <div className="space-y-4 text-sm">
                       {/* Build Command */}
                       {starter.config?.build?.command && (
@@ -417,34 +417,34 @@ export default function StarterDetailPage() {
           </aside>
 
           {/* Main Content */}
-          <main className="flex-1 p-6">
+          <main className="flex-1 lg:p-6">
             <div className="max-w-5xl mx-auto">
               <div className="p-1 rounded-lg" style={{ backgroundColor: 'var(--border-color)' }}>
                 <Card className="min-h-[600px] bg-black border-none">
-                  <CardHeader className="bg-black border-b border-gray-700 pb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center ml-3 mt-2" style={{ backgroundColor: 'var(--border-color)' }}>
+                  <CardHeader className="bg-black border-b border-gray-700 pb-4 pt-4">
+                    <div className="flex items-center gap-3 px-2">
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--border-color)' }}>
                         <BookOpenIcon className="w-5 h-5 text-white" />
                       </div>
-                      <h1 className="text-2xl font-bold text-white">README</h1>
+                      <h1 className="text-xl sm:text-2xl font-bold text-white">README</h1>
                     </div>
                   </CardHeader>
-                  <CardBody className="p-8 bg-black">
+                  <CardBody className="p-4 sm:p-6 lg:p-8 bg-black">
                     <div
-                      className="prose prose-lg prose-invert max-w-none
+                      className="prose prose-sm sm:prose-base lg:prose-lg prose-invert max-w-none
                              prose-headings:text-white prose-headings:font-bold prose-headings:tracking-tight
-                             prose-h1:text-3xl prose-h1:mb-8 prose-h1:mt-0
-                             prose-h2:text-2xl prose-h2:mb-6 prose-h2:mt-10 prose-h2:border-b prose-h2:border-gray-700 prose-h2:pb-3
-                             prose-h3:text-xl prose-h3:mb-4 prose-h3:mt-8
-                             prose-p:leading-loose prose-p:mb-6
+                             prose-h1:text-2xl sm:prose-h1:text-3xl prose-h1:mb-6 sm:prose-h1:mb-8 prose-h1:mt-0
+                             prose-h2:text-xl sm:prose-h2:text-2xl prose-h2:mb-4 sm:prose-h2:mb-6 prose-h2:mt-8 sm:prose-h2:mt-10 prose-h2:border-b prose-h2:border-gray-700 prose-h2:pb-3
+                             prose-h3:text-lg sm:prose-h3:text-xl prose-h3:mb-3 sm:prose-h3:mb-4 prose-h3:mt-6 sm:prose-h3:mt-8
+                             prose-p:leading-loose prose-p:mb-4 sm:prose-p:mb-6
                              prose-strong:text-white prose-strong:font-semibold
                              prose-code:text-emerald-400 prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono
-                             prose-pre:bg-gray-900 prose-pre:rounded prose-pre:p-2 prose-pre:overflow-x-auto prose-pre:my-6
-                             prose-ul:mb-6
-                             prose-ol:mb-6
+                             prose-pre:bg-gray-900 prose-pre:rounded prose-pre:p-2 prose-pre:overflow-x-auto prose-pre:my-4 sm:prose-pre:my-6 prose-pre:text-xs sm:prose-pre:text-sm
+                             prose-ul:mb-4 sm:prose-ul:mb-6
+                             prose-ol:mb-4 sm:prose-ol:mb-6
                              prose-li:mb-2 prose-li:leading-loose
-                             prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-gray-800/50 prose-blockquote:p-4 prose-blockquote:rounded-r prose-blockquote:mb-6
-                             prose-img:rounded-lg prose-img:shadow-lg prose-img:mb-6"
+                             prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-gray-800/50 prose-blockquote:p-3 sm:prose-blockquote:p-4 prose-blockquote:rounded-r prose-blockquote:mb-4 sm:prose-blockquote:mb-6
+                             prose-img:rounded-lg prose-img:shadow-lg prose-img:mb-4 sm:prose-img:mb-6"
                       style={{ color: 'var(--foreground)' }}
                     >
                       {readme ? (

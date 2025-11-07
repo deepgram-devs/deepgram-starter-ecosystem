@@ -7,8 +7,10 @@ import {
   Checkbox,
   CheckboxGroup,
   Chip,
-  Divider
+  Divider,
+  Button
 } from '@nextui-org/react';
+import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/solid';
 
 interface FilterOptions {
   languages: string[];
@@ -28,9 +30,12 @@ interface FilterState {
 
 interface FilterSidebarProps {
   onFiltersChange?: (filters: FilterState) => void;
+  expandedKeys?: string[];
+  hideTitle?: boolean;
+  onClearAll?: () => void;
 }
 
-export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
+export function FilterSidebar({ onFiltersChange, expandedKeys, hideTitle = false, onClearAll }: FilterSidebarProps) {
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>([]);
@@ -82,16 +87,36 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
   return (
     <div className="p-6 h-full">
       {/* Title */}
-      <div className="mb-6">
-        <h2 className="text-lg font-semibold text-foreground">Filter Starters</h2>
-      </div>
+      {!hideTitle && (
+        <div className="mb-6 flex items-center gap-2">
+          <AdjustmentsHorizontalIcon className="w-5 h-5 text-foreground" />
+          <h2 className="text-lg font-semibold text-foreground">Filter Starters</h2>
+        </div>
+      )}
 
 
 
       {/* Active Filters */}
       {hasActiveFilters && (
         <div className="mb-6">
-          <p className="text-sm font-medium text-foreground mb-2">Active Filters:</p>
+          <div className="flex justify-between items-center mb-2">
+            <p className="text-sm font-medium text-foreground">Active Filters:</p>
+            <Button
+              size="sm"
+              variant="light"
+              onPress={() => {
+                setSelectedLanguages([]);
+                setSelectedCategories([]);
+                setSelectedFrameworks([]);
+                // setSelectedVerticals([]); // TODO: Re-enable when vertical data is available
+                if (onClearAll) {
+                  onClearAll();
+                }
+              }}
+            >
+              Clear All
+            </Button>
+          </div>
           <div className="flex flex-wrap gap-1">
             {selectedLanguages.map((lang) => (
               <Chip
@@ -147,12 +172,16 @@ export function FilterSidebar({ onFiltersChange }: FilterSidebarProps) {
       <Accordion
         variant="light"
         selectionMode="multiple"
-        defaultExpandedKeys={[
-          ...(selectedLanguages.length > 0 ? ["language"] : []),
-          ...(selectedCategories.length > 0 ? ["category"] : []),
-          ...(selectedFrameworks.length > 0 ? ["framework"] : [])
-          // ...(selectedVerticals.length > 0 ? ["vertical"] : []) // TODO: Re-enable when vertical data is available
-        ]}
+        defaultExpandedKeys={
+          expandedKeys !== undefined
+            ? expandedKeys
+            : [
+              ...(selectedLanguages.length > 0 ? ["language"] : []),
+              ...(selectedCategories.length > 0 ? ["category"] : []),
+              ...(selectedFrameworks.length > 0 ? ["framework"] : [])
+              // ...(selectedVerticals.length > 0 ? ["vertical"] : []) // TODO: Re-enable when vertical data is available
+            ]
+        }
       >
         {/* Language Filter */}
         <AccordionItem
