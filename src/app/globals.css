@@ -83,10 +83,7 @@ body {
 
 /* Mobile-specific optimizations */
 @media (max-width: 640px) {
-  html {
-    -webkit-text-size-adjust: 100%; /* Prevent font scaling on mobile */
-  }
-
+  /* The viewport meta tag in layout.tsx handles scaling correctly */
   /* Prevent content overflow on mobile - more targeted approach */
   img, video, iframe, pre, code {
     max-width: 100%;
