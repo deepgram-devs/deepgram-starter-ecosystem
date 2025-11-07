@@ -15,9 +15,9 @@
   --gradient-brand-135: linear-gradient(135deg, var(--magenta-start) 1%, var(--magenta-mid) 55%, var(--magenta-end) 88%);
   --gradient-brand-vertical: linear-gradient(to bottom, var(--magenta-start) 1%, var(--magenta-mid) 55%, var(--magenta-end) 88%);
 
-  /* Link and Button Colors */
-  --link-color: #1B4D94;      /* Dark blue for links and buttons */
-  --link-hover: #2563EB;      /* Slightly lighter blue for hover */
+  /* Link Colors */
+  --link-color: #79AFFA;      /* Accessible blue for dark mode links */
+  --link-hover: #A5C9FF;      /* Lighter blue for hover state */
 
   /* Header Navigation Colors */
   --header-link: #BBBBBF;     /* Light gray for header navigation */
@@ -43,6 +43,11 @@
   --font-mono: ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
+/* Note: Currently dark mode only. To add light mode support in the future:
+   1. Move dark mode colors from :root to this @media block or a .dark selector
+   2. Define light mode colors in :root (white background, dark text, etc.)
+   3. Update ThemeProvider to use .dark/.light classes instead of prefers-color-scheme
+   4. Add a theme toggle component to the UI */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0B0B0C;  /* Keep Raven for dark mode too */
@@ -52,9 +57,9 @@
     /* Note: Gradient colors and definitions are inherited from :root above */
     /* Only redefine colors here if you want different values for dark mode */
 
-    /* Link and Button Colors for dark mode */
-    --link-color: #1B4D94;
-    --link-hover: #2563EB;
+    /* Link colors for dark mode */
+    --link-color: #79AFFA;
+    --link-hover: #A5C9FF;
 
     /* Header Navigation Colors for dark mode */
     --header-link: #BBBBBF;

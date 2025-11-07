@@ -484,7 +484,7 @@ export default function StarterDetailPage() {
                                   href={href}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-blue-400 hover:text-blue-300 underline decoration-2 decoration-blue-400/50 hover:decoration-blue-300"
+                                  className="link-brand underline decoration-2"
                                   {...props}
                                 >
                                   {children}
