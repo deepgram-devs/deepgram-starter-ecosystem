@@ -51,7 +51,7 @@
   --font-mono: ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
-/* Light Mode - Deepgram Documentation Colors */
+/* Light Mode */
 .light {
   --background: #F6F6FA;      /* Light grayish white */
   --foreground: #232329;      /* Dark gray text */
