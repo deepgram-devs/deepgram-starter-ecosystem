@@ -7,6 +7,7 @@ import { useDisclosure } from "@nextui-org/react";
 import { DocumentationIcon, ChangelogIcon } from "@/components/icons";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { MobileNav } from "@/components/MobileNav";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import logo from "../../public/deepgram.svg";
 
 interface FilterState {
@@ -93,6 +94,7 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({ onFil
               <ChangelogIcon className="mb-1 mr-1.5 text-lg" />
               <span className="inline-block p-1.5">Explore the API</span>
             </Link>
+            <ThemeToggle />
           </nav>
 
           {/* Mobile Hamburger Menu */}
