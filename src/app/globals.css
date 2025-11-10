@@ -35,6 +35,12 @@
 
   /* Border Color */
   --border-color: #2C2C33;    /* Raisin Black - for borders and separators */
+
+  /* Theme Dropdown */
+  --theme-dropdown-bg: #1A1A1F; /* Dark panel for theme selector */
+
+  /* Border Radius */
+  --dropdown-radius: 4px;  /* Standard border radius for dropdowns */
 }
 
 /* A warning can be ignored. @theme is a Tailwind CSS v4 feature that some linters/editors don't recognize yet. */
@@ -45,35 +51,35 @@
   --font-mono: ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
-/* Light Mode Support - Placeholder for future implementation
-   To add light mode:
-   1. Uncomment this block and define light mode colors below
-   2. Consider using .dark/.light classes with ThemeProvider instead of prefers-color-scheme
-   3. Add a theme toggle component to the UI
-   4. Test all components for light mode compatibility
+/* Light Mode */
+.light {
+  --background: #F6F6FA;      /* Light grayish white */
+  --foreground: #232329;      /* Dark gray text */
+  --panel: #FFFFFF;           /* White panels */
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #FFFFFF;
-    --foreground: #1A1A1F;
-    --panel: #F5F5F5;
+  /* Link Colors */
+  --link-color: #254F8E ;      /* Accessible blue for dark mode links */
+  --link-hover: #4B6F94 ;      /* Lighter blue for hover state */
 
-    --link-color: #0052CC;
-    --link-hover: #0065FF;
+  /* Header Navigation Colors */
+  --header-link: #BBBBBF;     /* Light gray for header navigation */
+  --header-link-hover: #FFFFFF; /* White on hover */
 
-    --header-link: #4A4A4F;
-    --header-link-hover: #000000;
+  /* Secondary Text Colors */
+  --secondary-text: #6B6B6F;  /* Medium gray for secondary text */
 
-    --secondary-text: #6B6B6F;
+  /* Star Color */
+  --star-color: #F59E0B;      /* Mustard for stars in light mode */
 
-    --star-color: #F59E0B;
+  /* Language Label Color */
+  --language-label: #76767A;  /* Light gray for language labels */
 
-    --language-label: #E5E5EA;
+  /* Border Color */
+  --border-color: #E1E1E5;    /* Light gray border */
 
-    --border-color: #D1D1D6;
-  }
+  /* Theme Dropdown */
+  --theme-dropdown-bg: #FBFBFF; /* Light background for theme selector */
 }
-*/
 
 body {
   background: var(--background);
@@ -232,6 +238,11 @@ pre {
   box-shadow: 0 2px 6px rgba(184, 23, 141, 0.2);
 }
 
+/* Light mode: softer button background */
+.light .btn-magenta-gradient {
+  background: #3A3A42;
+}
+
 /* Card hover effect */
 .starter-card-hover {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -256,6 +267,7 @@ pre {
 .link-brand {
   color: var(--link-color);
   transition: color 0.3s ease;
+  text-underline-offset: 4px;
 }
 
 .link-brand:hover {
@@ -307,9 +319,19 @@ pre {
     backdrop-filter: blur(10px);
   }
 
+  .light .mobile-nav-modal {
+    background: rgba(251, 251, 255, 0.95);
+    backdrop-filter: blur(10px);
+  }
+
   /* Mobile filter drawer */
   .mobile-filter-modal {
     background: rgba(11, 11, 12, 0.95);
+    backdrop-filter: blur(10px);
+  }
+
+  .light .mobile-filter-modal {
+    background: rgba(251, 251, 255, 0.95);
     backdrop-filter: blur(10px);
   }
 
@@ -318,4 +340,55 @@ pre {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(8px);
   }
+
+  .light .mobile-modal-backdrop {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* Override NextUI's default focus/selected color for dropdowns */
+[role="menuitem"][data-focus="true"],
+[role="menuitem"][data-hover="true"] {
+  background-color: var(--magenta-mid)
+}
+
+/* Code block styling for configuration sections */
+.code-block {
+  background-color: var(--border-color);
+  color: var(--foreground);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+}
+
+/* Styling for README content area */
+.prose {
+  color: var(--foreground);
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  color: var(--foreground);
+}
+
+.prose strong {
+  color: var(--foreground);
+}
+
+.prose h2 {
+  border-color: var(--border-color);
+}
+
+.prose code {
+  background-color: rgb(31, 41, 55);
+  color: rgb(52, 211, 153); /* emerald-400 */
+}
+
+.prose pre {
+  background-color: rgb(17, 24, 39); /* gray-900 */
+}
+
+.prose blockquote {
+  border-left-color: var(--link-color);
+  background-color: var(--panel);
 }

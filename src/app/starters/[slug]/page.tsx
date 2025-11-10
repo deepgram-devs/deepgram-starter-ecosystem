@@ -146,12 +146,12 @@ export default function StarterDetailPage() {
 
               {/* Starter Info Card */}
               <div className="p-1 rounded-lg mb-4 lg:mb-4" style={{ backgroundColor: 'var(--border-color)' }}>
-                <Card className="bg-black border-none">
-                  <CardHeader className="bg-black flex justify-center items-center py-4">
-                    <h2 className="text-lg sm:text-xl font-bold text-white text-center">{starter.title}</h2>
+                <Card className="border-none" style={{ backgroundColor: 'var(--panel)' }}>
+                  <CardHeader className="flex justify-center items-center py-4" style={{ backgroundColor: 'var(--panel)' }}>
+                    <h2 className="text-lg sm:text-xl font-bold text-center" style={{ color: 'var(--foreground)' }}>{starter.title}</h2>
                   </CardHeader>
-                  <CardBody className="pt-0 bg-black p-4 sm:p-6">
-                    <p className="text-secondary text-sm mb-4">
+                  <CardBody className="pt-0 p-4 sm:p-6" style={{ backgroundColor: 'var(--panel)' }}>
+                    <p className="text-sm mb-4">
                       {starter.description}
                     </p>
 
@@ -177,7 +177,7 @@ export default function StarterDetailPage() {
                     <Divider className="my-4" />
 
                     {/* Stats */}
-                    <div className="text-sm text-secondary">
+                    <div className="text-sm">
                       <div className="flex justify-between mb-1">
                         <span>Stars:</span>
                         <span>{starter.stats.stars}</span>
@@ -237,17 +237,17 @@ export default function StarterDetailPage() {
 
               {/* TOML Configuration Display */}
               <div className="p-1 rounded-lg mb-6 lg:mb-0" style={{ backgroundColor: 'var(--border-color)' }}>
-                <Card className="bg-black border-none">
-                  <CardHeader className="bg-black flex justify-center items-center py-4">
-                    <h3 className="text-base sm:text-lg font-semibold text-white">Configuration</h3>
+                <Card className="border-none" style={{ backgroundColor: 'var(--panel)' }}>
+                  <CardHeader className="flex justify-center items-center py-4" style={{ backgroundColor: 'var(--panel)' }}>
+                    <h3 className="text-base sm:text-lg font-semibold" style={{ color: 'var(--foreground)' }}>Configuration</h3>
                   </CardHeader>
-                  <CardBody className="pt-0 bg-black p-4 sm:p-6">
+                  <CardBody className="pt-0 p-4 sm:p-6" style={{ backgroundColor: 'var(--panel)' }}>
                     <div className="space-y-4 text-sm">
                       {/* Build Command */}
                       {starter.config?.build?.command && (
                         <div>
-                          <span className="font-medium text-secondary">Build Command:</span>
-                          <div className="mt-1">
+                          <span className="font-medium">Build Command:</span>
+                          <div className="mt-2">
                             <code className="bg-gray-800 text-emerald-400 px-2 py-1 rounded text-sm font-mono">
                               {starter.config.build.command}
                             </code>
@@ -258,7 +258,7 @@ export default function StarterDetailPage() {
                       {/* Requirements */}
                       {(starter.config?.requirements?.node || starter.config?.requirements?.python) && (
                         <div>
-                          <span className="font-medium text-secondary">Requirements:</span>
+                          <span className="font-medium">Requirements:</span>
                           <div className="flex flex-wrap gap-1 mt-1">
                             {starter.config.requirements.node && (
                               <Chip size="sm" variant="solid" color="default" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
@@ -315,17 +315,18 @@ export default function StarterDetailPage() {
                       {/* Post-build message */}
                       {starter.config?.["post-build"]?.message && (
                         <div>
-                          <span className="font-medium text-secondary">Setup Notes:</span>
-                          <div className="mt-1 p-2 bg-gray-800 rounded text-secondary text-xs">
+                          <span className="font-medium">Post Build:</span>
+                          <div className="mt-2 code-block">
                             {starter.config["post-build"].message}
                           </div>
                         </div>
                       )}
 
                       {/* Deployment info (if available) */}
+                      {/* TODO: Deployment platforms not yet in TOML files
                       {starter.deployment?.platforms && (
                         <div>
-                          <span className="font-medium text-secondary">Platforms:</span>
+                          <span className="font-medium">Platforms:</span>
                           <div className="flex flex-wrap gap-1 mt-1">
                             {starter.deployment.platforms.map((platform, index) => (
                               <Chip key={index} size="sm" variant="solid" color="default" style={{ backgroundColor: 'var(--language-label)', color: 'var(--background)' }}>
@@ -335,6 +336,7 @@ export default function StarterDetailPage() {
                           </div>
                         </div>
                       )}
+                      */}
 
                       {/* Show message if no useful config data */}
                       {!starter.config?.build?.command &&
@@ -356,11 +358,11 @@ export default function StarterDetailPage() {
               {/* Deploy Section */}
               {/* TODO: Deploy feature not yet implemented.  This is a placeholder for future integration work we need to do to support deploying to these platforms.
               <div className="p-1 rounded-lg mt-6" style={{ backgroundColor: 'var(--border-color)' }}>
-                <Card className="bg-black border-none">
-                  <CardHeader className="bg-black flex justify-center items-center">
-                    <h3 className="text-lg font-semibold text-white">Deploy</h3>
+                <Card className="border-none" style={{ backgroundColor: 'var(--panel)' }}>
+                  <CardHeader className="flex justify-center items-center" style={{ backgroundColor: 'var(--panel)' }}>
+                    <h3 className="text-lg font-semibold" style={{ color: 'var(--foreground)' }}>Deploy</h3>
                   </CardHeader>
-                  <CardBody className="pt-0 bg-black p-6">
+                  <CardBody className="pt-0 p-6" style={{ backgroundColor: 'var(--panel)' }}>
                     <Dropdown>
                       <DropdownTrigger>
                         <Button
@@ -420,32 +422,31 @@ export default function StarterDetailPage() {
           <main className="flex-1 lg:p-6">
             <div className="max-w-5xl mx-auto">
               <div className="p-1 rounded-lg" style={{ backgroundColor: 'var(--border-color)' }}>
-                <Card className="min-h-[600px] bg-black border-none">
-                  <CardHeader className="bg-black border-b border-gray-700 pb-4 pt-4">
+                <Card className="min-h-[600px] border-none" style={{ backgroundColor: 'var(--panel)' }}>
+                  <CardHeader className="pb-4 pt-4" style={{ backgroundColor: 'var(--panel)', borderBottom: '1px solid var(--border-color)' }}>
                     <div className="flex items-center gap-3 px-2">
                       <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--border-color)' }}>
-                        <BookOpenIcon className="w-5 h-5 text-white" />
+                        <BookOpenIcon className="w-5 h-5" style={{ color: 'var(--foreground)' }} />
                       </div>
-                      <h1 className="text-xl sm:text-2xl font-bold text-white">README</h1>
+                      <h1 className="text-xl sm:text-2xl font-bold" style={{ color: 'var(--foreground)' }}>README</h1>
                     </div>
                   </CardHeader>
-                  <CardBody className="p-4 sm:p-6 lg:p-8 bg-black">
+                  <CardBody className="p-4 sm:p-6 lg:p-8" style={{ backgroundColor: 'var(--panel)' }}>
                     <div
-                      className="prose prose-sm sm:prose-base lg:prose-lg prose-invert max-w-none
-                             prose-headings:text-white prose-headings:font-bold prose-headings:tracking-tight
+                      className="prose prose-sm sm:prose-base lg:prose-lg max-w-none
+                             prose-headings:font-bold prose-headings:tracking-tight
                              prose-h1:text-2xl sm:prose-h1:text-3xl prose-h1:mb-6 sm:prose-h1:mb-8 prose-h1:mt-0
-                             prose-h2:text-xl sm:prose-h2:text-2xl prose-h2:mb-4 sm:prose-h2:mb-6 prose-h2:mt-8 sm:prose-h2:mt-10 prose-h2:border-b prose-h2:border-gray-700 prose-h2:pb-3
+                             prose-h2:text-xl sm:prose-h2:text-2xl prose-h2:mb-4 sm:prose-h2:mb-6 prose-h2:mt-8 sm:prose-h2:mt-10 prose-h2:border-b prose-h2:pb-3
                              prose-h3:text-lg sm:prose-h3:text-xl prose-h3:mb-3 sm:prose-h3:mb-4 prose-h3:mt-6 sm:prose-h3:mt-8
                              prose-p:leading-loose prose-p:mb-4 sm:prose-p:mb-6
-                             prose-strong:text-white prose-strong:font-semibold
-                             prose-code:text-emerald-400 prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono
-                             prose-pre:bg-gray-900 prose-pre:rounded prose-pre:p-2 prose-pre:overflow-x-auto prose-pre:my-4 sm:prose-pre:my-6 prose-pre:text-xs sm:prose-pre:text-sm
+                             prose-strong:font-semibold
+                             prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono
+                             prose-pre:rounded prose-pre:p-2 prose-pre:overflow-x-auto prose-pre:my-4 sm:prose-pre:my-6 prose-pre:text-xs sm:prose-pre:text-sm
                              prose-ul:mb-4 sm:prose-ul:mb-6
                              prose-ol:mb-4 sm:prose-ol:mb-6
                              prose-li:mb-2 prose-li:leading-loose
-                             prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-gray-800/50 prose-blockquote:p-3 sm:prose-blockquote:p-4 prose-blockquote:rounded-r prose-blockquote:mb-4 sm:prose-blockquote:mb-6
+                             prose-blockquote:border-l-4 prose-blockquote:p-3 sm:prose-blockquote:p-4 prose-blockquote:rounded-r prose-blockquote:mb-4 sm:prose-blockquote:mb-6
                              prose-img:rounded-lg prose-img:shadow-lg prose-img:mb-4 sm:prose-img:mb-6"
-                      style={{ color: 'var(--foreground)' }}
                     >
                       {readme ? (
                         <ReactMarkdown
