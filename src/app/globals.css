@@ -75,7 +75,7 @@
   --language-label: #76767A;  /* Light gray for language labels */
 
   /* Border Color */
-  --border-color: #E1E1E5;    /* Light gray border */
+  --border-color:  #c5cbd3;    /* Light gray border */
 
   /* Theme Dropdown */
   --theme-dropdown-bg: #FBFBFF; /* Light background for theme selector */
@@ -195,9 +195,10 @@ pre {
 /* Global primary button class*/
 .btn-magenta-gradient {
   position: relative;
-  background: black;
-  color: white;
+  background: #000000;
+  color: #ffffff;
   padding: 12px;
+  font-weight: 600;
   border-radius: 4px;
   isolation: isolate;
   cursor: pointer;
@@ -251,6 +252,15 @@ pre {
 .starter-card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+}
+
+/* Light mode: Default shadow for better card definition */
+.light .starter-card-hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.light .starter-card-hover:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* Link and Button styling */
@@ -379,13 +389,51 @@ pre {
   border-color: var(--border-color);
 }
 
+/* Dark mode: code blocks */
 .prose code {
   background-color: rgb(31, 41, 55);
-  color: rgb(52, 211, 153); /* emerald-400 */
+  color: rgb(52, 211, 153);
 }
 
 .prose pre {
-  background-color: rgb(17, 24, 39); /* gray-900 */
+  background-color: rgb(17, 24, 39);
+}
+
+/* Light mode: code blocks */
+.light .prose code {
+  background-color: #f6f8fa;
+  color: #24292f;
+}
+
+.light .prose pre {
+  background-color: #f6f8fa;
+  border: 1px solid #d0d7de;
+}
+
+.light .code-block {
+  background-color: #f6f8fa;
+  color: #24292f;
+  border: 1px solid #d0d7de;
+}
+
+/* Light mode: Copy button styling */
+.light button[aria-label*="Copy"],
+.light button[aria-label*="Copied"] {
+  background-color: rgba(246, 248, 250, 0.8) !important;
+  color: #24292f;
+}
+
+.light button[aria-label*="Copy"]:hover {
+  background-color: rgba(208, 215, 222, 0.9) !important;
+}
+
+.light button[aria-label*="Copy"] svg,
+.light button[aria-label*="Copied"] svg {
+  color: #57606a !important;
+}
+
+.light button[aria-label*="Copy"]:hover svg {
+  color: #24292f !important;
 }
 
 .prose blockquote {
