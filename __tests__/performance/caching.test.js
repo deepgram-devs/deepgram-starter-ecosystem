@@ -4,7 +4,17 @@
  * Tests GitHub API caching performance
  */
 
+const { waitForServer } = require('../helpers/test-utils');
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+
+// Wait for server to be ready before running tests
+beforeAll(async () => {
+  const isReady = await waitForServer(`${BASE_URL}/api/starters`, 10, 500);
+  if (!isReady) {
+    console.error('Server not ready. Make sure the dev server is running on', BASE_URL);
+    throw new Error('Server not available for testing');
+  }
+}, 15000); // 15 second timeout for server to be ready
 
 async function measureRequest(url, description) {
   const start = Date.now();

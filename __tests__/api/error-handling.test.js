@@ -7,8 +7,19 @@
  * GitHub works correctly and focus on testing our handling of edge cases.
  */
 
+const { waitForServer } = require('../helpers/test-utils');
+
 describe('API Error Handling', () => {
   const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+
+  // Wait for server to be ready before running tests
+  beforeAll(async () => {
+    const isReady = await waitForServer(`${BASE_URL}/api/starters`, 10, 500);
+    if (!isReady) {
+      console.error('Server not ready. Make sure the dev server is running on', BASE_URL);
+      throw new Error('Server not available for testing');
+    }
+  }, 15000); // 15 second timeout for server to be ready
 
   describe('404 Not Found Errors', () => {
     test('should return 404 for non-existent starter README', async () => {

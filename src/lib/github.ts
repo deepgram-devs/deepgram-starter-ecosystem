@@ -14,6 +14,9 @@ function getApiHeaders(): HeadersInit {
 
   if (process.env.GH_PAT) {
     headers['Authorization'] = `Bearer ${process.env.GH_PAT}`;
+    console.log('✓ Using authenticated GitHub API (GH_PAT found)');
+  } else {
+    console.warn('⚠️  No GH_PAT found - using unauthenticated API (60 req/hour limit)');
   }
 
   return headers;
