@@ -343,7 +343,7 @@ export function StarterGrid({ filters }: StarterGridProps) {
                   <div className="flex flex-col gap-2 w-full items-start">
                     {/* Primary CTA - View Starter */}
                     <Button
-                      className="btn-magenta-gradient font-semibold min-h-[44px]"
+                      className="btn-magenta-gradient min-h-[44px]"
                       onPress={() => window.location.href = `/starters/${starter.name}`}
                       size="md"
                     >
