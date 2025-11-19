@@ -7,18 +7,27 @@
  * URL formatting. This prevents unnecessary API calls and rate limiting issues.
  */
 
+const { waitForServer } = require('../helpers/test-utils');
+
 describe('GitHub Repository Validation', () => {
   const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
   const GITHUB_ORG = 'deepgram-starters';
   let starters = [];
 
   beforeAll(async () => {
+    // Wait for server to be ready
+    const isReady = await waitForServer(`${BASE_URL}/api/starters`, 10, 500);
+    if (!isReady) {
+      console.error('Server not ready. Make sure the dev server is running on', BASE_URL);
+      throw new Error('Server not available for testing');
+    }
+
     // Fetch the list of starters from the API
     const response = await fetch(`${BASE_URL}/api/starters`);
     if (response.ok) {
       starters = await response.json();
     }
-  });
+  }, 15000); // 15 second timeout for server to be ready
 
   describe('Repository Data Validation', () => {
     test('should return starter repositories from GitHub', () => {

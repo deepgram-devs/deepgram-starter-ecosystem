@@ -136,7 +136,7 @@ graph TD
 rm -rf .next/cache
 
 # Test cache performance
-npm run test:cache
+npm run test:performance
 
 # Monitor cache in development
 # Check console logs for cache hits/misses
@@ -374,7 +374,7 @@ npm run build             # Verify production build
 ### Testing
 
 ```bash
-npm test                  # Run all tests
+npm test                  # Run all tests using http://localhost:3000/
 ```
 
 ## 🚀 Deployment

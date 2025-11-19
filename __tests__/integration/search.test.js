@@ -4,16 +4,25 @@
  * and handles various input scenarios correctly
  */
 
+const { waitForServer } = require('../helpers/test-utils');
+
 describe('Search Functionality', () => {
   const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
   let realStarters;
 
   beforeAll(async () => {
+    // Wait for server to be ready
+    const isReady = await waitForServer(`${BASE_URL}/api/starters`, 10, 500);
+    if (!isReady) {
+      console.error('Server not ready. Make sure the dev server is running on', BASE_URL);
+      throw new Error('Server not available for testing');
+    }
+
     const response = await fetch(`${BASE_URL}/api/starters`);
     if (response.ok) {
       realStarters = await response.json();
     }
-  });
+  }, 15000); // 15 second timeout for server to be ready
 
   describe('Field-Specific Search Tests', () => {
     test('should find starters by language field', () => {

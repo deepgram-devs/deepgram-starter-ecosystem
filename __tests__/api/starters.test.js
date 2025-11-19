@@ -3,8 +3,19 @@
  * Tests the /api/starters endpoints with real API calls
  */
 
+const { waitForServer } = require('../helpers/test-utils');
+
 describe('API Endpoints - /api/starters', () => {
   const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+
+  // Wait for server to be ready before running tests
+  beforeAll(async () => {
+    const isReady = await waitForServer(`${BASE_URL}/api/starters`, 10, 500);
+    if (!isReady) {
+      console.error('Server not ready. Make sure the dev server is running on', BASE_URL);
+      throw new Error('Server not available for testing');
+    }
+  }, 15000); // 15 second timeout for server to be ready
 
   describe('GET /api/starters', () => {
     test('should return 200 status', async () => {
