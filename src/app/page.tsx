@@ -68,14 +68,14 @@ export default function HomePage() {
           {/* Main Content */}
           <main className="flex-1 lg:p-6 pb-24 lg:pb-6">
             {/* Description Header */}
-            <div className="mb-6 lg:mb-8">
+            <div className="mb-8 lg:mb-10">
               <p className="text-base sm:text-lg max-w-3xl" style={{ color: 'var(--foreground)' }}>
                 Jumpstart your app development process with pre-built solutions from Deepgram.
               </p>
             </div>
 
             {/* Search Bar */}
-            <SearchBar onSearchChange={handleSearchChange} />
+            <SearchBar className="mb-8 lg:mb-10" onSearchChange={handleSearchChange} />
 
             <Suspense fallback={<Loading />}>
               <StarterGrid filters={combinedFilters} />
